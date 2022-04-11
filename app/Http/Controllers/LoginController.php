@@ -27,7 +27,7 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $request->validate([
-            'nis' => 'required',
+            'nis' => 'required|nis',
             'password' => 'required'
         ]);
 

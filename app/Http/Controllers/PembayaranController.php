@@ -12,7 +12,7 @@ class PembayaranController extends Controller
     public function index()
     {
         $data_pembayaran = Pembayaran::get();
-        return view('admin.keuangan.crud_pembayaran', [
+        return view('admin.v_pembayaran', [
             'colleges' => $data_pembayaran
         ]);
 
@@ -20,7 +20,7 @@ class PembayaranController extends Controller
 
     public function create()
     {
-        // Mengirim data dari modal tambah ke databae
+        // Mengirim data dari modal tambah ke database
         \App\Models\Pembayaran::create($request->all);
     }
 
@@ -53,7 +53,7 @@ class PembayaranController extends Controller
     public function edit($id)
     {
         $data_pembayaran = Pembayaran::findOrFail($id);
-        return view('admin.keuangan.edit')->with([
+        return view('admin.edit_pembayaran')->with([
             'colleges' => $data_pembayaran
         ]);
     }
@@ -72,4 +72,18 @@ class PembayaranController extends Controller
         $data_spesifik->delete();
         return redirect()->route('data-pembayaran.index');
     }
+
+    public function cetakForm()
+    {
+        return view('admin.cetak_form');
+    }
+
+    public function cetakPertanggal($tglawal, $tglakhir)
+    {
+        $cetakPertanggal = Pembayaran::orderBy('tanggal', 'asc')->whereBetween('tanggal', [$tglawal, $tglakhir])->get();
+        return view('admin.cetak_pertanggal', [
+            'colleges' => $cetakPertanggal
+        ]);
+    }
+
 }

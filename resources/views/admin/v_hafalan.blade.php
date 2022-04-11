@@ -1,0 +1,134 @@
+@extends('admin.main')
+  <!-- container -->
+  @section('container')
+  <!-- Navbar -->
+  @include('admin.navbar')
+  <!-- Sidebar -->
+  @include('admin.sidebar')
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Data Hafalan</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Blank Page</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            {{-- Form tambah hafalan  --}}
+            <form action="{{route('data-hafalan.store')}}" method="POST">
+              {{-- CSRF merupakan keamanan yang disediakan laravel  --}}
+              @method('POST')
+              @csrf
+              <div class="mb-3">
+                <label for="" class="form-label">NIS Santri</label>
+                <input required name="nis" type="text" class="form-control" placeholder="Masukkan NIS Santri">
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Nama Lengkap Santri</label>
+                <input required name="nama" type="text" class="form-control" placeholder="Masukkan Nama Lengkap Santri">
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Tanggal Hafalan</label>
+                <input required name="tanggal" type="date" class="form-control" placeholder="Masukkan tanggal hafalan">
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Hafalan Surat</label>
+                <input required name="hafalan" type="text" class="form-control" placeholder="Masukkan hafalan surat">
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Keterangan</label>
+                <input required name="keterangan" type="text" class="form-control" placeholder="Masukkan keterangan">
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                  <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Tambah Data
+        </button>
+        <table class="table table-striped table-hover" style="vertical-align: middle">
+          <tr>
+            <th>No.</th>
+            <th>NIS</th>
+            <th>Nama Santri</th>
+            <th>Tanggal Hafalan</th>
+            <th>Hafalan Surat</th>
+            <th>Keterangan</th>
+            <th>Aksi</th>
+          </tr>
+
+          @foreach($hafalan as $hafal)
+          <tr>
+            <td>{{ $loop->index + 1 }}</td>
+            <td>{{ $hafal->nis }}</td>
+            <td>{{ $hafal->nama }}</td>
+            <td>{{ $hafal->tanggal }}</td>
+            <td>{{ $hafal->hafalan }}</td>
+            <td>{{ $hafal->keterangan }}</td>
+            <td>
+              <form action="{{route('data-hafalan.destroy', $hafal->id)}}" method="POST">
+                <a href="{{route('data-hafalan.edit', $hafal->id)}}" 
+                    class="btn btn-primary">Ubah</a>
+                @csrf    
+                @method('delete')
+                <button type="submit" class="btn btn-danger">Hapus</button>
+              </form>
+            </td>
+          </tr>
+          @endforeach
+        </table>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  @include('admin.footer')
+  <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  <!-- /.content-wrapper -->
+  @endsection

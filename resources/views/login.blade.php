@@ -28,12 +28,21 @@
             <div class="col-md-6">
                 <p class="card-title" style="margin-bottom: 20px;">LOGIN</p>
                 <p><small>Silahkan Login untuk melanjutkan</small></p>
-                <form action="post">
+                <form action="/login" method="post">
+                  @csrf
                 <ul>
-                    <li><label for="username">Username</label></li>
-                    <input class="form-control" type="text" name="username" id="username" placeholder="Masukan NIS"  style="margin-top: 10px; margin-bottom: 10px">
-                    <li><label for="password">Password</label></li>
-                    <input class="form-control" type="text" name="password" id="password" placeholder="Masukan Password"  style="margin-top: 10px">
+                    <li>
+                      <label for="username">Username</label></li>
+                      <input class="form-control @error('nis') is-invalid @enderror" type="text" name="username" id="username" placeholder="Masukan NIS" required value="{{ old('nis') }}" style="margin-top: 10px; margin-bottom: 10px">
+                      @error('nis')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                      @enderror
+                    <li>
+                      <label for="password">Password</label></li>
+                      <input class="form-control" type="text" name="password" id="password" placeholder="Masukan Password" required style="margin-top: 10px">
+                    
                 </ul>
                 <div href="/dashboard" class="text-center">
                 <button type="submit" class="btn btn-primary">Login</button>
