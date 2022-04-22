@@ -28,7 +28,7 @@
             </a>
           </li>
         <li class="nav-item sidebar-actions" style="margin-left: 30px">
-            <a class="nav-link" href="/login">
+            <a class="nav-link" href="/login-page">
               <button class="btn btn-lg btn-gradient-primary">Login</button>
             </a>
           </li>

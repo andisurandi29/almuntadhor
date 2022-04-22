@@ -43,6 +43,7 @@
             </a>
           </li>
           
+          @if (auth()->user()->level == "admin")
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
@@ -78,6 +79,9 @@
               </li>
             </ul>
           </li>
+          @endif
+
+          @if (auth()->user()->level == "pengurus")
           <li class="nav-item">
             <a href="/data-santri" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
@@ -86,6 +90,9 @@
               </p>
             </a>
           </li>
+          @endif
+
+          @if (auth()->user()->level == "pengurus")
           <li class="nav-item">
             <a href="/data-pembayaran" class="nav-link">
               <i class="nav-icon fas fa-wallet"></i>
@@ -94,6 +101,9 @@
               </p>
             </a>
           </li>
+          @endif
+
+          @if (auth()->user()->level == "pendidik")
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
@@ -141,6 +151,9 @@
               </li>
             </ul>
           </li>
+          @endif
+
+          @if (auth()->user()->level == "pengurus")
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-clipboard-list"></i>
@@ -200,6 +213,9 @@
               </li>
             </ul>
           </li>
+          @endif
+
+          @if (auth()->user()->level == "pengurus")
           <li class="nav-item">
             <a href="/data-hafalan" class="nav-link">
               <i class="nav-icon fas fa-sd-card"></i>
@@ -208,6 +224,9 @@
               </p>
             </a>
           </li>
+          @endif
+
+          @if (auth()->user()->level == "pengurus")
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-bullhorn"></i>
@@ -236,6 +255,16 @@
                 </a>
               </li>
             </ul>
+          </li>
+          @endif
+
+          <li class="nav-item">
+            <a href="{{route('logout')}}" class="nav-link">
+              <i class="nav-icon fas fa-bullhorn"></i>  
+              <p>
+                Logout
+              </p>
+            </a>
           </li>
         </ul>
       </nav>

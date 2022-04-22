@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +19,14 @@ use App\Http\Controllers\PembayaranController;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/login', function () {
+
+Route::get('/login-page', function () {
     return view('login');
 });
-// Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/login', [App\Http\Controllers\LoginController::class, 'authenticate']);
+
+Route::get('/login-page', [App\Http\Controllers\LoginController::class, 'index'])->name('login-page');
+Route::post('/postlogin', [App\Http\Controllers\LoginController::class, 'postlogin'])->name('postlogin');
+Route::get('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
 
 Route::get('/about', function () {
     return view('pages.about');
@@ -35,7 +39,11 @@ Route::get('/gallery', function () {
         return view('pages.gallery');  
 });
 
-
+Route::group(['middleware' => ['auth','ceklevel:admin,pengurus,pendidik']], function() {
+    Route::get('/dashboard-admin', function () {
+        return view('admin.dashboard');
+    });
+});
 
 // Halaman Users
 Route::get('/dashboard', function () {
@@ -78,9 +86,7 @@ Route::get('/account', function () {
 
 
 // Halaman Administrator
-Route::get('/dashboard-admin', function () {
-    return view('admin.dashboard');
-});
+
 
 // Data Pembayaran
 Route::get('data-pembayaran', [App\Http\Controllers\PembayaranController::class, 'index'])->name('data-pembayaran.index');
@@ -124,3 +130,6 @@ Route::get('/pembayaran-pengurus', function () {
     return view('pengurus.v_pembayaran');
 });
 // Route::get('pembayaran-pengurus', [App\Http\Controllers\PembayaranPengurusController::class, 'index'])->name('pembayaran-pengurus.index');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

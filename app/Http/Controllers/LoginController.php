@@ -12,11 +12,18 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function postlogin(Request $request)
     {
-        return view('login', [
-            'title' => 'Login'
-        ]);
+        if(Auth::attempt($request->only('username','password')))
+        {
+            return redirect('/dashboard-admin');
+        }
+        return redirect('/login-page');
+    }
+
+     public function index()
+    {
+        return view('login');
     }
 
     /**
@@ -26,12 +33,7 @@ class LoginController extends Controller
      */
     public function authenticate(Request $request)
     {
-        $request->validate([
-            'nis' => 'required|nis',
-            'password' => 'required'
-        ]);
-
-        dd('berhasil login!');
+        //
     }
 
     /**
@@ -88,5 +90,11 @@ class LoginController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }

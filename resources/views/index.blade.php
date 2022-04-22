@@ -18,7 +18,7 @@
               </h3>
             </div>
             <div class="alert alert-info" role="alert">
-              Anda berada diportal informasi umum ! Silahkan <a href="/login">Login</a> untuk melanjutkan !
+              Anda berada diportal informasi umum ! Silahkan <a href="{{url('/login-page')}}">Login</a> untuk melanjutkan !
             </div>
           <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
@@ -80,7 +80,7 @@
                   </div>
                   <p class="text-secondary"><small>Gallery</small></p>
                 </a>
-                <a href="/login" class="col mb-3" style="margin-right: 20px">
+                <a href="/login-page" class="col mb-3" style="margin-right: 20px">
                   <div class="card mb-1 bg-gradient-primary  text-white text-center">
                     <span><i class="fas fa-sign-in-alt" style="margin: 21px;"></i></span>
                   </div>
