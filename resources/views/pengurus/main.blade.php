@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -22,6 +22,7 @@
         <link href="{{ asset('NiceAdmin/') }}/assets/vendor/simple-datatables/style.css" rel="stylesheet">
         <!-- Template Main CSS File -->
         <link href="{{ asset('NiceAdmin/') }}/assets/css/style.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/8bf6e38d9a.js" crossorigin="anonymous"></script>
         <!-- =======================================================
         * Template Name: NiceAdmin - v2.2.2
         * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/

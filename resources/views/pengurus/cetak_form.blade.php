@@ -1,10 +1,10 @@
-@extends('admin.main')
+@extends('pengurus.main')
     <!-- container -->
     @section('container')
     <!-- Navbar -->
-    @include('admin.navbar')
+    @include('pengurus.navbar')
     <!-- Sidebar -->
-    @include('admin.sidebar')
+    @include('pengurus.sidebar')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <section class="content-header">
@@ -24,6 +24,6 @@
         </section>
     </div>
     <!-- /.content-wrapper -->
-    @include('admin.footer')
+    @include('pengurus.footer')
     <!-- /.content-wrapper -->
     @endsection

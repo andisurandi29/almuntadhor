@@ -12,7 +12,7 @@ class PembayaranController extends Controller
     public function index()
     {
         $data_pembayaran = Pembayaran::get();
-        return view('admin.v_pembayaran', [
+        return view('pengurus.v_pembayaran', [
             'colleges' => $data_pembayaran
         ]);
 
@@ -53,7 +53,7 @@ class PembayaranController extends Controller
     public function edit($id)
     {
         $data_pembayaran = Pembayaran::findOrFail($id);
-        return view('admin.edit_pembayaran')->with([
+        return view('pengurus.edit_pembayaran')->with([
             'colleges' => $data_pembayaran
         ]);
     }
@@ -75,13 +75,13 @@ class PembayaranController extends Controller
 
     public function cetakForm()
     {
-        return view('admin.cetak_form');
+        return view('pengurus.cetak_form');
     }
 
     public function cetakPertanggal($tglawal, $tglakhir)
     {
         $cetakPertanggal = Pembayaran::orderBy('tanggal', 'asc')->whereBetween('tanggal', [$tglawal, $tglakhir])->get();
-        return view('admin.cetak_pertanggal', [
+        return view('pengurus.cetak_pertanggal', [
             'colleges' => $cetakPertanggal
         ]);
     }

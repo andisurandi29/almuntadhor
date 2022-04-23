@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\DataSantri;
+use App\Models\DataAkun;
 use Illuminate\Support\Facades\DB;
 
-class SantriController extends Controller
+class AkunController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class SantriController extends Controller
      */
     public function index()
     {
-        $data_santri = DataSantri::orderBy('angkatan', 'ASC')->paginate(5);
-        return view('pengurus.v_santri', [
-            'datas' => $data_santri
+        $data_akun = DataAkun::orderBy('level', 'ASC')->paginate(5);
+        return view('admin.v_akun', [
+            'accounts' => $data_akun
         ]);
     }
 
@@ -29,7 +29,7 @@ class SantriController extends Controller
     public function create()
     {
         // Mengirim data dari modal tambah ke database
-        \App\Models\DataSantri::create($request->all);
+        \App\Models\DataAkun::create($request->all);
     }
 
     /**
@@ -40,23 +40,25 @@ class SantriController extends Controller
      */
     public function store(Request $request)
     {
-        $input_santri = $request->all();
+        $input_akun = $request->all();
+        $input_akun['password'] = bcrypt($request->password);
+
 
         //  Array 1 dimensi
-        $id = DB::select("SHOW TABLE STATUS LIKE 'data_santri'");
+        $id = DB::select("SHOW TABLE STATUS LIKE 'users'");
         $next_id = $id[0]->Auto_increment;
         // jika id terbaru lebih dari sama dengan 10 maka keluaranya 00 + id terbaru
         if ($next_id >= 10) {
-            $input_santri['id'] = '0' . $next_id;
-            DataSantri::create($input_santri);
+            $input_akun['id'] = '0' . $next_id;
+            DataAkun::create($input_akun);
         } else {
             // selain itu maka 0 + id terbaru
             // default value dari nomor karyawan adalah 0 + id terbaru
-            $input_santri['id'] = '00' . $next_id;
+            $input_akun['id'] = '00' . $next_id;
             // tambah data
-            DataSantri::create($input_santri);
+            DataAkun::create($input_akun);
         }
-        return redirect()->route('data-santri.index');
+        return redirect()->route('data-akun.index');
     }
 
     /**
@@ -78,9 +80,9 @@ class SantriController extends Controller
      */
     public function edit($id)
     {
-        $edit_santri = DataSantri::findOrFail($id);
-        return view('pengurus.edit_santri')->with([
-            'datas' => $edit_santri
+        $edit_akun = DataAkun::findOrFail($id);
+        return view('admin.edit_akun')->with([
+            'accounts' => $edit_akun
         ]);
     }
 
@@ -93,10 +95,12 @@ class SantriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update_santri = $request->all();
-        $update_data = DataSantri::findOrFail($id);
-        $update_data->update($update_santri);
-        return redirect('data-santri');
+        $update_akun = $request->all();
+        $update_akun['password'] = bcrypt($request->password);
+        
+        $update_data = DataAkun::findOrFail($id);
+        $update_data->update($update_akun);
+        return redirect('data-akun');
     }
 
     /**
@@ -107,17 +111,8 @@ class SantriController extends Controller
      */
     public function destroy($id)
     {
-        $update_data = DataSantri::findOrFail($id);
+        $update_data = DataAkun::findOrFail($id);
         $update_data->delete();
-        return redirect()->route('data-santri.index');
+        return redirect()->route('data-akun.index');
     }
-
-    public function cetakPdf()
-    {
-        $data_santri = DataSantri::orderBy('angkatan', 'ASC')->get();
-        return view('pengurus.cetak_pdf', [
-            'datas' => $data_santri
-        ]);
-    }
-
 }

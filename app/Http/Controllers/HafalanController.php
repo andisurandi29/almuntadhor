@@ -11,7 +11,7 @@ class HafalanController extends Controller
     public function index()
     {
         $data_hafalan = Hafalan::get();
-        return view('admin.v_hafalan', [
+        return view('pengurus.v_hafalan', [
             'hafalan' => $data_hafalan
         ]);
     }
@@ -51,7 +51,7 @@ class HafalanController extends Controller
     public function edit($id)
     {
         $edit_hafalan = Hafalan::findOrFail($id);
-        return view('admin.edit_hafalan')->with([
+        return view('pengurus.edit_hafalan')->with([
             'hafalan' => $edit_hafalan
         ]);
     }

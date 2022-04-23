@@ -1,32 +1,28 @@
-@extends('admin.main')
+@extends('pengurus.main')
   <!-- container -->
-  @section('container')
+  @section('pengurus')
   <!-- Navbar -->
-  @include('admin.navbar')
+  @include('pengurus.navbar')
   <!-- Sidebar -->
-  @include('admin.sidebar')
+  @include('pengurus.sidebar')
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <main id="main" class="main">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Pembayaran</h1>
+            <h1>Data Santri</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('data-pembayaran.cetak-form')}}">print</a></li>
+              <li class="breadcrumb-item"><a href="{{route('data-santri.cetak')}}">Print</a></li>
               <li class="breadcrumb-item active">Blank Page</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
-    <button type="button" class="btn btn-primary fas fa-plus-square" data-toggle="modal" data-target="#exampleModal">
-      Tambah Data
-    </button>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -38,34 +34,30 @@
             </button>
           </div>
           <div class="modal-body">
-            {{-- Form tambah pembayaran  --}}
-            <form action="{{route('data-pembayaran.store')}}" method="POST">
+            {{-- Form tambah hafalan  --}}
+            <form action="{{route('data-santri.store')}}" method="POST">
               {{-- CSRF merupakan keamanan yang disediakan laravel  --}}
               @method('POST')
               @csrf
               <div class="mb-3">
                 <label for="" class="form-label">NIS Santri</label>
-                <input required name="nis" type="text" class="form-control" placeholder="Masukkan NIS Santri">
+                <input required name="nis" type="text" class="form-control" placeholder="Masukkan NIS santri">
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Nama Lengkap Santri</label>
-                <input required name="nama" type="text" class="form-control" placeholder="Masukkan Nama Lengkap Santri">
+                <input required name="nama" type="text" class="form-control" placeholder="Masukkan nama lengkap santri">
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Tanggal Pembayaran</label>
-                <input required name="tanggal" type="date" class="form-control" placeholder="Masukkan tanggal pembayaran">
+                <label for="" class="form-label">Tanggal Lahir</label>
+                <input required name="tgl_lahir" type="date" class="form-control" placeholder="Masukkan tanggal lahir">
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Nominal Pembayaran</label>
-                <input required name="nominal" type="text" class="form-control" placeholder="Masukkan nominal pembayaran">
+                <label for="" class="form-label">Angkatan</label>
+                <input required name="angkatan" type="text" class="form-control" placeholder="Masukkan angkatan santri">
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Bukti Pembayaran</label>
-                <input required name="bukti" type="text" class="form-control" placeholder="Masukkan bukti pembayaran">
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">Keterangan</label>
-                <input required name="keterangan" type="text" class="form-control" placeholder="Masukkan keterangan">
+                <label for="" class="form-label">Alamat Lengkap</label>
+                <input required name="alamat" type="text" class="form-control" placeholder="Masukkan alamat lengkap">
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -77,45 +69,58 @@
       </div>
     </div>
 
+    
     <!-- Main content -->
     <section class="content">
-      <table class="table table-striped table-hover" style="vertical-align: middle">
-        <tr>
-          <th>No.</th>
-          <th>NIS</th>
-          <th>Nama Santri</th>
-          <th>Tanggal Pembayaran</th>
-          <th>Nominal Pembayaran</th>
-          <th>Bukti Pembayaran</th>
-          <th>Keterangan</th>
-          <th>Aksi</th>
-        </tr>
+      <div class="container-fluid">
+        <button type="button" class="btn btn-primary fas fa-plus-square" data-toggle="modal" data-target="#exampleModal">
+            Tambah Data
+        </button>
+        <table class="table table-striped table-hover" style="vertical-align: middle">
+          <tr>
+            <th>No.</th>
+            <th>NIS</th>
+            <th>Nama Santri</th>
+            <th>Tanggal Lahir</th>
+            <th>Angkatan</th>
+            <th>Alamat Lengkap</th>
+            <th>Aksi</th>
+          </tr>
 
-        @foreach($colleges as $college)
-        <tr>
-          <td>{{ $loop->index + 1 }}</td>
-          <td>{{ $college->nis }}</td>
-          <td>{{ $college->nama }}</td>
-          <td>{{ $college->tanggal }}</td>
-          <td>{{ $college->nominal }}</td>
-          <td>{{ $college->bukti }}</td>
-          <td>{{ $college->keterangan }}</td>
-          <td>
-            <a href="{{route('data-pembayaran.edit', $college->id)}}" class="btn btn-primary fas fa-edit"></a>
-            <form action="{{route('data-pembayaran.destroy', $college->id)}}" method="POST">
+          @foreach($datas as $data)
+          <tr>
+            <td>{{ $loop->index + 1 }}</td>
+            <td>{{ $data->nis }}</td>
+            <td>{{ $data->nama }}</td>
+            <td>{{ $data->tgl_lahir }}</td>
+            <td>{{ $data->angkatan }}</td>
+            <td>{{ $data->alamat }}</td>
+            <td>
+              <form action="{{route('data-santri.destroy', $data->id)}}" method="POST">
+                <a href="{{route('data-santri.edit', $data->id)}}" 
+                    class="btn btn-primary fas fa-edit"></a>
                 @csrf    
                 @method('delete')
-                <button class="btn btn-danger fas fa-trash-alt"></button>
-            </form>
-          </td>
-        </tr>
-        @endforeach
-      </table>
+                <button type="submit" class="btn btn-danger fas fa-trash-alt"></button>
+              </form>
+            </td>
+          </tr>
+          @endforeach
+        </table>
+
+        <br/>
+        <!-- pagination -->
+          Current Page: {{ $datas->currentPage() }}<br>
+          Jumlah Data: {{ $datas->total() }}<br>
+          Data perhalaman: {{ $datas->perPage() }}<br>
+          <br>
+          {{ $datas->links() }}
+      </div>
     </section>
     <!-- /.content -->
-  </div>
+  </main>
   <!-- /.content-wrapper -->
-  @include('admin.footer')
+  @include('pengurus.footer')
   <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

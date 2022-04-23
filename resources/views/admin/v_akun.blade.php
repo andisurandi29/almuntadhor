@@ -12,11 +12,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Hafalan</h1>
+            <h1>Data Akun</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Print</a></li>
               <li class="breadcrumb-item active">Blank Page</li>
             </ol>
           </div>
@@ -35,29 +35,29 @@
           </div>
           <div class="modal-body">
             {{-- Form tambah hafalan  --}}
-            <form action="{{route('data-hafalan.store')}}" method="POST">
+            <form action="{{route('data-akun.store')}}" method="POST">
               {{-- CSRF merupakan keamanan yang disediakan laravel  --}}
               @method('POST')
               @csrf
               <div class="mb-3">
-                <label for="" class="form-label">NIS Santri</label>
-                <input required name="nis" type="text" class="form-control" placeholder="Masukkan NIS Santri">
+                <label for="" class="form-label">Nama Lengkap</label>
+                <input required name="name" type="text" class="form-control" placeholder="Masukkan NIS santri">
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Nama Lengkap Santri</label>
-                <input required name="nama" type="text" class="form-control" placeholder="Masukkan Nama Lengkap Santri">
+                <label for="" class="form-label">Username</label>
+                <input required name="username" type="text" class="form-control" placeholder="Masukkan nama lengkap santri">
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Tanggal Hafalan</label>
-                <input required name="tanggal" type="date" class="form-control" placeholder="Masukkan tanggal hafalan">
+                <label for="" class="form-label">Level</label>
+                <input required name="level" type="text" class="form-control" placeholder="Masukkan tanggal lahir">
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Hafalan Surat</label>
-                <input required name="hafalan" type="text" class="form-control" placeholder="Masukkan hafalan surat">
+                <label for="" class="form-label">Email</label>
+                <input required name="email" type="email" class="form-control" placeholder="Masukkan angkatan santri">
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Keterangan</label>
-                <input required name="keterangan" type="text" class="form-control" placeholder="Masukkan keterangan">
+                <label for="" class="form-label">Password</label>
+                <input required name="password" type="password" class="form-control" placeholder="Masukkan alamat lengkap">
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -69,43 +69,52 @@
       </div>
     </div>
 
+    
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary fas fa-plus-square" data-toggle="modal" data-target="#exampleModal">
             Tambah Data
         </button>
         <table class="table table-striped table-hover" style="vertical-align: middle">
           <tr>
             <th>No.</th>
-            <th>NIS</th>
-            <th>Nama Santri</th>
-            <th>Tanggal Hafalan</th>
-            <th>Hafalan Surat</th>
-            <th>Keterangan</th>
+            <th>Nama Lengkap</th>
+            <th>Username</th>
+            <th>Level</th>
+            <th>Email</th>
+            <th>Password</th>
             <th>Aksi</th>
           </tr>
 
-          @foreach($hafalan as $hafal)
+          @foreach($accounts as $account)
           <tr>
             <td>{{ $loop->index + 1 }}</td>
-            <td>{{ $hafal->nis }}</td>
-            <td>{{ $hafal->nama }}</td>
-            <td>{{ $hafal->tanggal }}</td>
-            <td>{{ $hafal->hafalan }}</td>
-            <td>{{ $hafal->keterangan }}</td>
+            <td>{{ $account->name }}</td>
+            <td>{{ $account->username }}</td>
+            <td>{{ $account->level }}</td>
+            <td>{{ $account->email }}</td>
+            <td>{{ $account->password }}</td>
             <td>
-              <form action="{{route('data-hafalan.destroy', $hafal->id)}}" method="POST">
-                <a href="{{route('data-hafalan.edit', $hafal->id)}}" 
-                    class="btn btn-primary">Ubah</a>
+              <form action="{{route('data-akun.destroy', $account->id)}}" method="POST">
+                <a href="{{route('data-akun.edit', $account->id)}}" 
+                    class="btn btn-primary fas fa-edit"></a>
                 @csrf    
                 @method('delete')
-                <button type="submit" class="btn btn-danger">Hapus</button>
+                <button type="submit" class="btn btn-danger fas fa-trash-alt"></button>
               </form>
             </td>
           </tr>
           @endforeach
         </table>
+
+        <br/>
+        <!-- pagination -->
+          Current Page: {{ $accounts->currentPage() }}<br>
+          Jumlah Data: {{ $accounts->total() }}<br>
+          Data perhalaman: {{ $accounts->perPage() }}<br>
+          <br>
+          {{ $accounts->links() }}
       </div>
     </section>
     <!-- /.content -->

@@ -39,16 +39,25 @@ Route::get('/gallery', function () {
         return view('pages.gallery');  
 });
 
-Route::group(['middleware' => ['auth','ceklevel:admin,pengurus,pendidik']], function() {
+Route::group(['middleware' => ['auth','ceklevel:admin']], function() {
     Route::get('/dashboard-admin', function () {
         return view('admin.dashboard');
     });
 });
 
-// Halaman Users
-Route::get('/dashboard', function () {
-    return view('users.dashboard');
+Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
+    Route::get('/dashboard', function () {
+        return view('users.dashboard');
+    });
 });
+
+Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function() {
+    Route::get('/dashboard-pengurus', function () {
+        return view('pengurus.v_dashboard');
+    });
+});
+
+// Halaman Users
 Route::get('/kehadiran', function () {
     return view('users.kehadiran');
 });
@@ -84,9 +93,13 @@ Route::get('/account', function () {
 });
 
 
-
 // Halaman Administrator
-
+Route::get('data-akun', [App\Http\Controllers\AkunController::class, 'index'])->name('data-akun.index');
+Route::post('/data-akun/create', 'AkunController@create')->name('data-akun.create');
+Route::post('/data-akun/store', 'AkunController@store')->name('data-akun.store');;
+Route::get('/data-akun/edit/{id?}', 'AkunController@edit')->name('data-akun.edit');
+Route::put('/data-akun/update/{id?}', 'AkunController@update')->name('data-akun.update');
+Route::delete('/data-akun/destroy/{id?}', 'AkunController@destroy')->name('data-akun.destroy');
 
 // Data Pembayaran
 Route::get('data-pembayaran', [App\Http\Controllers\PembayaranController::class, 'index'])->name('data-pembayaran.index');
@@ -116,20 +129,5 @@ Route::delete('/data-santri/destroy/{id?}', 'SantriController@destroy')->name('d
 Route::get('/data-santri/cetak', 'SantriController@cetakPdf')->name('data-santri.cetak');
 
 
-
-// Halaman Pengurus
-Route::get('/dashboard-pengurus', function () {
-    return view('pengurus.v_dashboard');
-});
-Route::get('/dashboard-pengurus2', function () {
-    return view('pengurus.coba');
-});
-
-// Data Pembayaran
-Route::get('/pembayaran-pengurus', function () {
-    return view('pengurus.v_pembayaran');
-});
-// Route::get('pembayaran-pengurus', [App\Http\Controllers\PembayaranPengurusController::class, 'index'])->name('pembayaran-pengurus.index');
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -69,7 +69,7 @@
             <a class="dropdown-item" href="#">
               <i class="fas fa-user me-2 text-success"></i> Profil </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="{{route('logout')}}">
               <i class="mdi mdi-logout me-2 text-primary"></i> Keluar </a>
           </div>
         </li>

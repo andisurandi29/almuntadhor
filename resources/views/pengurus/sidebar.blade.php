@@ -10,35 +10,53 @@
     </a>
   </li><!-- End Dashboard Nav -->
 
+  @if (auth()->user()->level == "pengurus")
   <li class="nav-item">
-    <a class="nav-link collapsed" href="/pembayaran-pengurus">
-      <i class="bi bi-menu-button-wide"></i><span>Data Pembayaran</span>
+    <a class="nav-link collapsed" href="/data-santri">
+      <i class="bi-solid bi-book"></i><span>Data Santri</span> 
     </a>
-  </li><!-- End Components Nav -->
+  </li>
+  @endif
 
+  @if (auth()->user()->level == "pengurus")
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-journal-text"></i><span>Hafalan Santri</span>
+    <a class="nav-link collapsed" href="/data-pembayaran">
+      <i class="bi-solid bi-wallet"></i><span>Data Pembayaran</span>
+    </a>
+  </li>
+  @endif
+
+  @if (auth()->user()->level == "pendidik")
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-journal-text"></i><span>Nilai Santri</span>
     </a>
   </li><!-- End Forms Nav -->
+  @endif
 
+  @if (auth()->user()->level == "pengurus")
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-layout-text-window-reverse"></i><span>Jadwal Kegiatan</span>
     </a>
-  </li><!-- End Tables Nav -->
+  </li>
+  @endif
 
+  @if (auth()->user()->level == "pengurus")
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-bar-chart"></i><span>Notifikasi</span>
+    <a class="nav-link collapsed" href="/data-hafalan">
+      <i class="bi bi-menu-button-wide"></i><span>Data Hafalan</span>
     </a>
-  </li><!-- End Charts Nav -->
+  </li>
+  @endif
 
+  @if (auth()->user()->level == "pengurus")
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-gem"></i><span>Pengumuman</span>
+      <i class="fas fa-bullhorn"></i><span>Pengumuman</span> 
     </a>
-  </li><!-- End Icons Nav -->
+  </li>
+  @endif
 
   <li class="nav-heading">Fitur Lainnya</li>
 
@@ -48,13 +66,6 @@
       <span>Profil</span>
     </a>
   </li><!-- End Profile Page Nav -->
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="pages-login.html">
-      <i class="bi bi-box-arrow-in-right"></i>
-      <span>Keluar</span>
-    </a>
-  </li><!-- End Login Page Nav -->
   
 </ul>
 
