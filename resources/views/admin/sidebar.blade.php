@@ -13,7 +13,7 @@
           <img src="{{asset('AdminLTE/')}}/dist/img/user8-128x128.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Arul Rachman Faruqhy</a>
+          <a href="#" class="d-block">{{ auth()->user()->name }}</a>
         </div>
       </div>
 

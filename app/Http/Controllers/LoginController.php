@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class LoginController extends Controller
 {
@@ -26,6 +27,7 @@ class LoginController extends Controller
                 return redirect('/dashboard');
             }
         }
+        Session::flash('error', 'Username atau password yang Anda masukkan salah');
         return redirect('/login-page');
     }
 

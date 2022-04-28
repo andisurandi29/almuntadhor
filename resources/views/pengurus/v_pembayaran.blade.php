@@ -24,22 +24,23 @@
       </div><!-- /.container-fluid -->
     </section>
 
-    <button type="button" class="btn btn-primary fas fa-plus-square" data-toggle="modal" data-target="#exampleModal">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Tambah Data
     </button>
 
+    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            {{-- Form tambah pembayaran  --}}
-            <form action="{{route('data-pembayaran.store')}}" method="POST">
+            
+          {{-- Form tambah pembayaran  --}}
+            <form action="{{route('data-pembayaran.store')}}" method="POST" enctype="multipart/form-data">
               {{-- CSRF merupakan keamanan yang disediakan laravel  --}}
               @method('POST')
               @csrf
@@ -57,11 +58,11 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Nominal Pembayaran</label>
-                <input required name="nominal" type="text" class="form-control" placeholder="Masukkan nominal pembayaran">
+                <input required name="nominal" type="text" value="Rp. 350.000-," class="form-control" readonly>
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Bukti Pembayaran</label>
-                <input required name="bukti" type="text" class="form-control" placeholder="Masukkan bukti pembayaran">
+                <input required name="bukti" id="bukti" type="text" class="form-control" value="Pembayaran Langsung" readonly>
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Keterangan</label>
@@ -79,6 +80,15 @@
 
     <!-- Main content -->
     <section class="content">
+      @if(session('success'))
+        <div class="alert alert-success">
+              <b>Berhasil!</b> {{session('success')}}
+        </div> 
+      @elseif(session('error'))
+        <div class="alert alert-danger">
+            <b>Maaf!</b> {{session('error')}}
+        </div>
+      @endif
       <table class="table table-striped table-hover" style="vertical-align: middle">
         <tr>
           <th>No.</th>
@@ -99,13 +109,20 @@
           <td>{{ $college->tanggal }}</td>
           <td>{{ $college->nominal }}</td>
           <td>{{ $college->bukti }}</td>
+          <!-- <td class="text-center">
+            <a href="{{ asset('/img/'. $college->bukti) }}" height="10%" width="30%" alt="" srcset=""></a>
+          </td> -->
           <td>{{ $college->keterangan }}</td>
           <td>
-            <a href="{{route('data-pembayaran.edit', $college->id)}}" class="btn btn-primary fas fa-edit"></a>
             <form action="{{route('data-pembayaran.destroy', $college->id)}}" method="POST">
+                <a href="{{ asset('/img/'. $college->bukti) }}" 
+                    class="btn btn-warning fas fa-eye"></a>
+                <a href="{{route('data-pembayaran.edit', $college->id)}}" 
+                    class="btn btn-primary fas fa-edit"></a>
                 @csrf    
                 @method('delete')
-                <button class="btn btn-danger fas fa-trash-alt"></button>
+                <button type="submit" class="btn btn-danger fas fa-trash-alt"></button>
+              </form>
             </form>
           </td>
         </tr>
@@ -116,23 +133,13 @@
   </main>
   <!-- /.content-wrapper -->
   @include('pengurus.footer')
-  <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- <script>
+        //message with toastr
+        @if(session()->has('success'))
+            toastr.success('{{ session('success') }}', 'BERHASIL!'); 
+        @elseif(session()->has('error'))
+            toastr.error('{{ session('error') }}', 'GAGAL!'); 
+        @endif
+    </script> -->
   <!-- /.content-wrapper -->
   @endsection

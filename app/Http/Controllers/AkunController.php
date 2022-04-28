@@ -58,7 +58,7 @@ class AkunController extends Controller
             // tambah data
             DataAkun::create($input_akun);
         }
-        return redirect()->route('data-akun.index');
+        return redirect()->route('data-akun.index')->with('success', 'Akun Berhasil Dibuat!');
     }
 
     /**

@@ -31,6 +31,6 @@
             <a class="nav-link" href="/login-page">
               <button class="btn btn-lg btn-gradient-primary">Login</button>
             </a>
-          </li>
+        </li>
       </ul>
     </nav>

@@ -62,11 +62,11 @@
               <span class="availability-status online"></span>
             </div>
             <div class="nav-profile-text">
-              <p class="mb-1 text-black">Arul Rachman</p>
+              <p class="mb-1 text-black">Hai, {{ auth()->user()->name }}</p>
             </div>
           </a>
           <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="/profil">
               <i class="fas fa-user me-2 text-success"></i> Profil </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{route('logout')}}">

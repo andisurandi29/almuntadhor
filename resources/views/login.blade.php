@@ -28,13 +28,18 @@
             <div class="col-md-6">
                 <p class="card-title" style="margin-bottom: 20px;">LOGIN</p>
                 <p><small>Silahkan Login untuk melanjutkan</small></p>
+                @if(session('error'))
+                <div class="alert alert-danger">
+                    <b>Maaf!</b> {{session('error')}}
+                </div>
+                @endif
                 <form action="{{route('postlogin')}}" method="post">
                   {{ csrf_field() }}
                 <ul>
                     <li><label for="username">Username</label></li>
                     <input class="form-control" type="text" name="username" id="username" placeholder="Masukan NIS"  style="margin-top: 10px; margin-bottom: 10px">
                     <li><label for="password">Password</label></li>
-                    <input class="form-control" type="password" name="password" id="password" placeholder="Masukan Password"  style="margin-top: 10px">
+                    <input class="form-control" type="password" name="password" id="password" placeholder="Masukan Password" style="margin-top: 10px">
                 </ul>
                 <div href="/dashboard" class="text-center">
                 <button type="submit" class="btn btn-primary">Login</button>
