@@ -48,6 +48,7 @@ class UploadController extends Controller
             $dataUpload->nis = $request->nis;
             $dataUpload->nama = $request->nama;
             $dataUpload->tanggal = $request->tanggal;
+            $dataUpload->tagihan = $request->tagihan;
             $dataUpload->nominal = $request->nominal;
             $dataUpload->bukti = $namaFile;
             $dataUpload->keterangan = $request->keterangan;
@@ -120,5 +121,12 @@ class UploadController extends Controller
         $santri = Auth::user()->username;
         $riwayatPembayaran = Pembayaran::where('nis', $santri)->get();
         return view('users.riwayat_bayar', ['riwayatPembayaran' => $riwayatPembayaran]);
+    }
+
+    public function detail($id)
+    {
+        $santri = Auth::user()->username;
+        $detail = Pembayaran::findOrFail($id);
+        return view('users.detail_riwayat', ['detail' => $detail]);
     }
 }

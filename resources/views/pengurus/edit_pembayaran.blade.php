@@ -28,6 +28,10 @@
                       <input name="tanggal" value="{{$colleges->tanggal}}" type="date" class="form-control" readonly>
                     </div>
                     <div class="mb-3">
+                      <label for="" class="form-label">Tagihan Pembayaran</label>
+                      <input name="tagihan" value="{{$colleges->tagihan}}" type="text" class="form-control" readonly>
+                    </div>
+                    <div class="mb-3">
                       <label for="" class="form-label">Nominal Pembayaran</label>
                       <input name="nominal" value="{{$colleges->nominal}}" type="text" class="form-control" readonly>
                     </div>

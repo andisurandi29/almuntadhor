@@ -18,6 +18,7 @@ class CreateDataPembayaranTable extends Migration
             $table->String('nis');
             $table->String('nama');
             $table->date('tanggal');
+            $table->String('tagihan');
             $table->String('nominal');
             $table->String('bukti');
             $table->String('keterangan');

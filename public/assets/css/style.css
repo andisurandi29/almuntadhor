@@ -50,6 +50,31 @@
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
 
+.invoice-ribbon {
+  width:85px;
+  height:88px;
+  overflow:hidden;
+  position:absolute;
+  top:-1px;
+  right:14px;
+}
+
+.ribbon-inner {
+  text-align:center;
+  -webkit-transform:rotate(45deg);
+  -moz-transform:rotate(45deg);
+  -ms-transform:rotate(45deg);
+  -o-transform:rotate(45deg);
+  position:relative;
+  padding:7px 0;
+  left:-5px;
+  top:11px;
+  width:120px;
+  background-color:#66c591;
+  font-size:15px;
+  color:#fff;
+}
+
 @-webkit-keyframes flash {
   0% {
     opacity: 1; }

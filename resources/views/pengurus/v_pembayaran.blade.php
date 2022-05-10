@@ -57,8 +57,31 @@
                 <input required name="tanggal" type="date" class="form-control" placeholder="Masukkan tanggal pembayaran">
               </div>
               <div class="mb-3">
+                  <label for="" class="form-label">Tagihan Pembayaran</label>
+                  <select name="tagihan" class="form-select" aria-label="Default select example">
+                  <option selected>Pilih tagihan SPP</option>
+                  <option value="SPP Januari">SPP Januari</option>
+                  <option value="SPP Februari">SPP Februari</option>
+                  <option value="SPP Maret">SPP Maret</option>
+                  <option value="SPP April">SPP April</option>
+                  <option value="SPP Mei">SPP Mei</option>
+                  <option value="SPP Juni">SPP Juni</option>
+                  <option value="SPP Juli">SPP Juli</option>
+                  <option value="SPP Agustus">SPP Agustus</option>
+                  <option value="SPP September">SPP September</option>
+                  <option value="SPP Oktober">SPP Oktober</option>
+                  <option value="SPP November">SPP November</option>
+                  <option value="Daftar Ulang dan Syahriyyah">Daftar Ulang dan Syahriyyah</option>
+                  </select>
+              </div>
+              <div class="mb-3">
                 <label for="" class="form-label">Nominal Pembayaran</label>
-                <input required name="nominal" type="text" value="Rp. 350.000-," class="form-control" readonly>
+                <select name="nominal" class="form-select" aria-label="Default select example">
+                <option selected>Pilih nominal pembayaran</option>
+                <option value="Rp. 350.000">Rp. 350.000</option>
+                <option value="Rp. 750.000">Rp. 750.000</option>
+                </select>
+                <!-- <input required name="nominal" type="text" value="Rp. 350.000-," class="form-control" readonly> -->
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Bukti Pembayaran</label>
@@ -95,6 +118,7 @@
           <th>NIS</th>
           <th>Nama Santri</th>
           <th>Tanggal Pembayaran</th>
+          <th>Tagihan Pembayaran</th>
           <th>Nominal Pembayaran</th>
           <th>Bukti Pembayaran</th>
           <th>Keterangan</th>
@@ -107,6 +131,7 @@
           <td>{{ $college->nis }}</td>
           <td>{{ $college->nama }}</td>
           <td>{{ $college->tanggal }}</td>
+          <td>{{ $college->tagihan }}</td>
           <td>{{ $college->nominal }}</td>
           <td>{{ $college->bukti }}</td>
           <!-- <td class="text-center">
