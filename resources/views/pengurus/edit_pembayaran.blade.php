@@ -17,15 +17,15 @@
                   <input type="hidden" name="id" value="{{$colleges->id}}">
                     <div class="mb-3">
                       <label for="" class="form-label">NIS Santri</label>
-                      <input name="nis" value="{{$colleges->nis}}" type="text" class="form-control" placeholder="Masukkan NIS Santri">
+                      <input name="nis" value="{{$colleges->nis}}" type="text" class="form-control" readonly>
                     </div>
                     <div class="mb-3">
                       <label for="" class="form-label">Nama Lengkap Santri</label>
-                      <input name="nama" value="{{$colleges->nama}}" type="text" class="form-control" placeholder="Masukkan Nama Lengkap Santri">
+                      <input name="nama" value="{{$colleges->nama}}" type="text" class="form-control" readonly>
                     </div>
                     <div class="mb-3">
                       <label for="" class="form-label">Tanggal Pembayaran</label>
-                      <input name="tanggal" value="{{$colleges->tanggal}}" type="date" class="form-control" placeholder="Masukkan tanggal pembayaran">
+                      <input name="tanggal" value="{{$colleges->tanggal}}" type="date" class="form-control" readonly>
                     </div>
                     <div class="mb-3">
                       <label for="" class="form-label">Nominal Pembayaran</label>

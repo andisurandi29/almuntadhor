@@ -52,6 +52,14 @@
 
   @if (auth()->user()->level == "pengurus")
   <li class="nav-item">
+    <a class="nav-link collapsed" href="/data-content">
+      <i class="bi bi-menu-button-wide"></i><span>Data Content</span>
+    </a>
+  </li>
+  @endif
+
+  @if (auth()->user()->level == "pengurus")
+  <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
       <i class="fas fa-bullhorn"></i><span>Pengumuman</span> 
     </a>

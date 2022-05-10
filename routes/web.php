@@ -112,6 +112,7 @@ Route::get('/data-pembayaran/cetak-form', 'PembayaranController@cetakForm')->nam
 Route::get('/data-pembayaran/cetak-pertanggal/{tglawal}/{tglakhir}', 'PembayaranController@cetakPertanggal')->name('data-pembayaran.cetak-pertanggal');
 
 // Data Hafalan
+Route::get('hafalan-santri', [App\Http\Controllers\HafalanController::class, 'hafalan'])->name('hafalan-santri.hafalan');
 Route::get('data-hafalan', [App\Http\Controllers\HafalanController::class, 'index'])->name('data-hafalan.index');
 Route::post('/data-hafalan/create', 'HafalanController@create')->name('data-hafalan.create');
 Route::post('/data-hafalan/store', 'HafalanController@store')->name('data-hafalan.store');
@@ -131,6 +132,17 @@ Route::get('/data-santri/cetak', 'SantriController@cetakPdf')->name('data-santri
 // Upload pembayaran santri
 Route::post('/upload/create', 'UploadController@create')->name('upload.create');
 Route::post('/upload/store', 'UploadController@store')->name('upload.store');
+Route::get('riwayat-pembayaran', [App\Http\Controllers\UploadController::class, 'riwayat'])->name('riwayat-pembayaran.riwayat');
+
+// Content
+Route::get('gallery-content', [App\Http\Controllers\ContentController::class, 'tampilContent'])->name('gallery-content.tampilContent');
+Route::get('data-content', [App\Http\Controllers\ContentController::class, 'index'])->name('data-content.index');
+Route::post('/data-content/create', 'ContentController@create')->name('data-content.create');
+Route::post('/data-content/store', 'ContentController@store')->name('data-content.store');
+Route::get('/data-content/edit/{id?}', 'ContentController@edit')->name('data-content.edit');
+Route::put('/data-content/update/{id?}', 'ContentController@update')->name('data-content.update');
+Route::delete('/data-content/destroy/{id?}', 'ContentController@destroy')->name('data-content.destroy');
+
 
 
 

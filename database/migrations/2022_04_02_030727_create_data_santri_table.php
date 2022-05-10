@@ -14,7 +14,7 @@ class CreateDataSantriTable extends Migration
     public function up()
     {
         Schema::create('data_santri', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->String('nis');
             $table->String('nama');
             $table->date('tgl_lahir');

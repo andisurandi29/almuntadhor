@@ -20,34 +20,38 @@
                         <h4>BRI : 0028-01-011141-53-4 (PIP Al Muntadhor)</h4>
                         <h4>BNI : 0028-01-011141-53-4 (PIP Al Muntadhor)</h4>
                         <h4>BCA : 0028-01-011141-53-4 (PIP Al Muntadhor)</h4>
+                        <div class="table-responsive">
                     <table class="table table-bordered table-responsive">
                         <thead>
                             <form>
                                 <tr>
-                                    <th scope="col"><b>Rincian Pembayaran Bulanan</b></th>
+                                    <th colspan="2" class="text-center"><b>Rincian Pembayaran Bulanan</b></th>
                                 </tr>
                                 <tr>
                                     <th scope="col">Syahriyyah PIP Al-Muntadhor</th>
-                                    <td><input type="text" value="Rp. 70.000-," class="form-control" readonly></td>
+                                    <td>Rp. 70.000</td>
                                 </tr>
                                 <tr>
                                     <th scope="col">Syahriyyah Madrasah Diniyah Al-Muntadhor</th>
-                                    <td><input type="text" value="Rp. 70.000-," class="form-control" readonly></td>
+                                    <td>Rp. 70.000-</td>
                                 </tr>
                                 <tr>
                                     <th scope="col">Makan tanpa lauk (2 kali)</th>
-                                    <td><input type="text" value="Rp. 160.000-," class="form-control" readonly></td>
+                                    <td>Rp. 160.000-</td>
                                 </tr>
                                 <tr>
                                     <th scope="col"><b>Total Pembayaran</b></th>
-                                    <td><input type="text" value="Rp. 300.000-," class="form-control" readonly></td>
+                                    <td>Rp. 300.000-,</td>
                                 </tr>
                         </thead>
                     </table>
-                                <a class="btn btn-primary form-control" href="/upload">Bayar Sekarang</a>
+                </div>
+                                <a class="btn btn-primary form-control" href="/upload" style="margin-top: 20px">Bayar Sekarang</a>
                             </form>
+                
                 </div>
             </div>
+        </div>
         @include('partials.footer')
     </div>
 

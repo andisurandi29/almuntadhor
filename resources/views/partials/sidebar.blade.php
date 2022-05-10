@@ -31,7 +31,7 @@
             <div class="collapse" id="akademik">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/jadwal">Jadwal Kegiatan</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/hafalan">Hafalan Santri</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/hafalan-santri">Hafalan Santri</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/nilai">Rekap Nilai</a></li>
               </ul>
             </div>
@@ -45,7 +45,7 @@
             <div class="collapse" id="pembayaran">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/tagihan">Tagihan Pembayaran</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/riwayat">Riwayat Pembayaran</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/riwayat-pembayaran">Riwayat Pembayaran</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/tutorial">Cara Pembayaran</a></li>
               </ul>
             </div>

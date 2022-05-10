@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pembayaran;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UploadController extends Controller
@@ -112,5 +113,12 @@ class UploadController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function riwayat()
+    {
+        $santri = Auth::user()->username;
+        $riwayatPembayaran = Pembayaran::where('nis', $santri)->get();
+        return view('users.riwayat_bayar', ['riwayatPembayaran' => $riwayatPembayaran]);
     }
 }

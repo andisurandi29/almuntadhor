@@ -26,12 +26,15 @@
                         <th>Keterangan</th>
                     </tr>
                 </thead>
+                
+                @foreach($riwayatHafalan as $santri)
                 <tbody>
                     <tr>
-                        <td>Surah Al Waqiah</td>
-                        <td class="bg-success text-white">Lulus</td>
+                        <td>{{ $santri->hafalan }}</td>
+                        <td class="bg-success text-white">{{ $santri->keterangan }}</td>
                     </tr>
                 </tbody>
+                @endforeach
             </table>
         </div>
         </div>

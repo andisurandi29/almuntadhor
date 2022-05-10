@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDataHafalanTable extends Migration
+class CreateContentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateDataHafalanTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_hafalan', function (Blueprint $table) {
+        Schema::create('content', function (Blueprint $table) {
             $table->increments('id');
-            $table->String('nis');
-            $table->String('nama');
-            $table->date('tanggal');
-            $table->String('hafalan');
-            $table->String('keterangan');
+            $table->String('content_id');
+            $table->String('judul');
+            $table->String('kategori');
+            $table->String('gambar');
+            $table->String('deskripsi');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateDataHafalanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_hafalan');
+        Schema::dropIfExists('content');
     }
 }

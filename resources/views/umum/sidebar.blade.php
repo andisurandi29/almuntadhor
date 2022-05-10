@@ -22,7 +22,7 @@
         </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/gallery">
+            <a class="nav-link" href="/gallery-content">
               <span class="menu-title">Gallery</span>
               <i class="mdi mdi-contacts menu-icon"></i>
             </a>

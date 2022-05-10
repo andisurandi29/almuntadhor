@@ -1,11 +1,11 @@
 @extends('pengurus.main')
   <!-- container -->
-  @section('container')
+  @section('pengurus')
   <!-- Navbar -->
   @include('pengurus.navbar')
   <!-- Sidebar -->
   @include('pengurus.sidebar')
-  <div class="content-wrapper">
+  <main id="main" class="main">
     <div class="card shadow">
       <div class="card-body">
           <div class="text-center display-4">
@@ -39,7 +39,7 @@
           </form>
       </div>
     </div>
-  </div>
+  </main>
 
   @include('pengurus.footer')
   @endsection

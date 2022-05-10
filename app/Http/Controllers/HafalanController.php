@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hafalan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HafalanController extends Controller
 {
     public function index()
     {
-        $data_hafalan = Hafalan::get();
+        $data_hafalan = Hafalan::orderBy('created_at', 'desc')->get();
         return view('pengurus.v_hafalan', [
             'hafalan' => $data_hafalan
         ]);
@@ -69,5 +70,12 @@ class HafalanController extends Controller
         $data_update = Hafalan::findOrFail($id);
         $data_update->delete();
         return redirect()->route('data-hafalan.index');
+    }
+
+    public function hafalan()
+    {
+        $santri = Auth::user()->username;
+        $riwayatHafalan = Hafalan::where('nis', $santri)->get();
+        return view('users.hafalan', ['riwayatHafalan' => $riwayatHafalan]);
     }
 }

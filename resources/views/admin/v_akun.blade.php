@@ -47,11 +47,11 @@
                 <label for="" class="form-label">Username</label>
                 <input required name="username" type="text" class="form-control" placeholder="Masukkan nama lengkap santri">
               </div>
-              <!-- <div class="mb-3">
+              <div class="mb-3">
                 <label for="" class="form-label">Level</label>
                 <input required name="level" type="text" class="form-control" placeholder="Masukkan tanggal lahir">
-              </div> -->
-              <div class="mb-3">
+              </div>
+              <!-- <div class="mb-3">
                 <label for="" class="form-label">Level</label>
                 <select name="level" class="form-select" aria-label="Default select example">
                   <option selected>Pilih level users</option>
@@ -60,7 +60,7 @@
                   <option value="pendidik">Pendidik</option>
                   <option value="santri">Santri</option>
                 </select>
-              </div>
+              </div> -->
               <div class="mb-3">
                 <label for="" class="form-label">Email</label>
                 <input required name="email" type="email" class="form-control" placeholder="Masukkan angkatan santri">

@@ -24,14 +24,13 @@
       </div><!-- /.container-fluid -->
     </section>
 
+    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             {{-- Form tambah hafalan  --}}
@@ -57,7 +56,13 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Keterangan</label>
-                <input required name="keterangan" type="text" class="form-control" placeholder="Masukkan keterangan">
+                <select name="keterangan" class="form-select" aria-label="Default select example">
+                  <option selected>Pilih keterangan</option>
+                  <option value="Sedang Berlangsung">Sedang Berlangsung</option>
+                  <option value="Lulus">Lulus</option>
+                  <option value="Mengulang">Mengulang</option>
+                </select>
+                <!-- <input required name="keterangan" type="text" class="form-control" placeholder="Masukkan keterangan"> -->
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -72,8 +77,8 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Tambah Data
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Tambah Data
         </button>
         <table class="table table-striped table-hover" style="vertical-align: middle">
           <tr>

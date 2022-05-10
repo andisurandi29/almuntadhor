@@ -17,33 +17,38 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <div class="list-group">
-                <div class="list-group-item">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">SPP Januari 2022</h5>
-                    <small class="badge badge-success badge-pill">Lunas</small>
-                  </div>
-                  <small style="font-size: 11px">Dibayar pada : 12 Januari 2022</small>
-                </div>
-                <div class="list-group-item">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">SPP Januari 2022</h5>
-                      <small class="badge badge-success badge-pill">Lunas</small>
-                    </div>
-                    <small style="font-size: 11px">Dibayar pada : 12 Januari 2022</small>
-                  </div>
-                  <div class="list-group-item">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">SPP Januari 2022</h5>
-                      <small class="badge badge-success badge-pill">Lunas</small>
-                    </div>
-                    <small style="font-size: 11px">Dibayar pada : 12 Januari 2022</small>
-                  </div>
-              </div>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <th scope="col">NO</th>
+                <th scope="col">NIS</th>
+                <th scope="col">NAMA</th>
+                <th scope="col">TGL BAYAR</th>
+                <th scope="col">NOMINAL</th>
+                <th scope="col">PEM. VIA</th>
+                <th scope="col">KET</th>
+                <th scope="col" class="text-center">AKSI</th>
+              </thead>
+              @foreach($riwayatPembayaran as $santri)
+              <tbody>
+                <td>1</td>
+                <td>{{ $santri->nis }}</td>
+                <td>{{ $santri->nama }}</td>
+                <td>{{ $santri->tanggal }}</td>
+                <td>{{ $santri->nominal }}</td>
+                <td>{{ $santri->nominal }}</td>
+                <td>{{ $santri->keterangan }}</td>
+                <td class="text-center">
+                  <a href="detail-riwayat" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> Detail</a>
+                </td>
+              </tbody>
+              @endforeach
+            </table>
+          </div>
     </div>
-                        </div>
-                    </div>
         </div>
+  </div>
+  </div>
   </div>
   </div>
           <!-- selesai content -->
