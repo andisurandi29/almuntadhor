@@ -130,10 +130,10 @@ Route::delete('/data-santri/destroy/{id?}', 'SantriController@destroy')->name('d
 Route::get('/data-santri/cetak', 'SantriController@cetakPdf')->name('data-santri.cetak');
 
 // Upload pembayaran santri
-Route::post('/upload/create', 'UploadController@create')->name('upload.create');
-Route::post('/upload/store', 'UploadController@store')->name('upload.store');
-Route::get('riwayat-pembayaran', [App\Http\Controllers\UploadController::class, 'riwayat'])->name('riwayat-pembayaran.riwayat');
-Route::get('detail-riwayat/{id?}', [App\Http\Controllers\UploadController::class, 'detail'])->name('detail-riwayat.riwayat');
+// Route::post('/upload/create', 'UploadController@create')->name('upload.create');
+Route::post('/upload/store', 'PembayaranController@upload')->name('upload.store');
+Route::get('riwayat-pembayaran', [App\Http\Controllers\PembayaranController::class, 'riwayat'])->name('riwayat-pembayaran.riwayat');
+Route::get('detail-riwayat/{id?}', [App\Http\Controllers\PembayaranController::class, 'detail'])->name('detail-riwayat.riwayat');
 
 // Content
 Route::get('gallery-content', [App\Http\Controllers\ContentController::class, 'tampilContent'])->name('gallery-content.tampilContent');
