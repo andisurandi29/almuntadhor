@@ -20,12 +20,12 @@
             <div class="alert alert-info" role="alert">
               Anda berada diportal informasi umum ! Silahkan <a href="/login">Login</a> untuk melanjutkan !
             </div>
-            @foreach($gallerys as $gallery)
+            @foreach($tampilContent as $gallery)
           <div class="row">
           <div class="col-md-4 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body" style="margin-bottom: 20px">
-                  <img alt="" width="100%" style="margin-bottom: 10px; margin-top:10px">{{ $gallery->gambar }}</img>
+                  <img src="{{ URL::to('/')}}/content/{{ $gallery->gambar }}" class="card-img-top" alt="...">
                   <h5>{{ $gallery->judul }}</h5>
                   <span ><small >{{ $gallery->deskripsi }}</small></span>
                 </div>

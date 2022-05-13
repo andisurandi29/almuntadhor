@@ -78,7 +78,7 @@ class ContentController extends Controller
     {
         $content = Content::findOrFail($id);
         return view('pengurus.edit_content')->with([
-            'uploads' => $content
+            'content' => $content
         ]);
     }
 
@@ -91,21 +91,27 @@ class ContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ubah = Content::findorfail($id);
-        $awal = $ubah->gambar;
+        $image_lama = $request->old_image;
+        $image_baru = $request->file('content');
 
-        $uploads = [
-            'content_id' => $request['content_id'],
-            'judul' => $request['judul'],
-            'kategori' => $request['kategori'],
-            'gambar' => $awal,
-            'deskripsi' => $request['deskripsi'],
-        ];
+        if($image_baru == '') {
+            $gambar = $image_lama;
+            $deskripsi = "Gambar Lama";
+        } else {
+            $new_image = rand() .'.'. $image_baru->getClientOriginalExtension();
+            $gambar = $new_image;
+            $image_baru->move(public_path('content'), $new_image); 
+        }
 
-        $image = $request->gambar;
-        $image->move(public_path().'/content', $awal);
-        $ubah->update($uploads);
-        
+        $content = Content::findOrFail($id);
+        $content->update(array(
+            'content_id' => $request->content_id,
+            'judul' => $request->judul,
+            'kategori' => $request->kategori,
+            'gambar' => $gambar,
+            'deskripsi' => $request->deskripsi,
+        ));
+            
         return redirect('data-content');
     }
 
@@ -124,7 +130,7 @@ class ContentController extends Controller
 
     public function tampilContent()
     {
-        $uploadContent = Content::where('kategori')->get();
-        return view('pages.gallery', ['gallerys' => $uploadContent]);
+        $tampilContent = Content::take(3)->get()->sortByDesc('created_at');
+        return view('pages.gallery', ['tampilContent' => $tampilContent]);
     }
 }
