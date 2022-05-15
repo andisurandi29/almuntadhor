@@ -1,90 +1,135 @@
-@extends('admin.main')
-  <!-- container -->
-  @section('container')
-  <!-- Navbar -->
-  @include('admin.navbar')
-  <!-- Sidebar -->
-  @include('admin.sidebar')
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Dashboard</h1>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-info">
-            <div class="inner">
-              <h3>150</h3>
+@include('admin.layouts.head')
 
-              <p>Santri</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-bag"></i>
-            </div>
-            <a href="/data-santri" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-success">
-            <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        
+        @include('admin.layouts.sidebar')
+        <!-- Layout container -->
+        <div class="layout-page">
+          @include('admin.layouts.navbar')
 
-              <p>Pembayaran</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="/data-pembayaran" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-warning">
-            <div class="inner">
-              <h3>44</h3>
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
 
-              <p>Pengurus</p>
+            <div class="container-xxl flex-grow-1 container-p-y">
+                  <div class="card">
+                    <div class="d-flex align-items-end row">
+                      <div class="col-sm-7">
+                        <div class="card-body">
+                          <h5 class="card-title text-primary">Selamat Datang {{auth()->user()->name}}</h5>
+                          <p>Semoga harimu menyenangkan !</p>
+                        </div>
+                      </div>
+                      <div class="col-sm-5 text-center text-sm-left">
+                        <div class="card-body pb-0 px-0 px-md-4">
+                          <img
+                            src="{!! asset('sneat/img/illustrations/man-with-laptop-light.png') !!}"
+                            height="140"
+                            alt="View Badge User"
+                            data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                            data-app-light-img="illustrations/man-with-laptop-light.png"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top:20px">
+                    <div class="col-lg-4 col-md-12 col-6 mb-4">
+                     <div class="card">
+                        <div class="card-body">
+                          <div class="row" style="margin-top: 10px">
+                            <div class="col-sm-6 text-center">
+                              <span><i class="fas fa-users fa-4x"></i></span>
+                            </div>
+                          <div class="col-sm-5 text-center" style="margin-top: 10px">
+                            <h4>150</h4>
+                            <p><h5>Santri</h5> </p>
+                          </div>
+                        </div>
+                      </div>
+                    <a href="#" class="btn btn-primary"> Lihat Selengkapnya</a>
+                    </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-6 mb-4">
+                      <div class="card">
+                         <div class="card-body">
+                           <div class="row" style="margin-top: 10px">
+                           <div class="col-sm-6 text-center">
+                            <span><i class="fas fa-clipboard-user fa-4x"></i></span>
+                             
+                           </div>
+                           <div class="col-sm-5 text-center" style="margin-top: 10px">
+                            <h4>150</h4>
+                             <p><h5>Pengurus</h5> </p>
+                           </div>
+                         </div>
+                       </div>
+                     <a href="#" class="btn btn-primary"> Lihat Selengkapnya</a>
+                     </div>
+                     </div>
+                     <div class="col-lg-4 col-md-12 col-6 mb-4">
+                      <div class="card">
+                         <div class="card-body">
+                           <div class="row" style="margin-top: 10px">
+                           <div class="col-sm-5 text-center">
+                            <span><i class="fas fa-wallet fa-4x"></i></span>
+                             
+                           </div>
+                           <div class="col-sm-6 text-center" style="margin-top: 10px">
+                            <h4>150</h4>
+                            <p><h5>Pembayaran</h5> </p>
+                           </div>
+                         </div>
+                       </div>
+                     <a href="#" class="btn btn-primary"> Lihat Selengkapnya</a>
+                     </div>
+                     </div>
+                </div>
+                
+                <div class="row" style="margin-top:20px">
+                  <div class="col-lg-4 col-md-12 col-6 mb-4">
+                   <div class="card">
+                      <div class="card-body">
+                        <div class="row" style="margin-top: 10px">
+                          <div class="col-sm-6 text-center">
+                            <span><i class="fas fa-id-card fa-4x"></i></span>
+                          </div>
+                        <div class="col-sm-5 text-center" style="margin-top: 10px">
+                          <h4>150</h4>
+                          <p><h5>Pendidik</h5> </p>
+                        </div>
+                      </div>
+                    </div>
+                  <a href="#" class="btn btn-primary"> Lihat Selengkapnya</a>
+                  </div>
+                  </div>
+                  <div class="col-lg-4 col-md-12 col-6 mb-4">
+                    <div class="card">
+                       <div class="card-body">
+                         <div class="row" style="margin-top: 10px">
+                         <div class="col-sm-6 text-center">
+                          <span><i class="fas fa-user fa-4x"></i></span>
+                           
+                         </div>
+                         <div class="col-sm-5 text-center" style="margin-top: 10px">
+                          <h4>150</h4>
+                           <p><h5>Pengguna</h5> </p>
+                         </div>
+                       </div>
+                     </div>
+                   <a href="#" class="btn btn-primary"> Lihat Selengkapnya</a>
+                   </div>
+                   </div>
+                   
+              </div>
+                    <!-- </div>
+    <div class="row"> -->
+          
+              </div>
             </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-danger">
-            <div class="inner">
-              <h3>65</h3>
-
-              <p>Pendidik</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-      </div>
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  @include('admin.footer')
-  <!-- /.content-wrapper -->
-  @endsection
+            <!-- / Content -->
+            @include('admin.layouts.foot')
+           

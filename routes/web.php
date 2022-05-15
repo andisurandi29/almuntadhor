@@ -38,6 +38,9 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function() {
     Route::get('/dashboard-admin', function () {
         return view('admin.dashboard');
     });
+    Route::get('/akun-admin', function () {
+        return view('admin.account');
+    });
     Route::get('data-akun', [App\Http\Controllers\AkunController::class, 'index'])->name('data-akun.index');
 });
 
