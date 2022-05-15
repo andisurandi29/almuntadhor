@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Content;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Session;
 
 class ContentController extends Controller
@@ -124,6 +125,9 @@ class ContentController extends Controller
     public function destroy($id)
     {
         $data_spesifik = Content::findOrFail($id);
+        $image_path = public_path("content/{$data_spesifik->gambar}");
+        File::delete($image_path);
+
         $data_spesifik->delete();
         return redirect()->route('data-content.index');
     }
