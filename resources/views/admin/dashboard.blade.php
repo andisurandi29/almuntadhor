@@ -45,12 +45,12 @@
                               <span><i class="fas fa-users fa-4x"></i></span>
                             </div>
                           <div class="col-sm-5 text-center" style="margin-top: 10px">
-                            <h4>150</h4>
-                            <p><h5>Santri</h5> </p>
+                            <h4>{{ $akunAdmin }}</h4>
+                            <p><h5>Administrator</h5> </p>
                           </div>
                         </div>
                       </div>
-                    <a href="#" class="btn btn-primary"> Lihat Selengkapnya</a>
+                    <a href="/data-akun" class="btn btn-primary"> Lihat Selengkapnya</a>
                     </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-6 mb-4">
@@ -62,12 +62,12 @@
                              
                            </div>
                            <div class="col-sm-5 text-center" style="margin-top: 10px">
-                            <h4>150</h4>
-                             <p><h5>Pengurus</h5> </p>
+                            <h4>{{ $akunSantri }}</h4>
+                             <p><h5>Santri</h5> </p>
                            </div>
                          </div>
                        </div>
-                     <a href="#" class="btn btn-primary"> Lihat Selengkapnya</a>
+                     <a href="/data-akun" class="btn btn-primary"> Lihat Selengkapnya</a>
                      </div>
                      </div>
                      <div class="col-lg-4 col-md-12 col-6 mb-4">
@@ -79,12 +79,12 @@
                              
                            </div>
                            <div class="col-sm-6 text-center" style="margin-top: 10px">
-                            <h4>150</h4>
-                            <p><h5>Pembayaran</h5> </p>
+                            <h4>{{ $akunPengurus }}</h4>
+                            <p><h5>Pengurus</h5> </p>
                            </div>
                          </div>
                        </div>
-                     <a href="#" class="btn btn-primary"> Lihat Selengkapnya</a>
+                     <a href="/data-akun" class="btn btn-primary"> Lihat Selengkapnya</a>
                      </div>
                      </div>
                 </div>
@@ -98,12 +98,12 @@
                             <span><i class="fas fa-id-card fa-4x"></i></span>
                           </div>
                         <div class="col-sm-5 text-center" style="margin-top: 10px">
-                          <h4>150</h4>
+                          <h4>{{ $akunPendidik }}</h4>
                           <p><h5>Pendidik</h5> </p>
                         </div>
                       </div>
                     </div>
-                  <a href="#" class="btn btn-primary"> Lihat Selengkapnya</a>
+                  <a href="/data-akun" class="btn btn-primary"> Lihat Selengkapnya</a>
                   </div>
                   </div>
                   <div class="col-lg-4 col-md-12 col-6 mb-4">

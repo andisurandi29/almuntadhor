@@ -35,9 +35,10 @@ Route::get('/gallery', function () {
 });
 
 Route::group(['middleware' => ['auth','ceklevel:admin']], function() {
-    Route::get('/dashboard-admin', function () {
-        return view('admin.dashboard');
-    });
+    // Route::get('/dashboard-admin', function () {
+    //     return view('admin.dashboard');
+    // });
+    Route::get('/dashboard-admin', [App\Http\Controllers\AkunController::class, 'countAkun'])->name('dashboard-admin');
     Route::get('/akun-admin', function () {
         return view('admin.account');
     });

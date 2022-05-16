@@ -13,6 +13,12 @@ class AkunController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public $akunAdmin;
+    public $akunSantri;
+    public $akunPengurus;
+    public $akunPendidik;
+
     public function index()
     {
         $data_akun = DataAkun::orderBy('level', 'ASC')->paginate(5);
@@ -114,5 +120,15 @@ class AkunController extends Controller
         $update_data = DataAkun::findOrFail($id);
         $update_data->delete();
         return redirect()->route('data-akun.index');
+    }
+
+    public function countAkun()
+    {
+        $akunAdmin = DB::table('users')->where('level', '=', 'admin')->count();
+        $akunSantri = DB::table('users')->where('level', '=', 'santri')->count();
+        $akunPengurus = DB::table('users')->where('level', '=', 'pengurus')->count();
+        $akunPendidik = DB::table('users')->where('level', '=', 'pendidik')->count();
+
+        return view('admin.dashboard', ['akunAdmin'=>$akunAdmin, 'akunSantri'=>$akunSantri, 'akunPengurus'=>$akunPengurus, 'akunPendidik'=>$akunPendidik]);
     }
 }
