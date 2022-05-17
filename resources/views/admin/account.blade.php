@@ -46,11 +46,13 @@
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">
-                      <form id="formAccountSettings" method="POST" onsubmit="return false">
+                      <form id="formAccountSettings" action="{{ route('update-admin', $user->id) }}" method="POST">
+                        @method('PUT')
+                        @csrf
                         <div class="row">
                           <div class="mb-3 col-md-6">
                             <label for="firstName" class="form-label">Nama Lengkap</label>
-                            <input class="form-control" type="text" id="firstName" name="firstName" value="{{auth()->user()->name}}" autofocus
+                            <input class="form-control" type="text" id="firstName" name="name" value="{{auth()->user()->name}}" autofocus
                             />
                           </div>
                           <div class="mb-3 col-md-6">
@@ -59,8 +61,7 @@
                           </div>
                           <div class="mb-3 col-md-6">
                             <label for="email" class="form-label">E-mail</label>
-                            <input class="form-control" type="text" id="email" name="email" value="{{auth()->user()->email}}"
-                            />
+                            <input class="form-control" type="text" id="email" name="email" value="{{auth()->user()->email}}"/>
                           </div>
                           <div class="mb-3 col-md-6">
                             <label for="level" class="form-label">Level</label>

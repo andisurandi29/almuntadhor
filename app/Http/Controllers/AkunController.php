@@ -23,7 +23,7 @@ class AkunController extends Controller
     {
         $data_akun = DataAkun::orderBy('level', 'ASC')->paginate(5);
         return view('admin.v_akun', [
-            'accounts' => $data_akun
+            'accounts' => $data_akun, "title" => "Data Akun"
         ]);
     }
 
@@ -129,6 +129,6 @@ class AkunController extends Controller
         $akunPengurus = DB::table('users')->where('level', '=', 'pengurus')->count();
         $akunPendidik = DB::table('users')->where('level', '=', 'pendidik')->count();
 
-        return view('admin.dashboard', ['akunAdmin'=>$akunAdmin, 'akunSantri'=>$akunSantri, 'akunPengurus'=>$akunPengurus, 'akunPendidik'=>$akunPendidik]);
+        return view('admin.dashboard', ["title" => "Dashboard", 'akunAdmin'=>$akunAdmin, 'akunSantri'=>$akunSantri, 'akunPengurus'=>$akunPengurus, 'akunPendidik'=>$akunPendidik]);
     }
 }

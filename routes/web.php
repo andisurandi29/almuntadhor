@@ -19,31 +19,36 @@ use App\Http\Controllers\LoginController;
 Route::get('/', function () {
     return view('index');
 });
-
-Route::get('/login-page', [App\Http\Controllers\LoginController::class, 'index'])->name('login-page');
-Route::post('/postlogin', [App\Http\Controllers\LoginController::class, 'postlogin'])->name('postlogin');
-Route::get('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
-
 Route::get('/about', function () {
     return view('pages.about');
 });
 Route::get('/info', function () {
         return view('pages.info');
 });
-Route::get('/gallery', function () {
-        return view('pages.gallery');  
-});
+// Route::get('/gallery', function () {
+//         return view('pages.gallery');  
+// });
+Route::get('gallery-content', [App\Http\Controllers\ContentController::class, 'tampilContent'])->name('gallery-content.tampilContent');
+
+
+Route::get('/login-page', [App\Http\Controllers\LoginController::class, 'index'])->name('login-page');
+Route::post('/postlogin', [App\Http\Controllers\LoginController::class, 'postlogin'])->name('postlogin');
+Route::get('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
+
 
 Route::group(['middleware' => ['auth','ceklevel:admin']], function() {
-    // Route::get('/dashboard-admin', function () {
-    //     return view('admin.dashboard');
-    // });
     Route::get('/dashboard-admin', [App\Http\Controllers\AkunController::class, 'countAkun'])->name('dashboard-admin');
-    Route::get('/akun-admin', function () {
-        return view('admin.account');
-    });
+    Route::get('profil-admin', [App\Http\Controllers\ProfilController::class, 'tampilAdmin'])->name('profil-admin');
+    // Route::get('update-admin/{id}', [App\Http\Controllers\ProfilController::class, 'updateAdmin'])->name('update-admin');
+    Route::put('/update-admin/{id?}', 'ProfilController@updateAdmin')->name('update-admin');
     Route::get('data-akun', [App\Http\Controllers\AkunController::class, 'index'])->name('data-akun.index');
+    Route::post('/data-akun/create', 'AkunController@create')->name('data-akun.create');
+    Route::post('/data-akun/store', 'AkunController@store')->name('data-akun.store');
+    Route::get('/data-akun/edit/{id?}', 'AkunController@edit')->name('data-akun.edit');
+    Route::put('/data-akun/update/{id?}', 'AkunController@update')->name('data-akun.update');
+    Route::delete('/data-akun/destroy/{id?}', 'AkunController@destroy')->name('data-akun.destroy');
 });
+
 
 Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     Route::get('/dashboard', function () {
@@ -91,64 +96,51 @@ Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     Route::get('upload', [App\Http\Controllers\UploadController::class, 'index'])->name('upload.index');
 });
 
+
 Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function() {
     Route::get('/dashboard-pengurus', function () {
         return view('pengurus.v_dashboard');
     });
+    // Data Pembayaran
+    Route::get('data-pembayaran', [App\Http\Controllers\PembayaranController::class, 'index'])->name('data-pembayaran.index');
+    Route::post('/data-pembayaran/create', 'PembayaranController@create')->name('data-pembayaran.create');
+    Route::post('/data-pembayaran/store', 'PembayaranController@store')->name('data-pembayaran.store');
+    Route::get('/data-pembayaran/edit/{id?}', 'PembayaranController@edit')->name('data-pembayaran.edit');
+    Route::put('/data-pembayaran/update/{id?}', 'PembayaranController@update')->name('data-pembayaran.update');
+    Route::delete('/data-pembayaran/destroy/{id?}', 'PembayaranController@destroy')->name('data-pembayaran.destroy');
+    Route::get('/data-pembayaran/cetak-form', 'PembayaranController@cetakForm')->name('data-pembayaran.cetak-form');
+    Route::get('/data-pembayaran/cetak-pertanggal/{tglawal}/{tglakhir}', 'PembayaranController@cetakPertanggal')->name('data-pembayaran.cetak-pertanggal');
+
+    // Data Hafalan
+    Route::get('hafalan-santri', [App\Http\Controllers\HafalanController::class, 'hafalan'])->name('hafalan-santri.hafalan');
+    Route::get('data-hafalan', [App\Http\Controllers\HafalanController::class, 'index'])->name('data-hafalan.index');
+    Route::post('/data-hafalan/create', 'HafalanController@create')->name('data-hafalan.create');
+    Route::post('/data-hafalan/store', 'HafalanController@store')->name('data-hafalan.store');
+    Route::get('/data-hafalan/edit/{id?}', 'HafalanController@edit')->name('data-hafalan.edit');
+    Route::put('/data-hafalan/update/{id?}', 'HafalanController@update')->name('data-hafalan.update');
+    Route::delete('/data-hafalan/destroy/{id?}', 'HafalanController@destroy')->name('data-hafalan.destroy');
+
+    // Data Santri
+    Route::get('data-santri', [App\Http\Controllers\SantriController::class, 'index'])->name('data-santri.index');
+    Route::post('/data-santri/create', 'SantriController@create')->name('data-santri.create');
+    Route::post('/data-santri/store', 'SantriController@store')->name('data-santri.store');
+    Route::get('/data-santri/edit/{id?}', 'SantriController@edit')->name('data-santri.edit');
+    Route::put('/data-santri/update/{id?}', 'SantriController@update')->name('data-santri.update');
+    Route::delete('/data-santri/destroy/{id?}', 'SantriController@destroy')->name('data-santri.destroy');
+    Route::get('/data-santri/cetak', 'SantriController@cetakPdf')->name('data-santri.cetak');
+
+    Route::post('/upload/store', 'PembayaranController@upload')->name('upload.store');
+    Route::get('riwayat-pembayaran', [App\Http\Controllers\PembayaranController::class, 'riwayat'])->name('riwayat-pembayaran.riwayat');
+    Route::get('detail-riwayat/{id?}', [App\Http\Controllers\PembayaranController::class, 'detail'])->name('detail-riwayat.riwayat');
+
+    // Content
+    Route::get('data-content', [App\Http\Controllers\ContentController::class, 'index'])->name('data-content.index');
+    Route::post('/data-content/create', 'ContentController@create')->name('data-content.create');
+    Route::post('/data-content/store', 'ContentController@store')->name('data-content.store');
+    Route::get('/data-content/edit/{id?}', 'ContentController@edit')->name('data-content.edit');
+    Route::put('/data-content/update/{id?}', 'ContentController@update')->name('data-content.update');
+    Route::delete('/data-content/destroy/{id?}', 'ContentController@destroy')->name('data-content.destroy');
 });
-
-
-// Halaman Administrator
-Route::post('/data-akun/create', 'AkunController@create')->name('data-akun.create');
-Route::post('/data-akun/store', 'AkunController@store')->name('data-akun.store');
-Route::get('/data-akun/edit/{id?}', 'AkunController@edit')->name('data-akun.edit');
-Route::put('/data-akun/update/{id?}', 'AkunController@update')->name('data-akun.update');
-Route::delete('/data-akun/destroy/{id?}', 'AkunController@destroy')->name('data-akun.destroy');
-
-// Data Pembayaran
-Route::get('data-pembayaran', [App\Http\Controllers\PembayaranController::class, 'index'])->name('data-pembayaran.index');
-Route::post('/data-pembayaran/create', 'PembayaranController@create')->name('data-pembayaran.create');
-Route::post('/data-pembayaran/store', 'PembayaranController@store')->name('data-pembayaran.store');
-Route::get('/data-pembayaran/edit/{id?}', 'PembayaranController@edit')->name('data-pembayaran.edit');
-Route::put('/data-pembayaran/update/{id?}', 'PembayaranController@update')->name('data-pembayaran.update');
-Route::delete('/data-pembayaran/destroy/{id?}', 'PembayaranController@destroy')->name('data-pembayaran.destroy');
-Route::get('/data-pembayaran/cetak-form', 'PembayaranController@cetakForm')->name('data-pembayaran.cetak-form');
-Route::get('/data-pembayaran/cetak-pertanggal/{tglawal}/{tglakhir}', 'PembayaranController@cetakPertanggal')->name('data-pembayaran.cetak-pertanggal');
-
-// Data Hafalan
-Route::get('hafalan-santri', [App\Http\Controllers\HafalanController::class, 'hafalan'])->name('hafalan-santri.hafalan');
-Route::get('data-hafalan', [App\Http\Controllers\HafalanController::class, 'index'])->name('data-hafalan.index');
-Route::post('/data-hafalan/create', 'HafalanController@create')->name('data-hafalan.create');
-Route::post('/data-hafalan/store', 'HafalanController@store')->name('data-hafalan.store');
-Route::get('/data-hafalan/edit/{id?}', 'HafalanController@edit')->name('data-hafalan.edit');
-Route::put('/data-hafalan/update/{id?}', 'HafalanController@update')->name('data-hafalan.update');
-Route::delete('/data-hafalan/destroy/{id?}', 'HafalanController@destroy')->name('data-hafalan.destroy');
-
-// Data Santri
-Route::get('data-santri', [App\Http\Controllers\SantriController::class, 'index'])->name('data-santri.index');
-Route::post('/data-santri/create', 'SantriController@create')->name('data-santri.create');
-Route::post('/data-santri/store', 'SantriController@store')->name('data-santri.store');
-Route::get('/data-santri/edit/{id?}', 'SantriController@edit')->name('data-santri.edit');
-Route::put('/data-santri/update/{id?}', 'SantriController@update')->name('data-santri.update');
-Route::delete('/data-santri/destroy/{id?}', 'SantriController@destroy')->name('data-santri.destroy');
-Route::get('/data-santri/cetak', 'SantriController@cetakPdf')->name('data-santri.cetak');
-
-// Upload pembayaran santri
-// Route::post('/upload/create', 'UploadController@create')->name('upload.create');
-Route::post('/upload/store', 'PembayaranController@upload')->name('upload.store');
-Route::get('riwayat-pembayaran', [App\Http\Controllers\PembayaranController::class, 'riwayat'])->name('riwayat-pembayaran.riwayat');
-Route::get('detail-riwayat/{id?}', [App\Http\Controllers\PembayaranController::class, 'detail'])->name('detail-riwayat.riwayat');
-
-// Content
-Route::get('gallery-content', [App\Http\Controllers\ContentController::class, 'tampilContent'])->name('gallery-content.tampilContent');
-Route::get('data-content', [App\Http\Controllers\ContentController::class, 'index'])->name('data-content.index');
-Route::post('/data-content/create', 'ContentController@create')->name('data-content.create');
-Route::post('/data-content/store', 'ContentController@store')->name('data-content.store');
-Route::get('/data-content/edit/{id?}', 'ContentController@edit')->name('data-content.edit');
-Route::put('/data-content/update/{id?}', 'ContentController@update')->name('data-content.update');
-Route::delete('/data-content/destroy/{id?}', 'ContentController@destroy')->name('data-content.destroy');
-
-
 
 
 Auth::routes();
