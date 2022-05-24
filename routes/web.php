@@ -93,6 +93,10 @@ Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     Route::get('/riwayat', function () {
         return view('users.riwayat_bayar');
     });
+    Route::get('hafalan-santri', [App\Http\Controllers\HafalanController::class, 'hafalan'])->name('hafalan-santri.hafalan');
+    Route::post('/upload/store', 'PembayaranController@upload')->name('upload.store');
+    Route::get('detail-riwayat/{id?}', [App\Http\Controllers\PembayaranController::class, 'detail'])->name('detail-riwayat.riwayat');
+    Route::get('riwayat-pembayaran', [App\Http\Controllers\PembayaranController::class, 'riwayat'])->name('riwayat-pembayaran.riwayat');
     Route::get('upload', [App\Http\Controllers\UploadController::class, 'index'])->name('upload.index');
 });
 
@@ -112,7 +116,6 @@ Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function()
     Route::get('/data-pembayaran/cetak-pertanggal/{tglawal}/{tglakhir}', 'PembayaranController@cetakPertanggal')->name('data-pembayaran.cetak-pertanggal');
 
     // Data Hafalan
-    Route::get('hafalan-santri', [App\Http\Controllers\HafalanController::class, 'hafalan'])->name('hafalan-santri.hafalan');
     Route::get('data-hafalan', [App\Http\Controllers\HafalanController::class, 'index'])->name('data-hafalan.index');
     Route::post('/data-hafalan/create', 'HafalanController@create')->name('data-hafalan.create');
     Route::post('/data-hafalan/store', 'HafalanController@store')->name('data-hafalan.store');
@@ -128,10 +131,6 @@ Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function()
     Route::put('/data-santri/update/{id?}', 'SantriController@update')->name('data-santri.update');
     Route::delete('/data-santri/destroy/{id?}', 'SantriController@destroy')->name('data-santri.destroy');
     Route::get('/data-santri/cetak', 'SantriController@cetakPdf')->name('data-santri.cetak');
-
-    Route::post('/upload/store', 'PembayaranController@upload')->name('upload.store');
-    Route::get('riwayat-pembayaran', [App\Http\Controllers\PembayaranController::class, 'riwayat'])->name('riwayat-pembayaran.riwayat');
-    Route::get('detail-riwayat/{id?}', [App\Http\Controllers\PembayaranController::class, 'detail'])->name('detail-riwayat.riwayat');
 
     // Content
     Route::get('data-content', [App\Http\Controllers\ContentController::class, 'index'])->name('data-content.index');

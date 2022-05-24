@@ -18,11 +18,6 @@
       </div><!-- /.container-fluid -->
     </section>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Tambah Data
-    </button>
-
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -70,6 +65,7 @@
 
     <!-- Main content -->
     <section class="content">
+      
       <!-- @if(session('success'))
         <div class="alert alert-success">
               <b>Berhasil!</b> {{session('success')}}
@@ -79,7 +75,32 @@
             <b>Maaf!</b> {{session('error')}}
         </div>
       @endif -->
-      
+       <!-- Button trigger modal -->
+       <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+    <div class="row" style="margin-left: 10px; margin-top:20px">
+      <div class="col mb-3" >
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Tambah Data
+        </button>
+      </div>
+      <div class="col">
+        <div class="row g-3 align-items-center">
+          <div class="col-auto">
+            <label for="cari" class="col-form-label">Cari Data:</label>
+          </div>
+          <div class="col-auto">
+            <input type="text" id="cari" class="form-control">
+          </div>
+          <div class="col-auto">
+            <span class="form-text">
+              <button type="submit" class="btn btn-sm btn-primary">Cari</button>
+            </span>
+          </div>
+        </div>
+    </div>
+    <div class="table-responsive">
       <table class="table table-striped table-hover" style="vertical-align: middle">
         <tr>
           <th>No.</th>
@@ -114,6 +135,8 @@
         </tr>
         @endforeach
       </table>
+    </div>
+    </div>
     </section>
     <!-- /.content -->
   </main>

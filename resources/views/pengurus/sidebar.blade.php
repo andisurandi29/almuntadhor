@@ -4,7 +4,7 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#">
+    <a class="nav-link collapsed" href="dashboard-pengurus">
       <i class="bi bi-grid"></i>
       <span>Dashboard</span>
     </a>
@@ -69,7 +69,7 @@
   <li class="nav-heading">Fitur Lainnya</li>
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="users-profile.html">
+    <a class="nav-link collapsed" href="profil-pengurus">
       <i class="bi bi-person"></i>
       <span>Profil</span>
     </a>

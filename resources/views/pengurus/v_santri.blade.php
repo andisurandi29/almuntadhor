@@ -14,12 +14,6 @@
           <div class="col-sm-6">
             <h1>Data Santri</h1>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('data-santri.cetak')}}">Print</a></li>
-              <li class="breadcrumb-item active">Blank Page</li>
-            </ol>
-          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -71,10 +65,34 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Tambah Data
-        </button>
+      <div class="card">
+        <div class="card-body">
+      <div class="row" style="margin-left: 10px; margin-top:20px">
+        <div class="col mb-3">
+           <!-- Button trigger modal -->
+           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fas fa-plus"></i> Tambah Data
+          </button>
+           <a href="{{route('data-santri.cetak')}}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fas fa-print"></i> Cetak Data
+           </a>
+        </div>
+        <div class="col">
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label for="cari" class="col-form-label">Cari Data:</label>
+            </div>
+            <div class="col-auto">
+              <input type="text" id="cari" class="form-control">
+            </div>
+            <div class="col-auto">
+              <span class="form-text">
+                <button type="submit" class="btn btn-sm btn-primary">Cari</button>
+              </span>
+            </div>
+          </div>
+      </div>
+      <div class="table-responsive">
         <table class="table table-striped table-hover" style="vertical-align: middle">
           <tr>
             <th>No.</th>
@@ -107,6 +125,7 @@
           @endforeach
         </table>
 
+       <div class="page-bottom" style="margin: 20px">
         <br/>
         <!-- pagination -->
           Current Page: {{ $datas->currentPage() }}<br>
@@ -114,7 +133,10 @@
           Data perhalaman: {{ $datas->perPage() }}<br>
           <br>
           {{ $datas->links() }}
+       </div>
       </div>
+      </div>
+  
     </section>
     <!-- /.content -->
   </main>

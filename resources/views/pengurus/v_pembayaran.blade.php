@@ -14,20 +14,11 @@
           <div class="col-sm-6">
             <h1>Data Pembayaran</h1>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('data-pembayaran.cetak-form')}}">print</a></li>
-              <li class="breadcrumb-item active">Blank Page</li>
-            </ol>
-          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Tambah Data
-    </button>
+   
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -103,6 +94,7 @@
 
     <!-- Main content -->
     <section class="content">
+      <div class="container-fluid">
       @if(session('success'))
         <div class="alert alert-success">
               <b>Berhasil!</b> {{session('success')}}
@@ -112,47 +104,78 @@
             <b>Maaf!</b> {{session('error')}}
         </div>
       @endif
-      <table class="table table-striped table-hover" style="vertical-align: middle">
-        <tr>
-          <th>No.</th>
-          <th>NIS</th>
-          <th>Nama Santri</th>
-          <th>Tanggal Pembayaran</th>
-          <th>Tagihan Pembayaran</th>
-          <th>Nominal Pembayaran</th>
-          <th>Bukti Pembayaran</th>
-          <th>Keterangan</th>
-          <th>Aksi</th>
-        </tr>
-
-        @foreach($colleges as $college)
-        <tr>
-          <td>{{ $loop->index + 1 }}</td>
-          <td>{{ $college->nis }}</td>
-          <td>{{ $college->nama }}</td>
-          <td>{{ $college->tanggal }}</td>
-          <td>{{ $college->tagihan }}</td>
-          <td>{{ $college->nominal }}</td>
-          <td>{{ $college->bukti }}</td>
-          <!-- <td class="text-center">
-            <a href="{{ asset('/img/'. $college->bukti) }}" height="10%" width="30%" alt="" srcset=""></a>
-          </td> -->
-          <td>{{ $college->keterangan }}</td>
-          <td>
-            <form action="{{route('data-pembayaran.destroy', $college->id)}}" method="POST">
-                <a href="{{ asset('/img/'. $college->bukti) }}" 
-                    class="btn btn-warning fas fa-eye"></a>
-                <a href="{{route('data-pembayaran.edit', $college->id)}}" 
-                    class="btn btn-primary fas fa-edit"></a>
-                @csrf    
-                @method('delete')
-                <button type="submit" class="btn btn-danger fas fa-trash-alt"></button>
+      <div class="card">
+        <div class="card-body">
+      <div class="row" style="margin-left: 10px; margin-top:20px">
+        <div class="col mb-3">
+           <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="fas fa-plus"></i> Tambah Data
+        </button>
+        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="fas fa-print"></i> Cetak Data
+         </a>
+        </div>
+        <div class="col">
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label for="cari" class="col-form-label">Cari Data:</label>
+            </div>
+            <div class="col-auto">
+              <input type="text" id="cari" class="form-control">
+            </div>
+            <div class="col-auto">
+              <span class="form-text">
+                <button type="submit" class="btn btn-sm btn-primary">Cari</button>
+              </span>
+            </div>
+          </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover" style="vertical-align: middle">
+          <tr>
+            <th>No.</th>
+            <th>NIS</th>
+            <th>Nama Santri</th>
+            <th>Tanggal Pembayaran</th>
+            <th>Tagihan Pembayaran</th>
+            <th>Nominal Pembayaran</th>
+            <th>Bukti Pembayaran</th>
+            <th>Keterangan</th>
+            <th>Aksi</th>
+          </tr>
+  
+          @foreach($colleges as $college)
+          <tr>
+            <td>{{ $loop->index + 1 }}</td>
+            <td>{{ $college->nis }}</td>
+            <td>{{ $college->nama }}</td>
+            <td>{{ $college->tanggal }}</td>
+            <td>{{ $college->tagihan }}</td>
+            <td>{{ $college->nominal }}</td>
+            <td>{{ $college->bukti }}</td>
+            <!-- <td class="text-center">
+              <a href="{{ asset('/img/'. $college->bukti) }}" height="10%" width="30%" alt="" srcset=""></a>
+            </td> -->
+            <td>{{ $college->keterangan }}</td>
+            <td>
+              <form action="{{route('data-pembayaran.destroy', $college->id)}}" method="POST">
+                  <a href="{{ asset('/img/'. $college->bukti) }}" 
+                      class="btn btn-warning fas fa-eye"></a>
+                  <a href="{{route('data-pembayaran.edit', $college->id)}}" 
+                      class="btn btn-primary fas fa-edit"></a>
+                  @csrf    
+                  @method('delete')
+                  <button type="submit" class="btn btn-danger fas fa-trash-alt"></button>
+                </form>
               </form>
-            </form>
-          </td>
-        </tr>
-        @endforeach
-      </table>
+            </td>
+          </tr>
+          @endforeach
+        </table>
+      </div>
+      </div>
+      
     </section>
     <!-- /.content -->
   </main>
