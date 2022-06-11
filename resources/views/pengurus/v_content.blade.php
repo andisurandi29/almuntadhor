@@ -33,17 +33,35 @@
               {{-- CSRF merupakan keamanan yang disediakan laravel  --}}
               @method('POST')
               @csrf
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <label for="" class="form-label">Content_id</label>
                 <input required name="content_id" type="text" class="form-control" placeholder="Masukkan NIS Santri">
+              </div> -->
+              <div class="mb-3">
+                <label for="" class="form-label">Content_id</label>
+                <select name="content_id" class="form-select" aria-label="Default select example">
+                  <option selected>Pilih content_id</option>
+                  <option value="Ct-D">Ct-D</option>
+                  <option value="Ct-I">Ct-I</option>
+                  <option value="Ct-G">Ct-G</option>
+                </select>
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Judul Content</label>
                 <input required name="judul" type="text" class="form-control" placeholder="Masukkan Nama Lengkap Santri">
               </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <label for="" class="form-label">Kategori</label>
                 <input required name="kategori" type="text" class="form-control" placeholder="Masukkan tanggal pembayaran">
+              </div> -->
+              <div class="mb-3">
+                <label for="" class="form-label">Kategori Content</label>
+                <select name="kategori" class="form-select" aria-label="Default select example">
+                  <option selected>Pilih kategori</option>
+                  <option value="Dashboard">Dashboard</option>
+                  <option value="Informasi">Informasi</option>
+                  <option value="Gallery">Gallery</option>
+                </select>
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Gambar</label>
@@ -51,7 +69,7 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Deskripsi</label>
-                <input required name="deskripsi" type="text" class="form-control" placeholder="Tambahkan deskripsi">
+                <textarea required name="deskripsi" type="text" class="form-control" placeholder="Tambahkan deskripsi"></textarea>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

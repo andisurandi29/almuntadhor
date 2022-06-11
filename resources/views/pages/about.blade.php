@@ -16,9 +16,6 @@
           </span> About Pesantren
         </h3>
       </div>
-      <div class="alert alert-info" role="alert">
-        Anda berada diportal informasi umum ! Silahkan <a href="/login">Login</a> untuk melanjutkan !
-      </div>
       <div class="row">
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card">

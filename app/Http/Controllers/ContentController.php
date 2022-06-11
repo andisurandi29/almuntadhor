@@ -134,7 +134,19 @@ class ContentController extends Controller
 
     public function tampilContent()
     {
-        $tampilContent = Content::take(3)->get()->sortByDesc('created_at');
+        $tampilContent = Content::where('kategori', 'Gallery')->get()->sortByDesc('created_at');
         return view('pages.gallery', ['tampilContent' => $tampilContent]);
+    }
+
+    public function homeContent()
+    {
+        $tampilContent = Content::where('kategori', 'Dashboard')->get();
+        return view('index', ['tampilContent' => $tampilContent]);
+    }
+
+    public function infoContent()
+    {
+        $tampilContent = Content::orderBy('created_at', 'asc')->get()->where('kategori', 'Informasi');
+        return view('pages.info', ['tampilContent' => $tampilContent]);
     }
 }

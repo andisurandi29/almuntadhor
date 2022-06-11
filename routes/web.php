@@ -16,19 +16,21 @@ use App\Http\Controllers\LoginController;
 */
 
 // Halaman Umum
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 Route::get('/about', function () {
     return view('pages.about');
 });
-Route::get('/info', function () {
-        return view('pages.info');
-});
+// Route::get('/info', function () {
+//         return view('pages.info');
+// });
 // Route::get('/gallery', function () {
 //         return view('pages.gallery');  
 // });
 Route::get('gallery-content', [App\Http\Controllers\ContentController::class, 'tampilContent'])->name('gallery-content.tampilContent');
+Route::get('info', [App\Http\Controllers\ContentController::class, 'infoContent'])->name('infoContent');
+Route::get('/', [App\Http\Controllers\ContentController::class, 'homeContent'])->name('homeContent');
 
 
 Route::get('/login-page', [App\Http\Controllers\LoginController::class, 'index'])->name('login-page');

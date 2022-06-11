@@ -19,7 +19,7 @@
           </div>
         </a>
         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-          <a class="dropdown-item" href="/login">
+          <a class="dropdown-item" href="/login-page">
             <i class="mdi mdi-cached me-2 text-success"></i> Login </a>
       </li>
     </ul>

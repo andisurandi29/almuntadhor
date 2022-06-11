@@ -17,9 +17,6 @@
                 </span> Gallery
               </h3>
             </div>
-            <div class="alert alert-info" role="alert">
-              Anda berada diportal informasi umum ! Silahkan <a href="/login">Login</a> untuk melanjutkan !
-            </div>
             @foreach($tampilContent as $gallery)
           <div class="row">
           <div class="col-md-4 grid-margin stretch-card">

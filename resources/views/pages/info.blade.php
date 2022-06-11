@@ -17,35 +17,22 @@
                 </span> Informasi
               </h3>
             </div>
-            <div class="alert alert-info" role="alert">
-              Anda berada diportal informasi umum ! Silahkan <a href="/login">Login</a> untuk melanjutkan !
-            </div>
           <div class="row">
           <div class="col-md-7 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
                 <p class="card-title text-center" style="margin-bottom: 20px;">Informasi Umum</p>
+                @foreach($tampilContent as $gallery)
                 <div class="card-body bg-gradient-light" style="margin-bottom: 20px">
-                <h5>Judul informasi</h5>
-                <span ><small >20/01/2022</small></span>
-                <img src="{!! asset('assets/images/dashboard/img_3.jpg') !!}" alt="" width="100%" style="margin-bottom: 10px; margin-top:10px">
-                <p>Lorem, ipsum dolor sit amet accusantium distinctio eligendi  magnam! In quidem veniam nemo.
-                     Aliquam dicta consequuntur earum! Nemo deserunt et deleniti....</p>
-                <div class="text-center">
-                <button class="btn btn-light">Selengkapnya...</button>
-                </div>
-                </div>
-                <div class="card-body bg-gradient-light" style="margin-bottom: 20px">
-                    <h5>Judul informasi</h5>
-                    <span ><small >20/01/2022</small></span>
-                    <img src="{!! asset('assets/images/dashboard/img_3.jpg') !!}" alt="" width="100%" style="margin-bottom: 10px; margin-top:10px">
-                    <p>Lorem, ipsum dolor  Corrupti nostrum, ac temporibus! Culpa, magnam! In quidem veniam nemo.
-                         Aliquam dicta consequuntur earum! Nemo deserunt et deleniti....</p>
-                    <div class="text-center">
+                  <h5>{{ $gallery->judul }}</h5>
+                  <span ><small >20/01/2022</small></span>
+                  <img src="{{ URL::to('/')}}/content/{{ $gallery->gambar }}" alt="" width="100%" style="margin-bottom: 10px; margin-top:10px">
+                  <p>{{ $gallery->deskripsi }}</p>
+                  <div class="text-center">
                     <button class="btn btn-light">Selengkapnya...</button>
-                    </div>
-                    </div>
-                    
+                  </div>
+                </div>
+                @endforeach
             </div>
           </div>
           </div>
