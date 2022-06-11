@@ -168,7 +168,7 @@ class PembayaranController extends Controller
     public function riwayat()
     {
         $santri = Auth::user()->username;
-        $riwayatPembayaran = Pembayaran::where('nis', $santri)->get();
+        $riwayatPembayaran = Pembayaran::where('nis', $santri)->where('keterangan', 'Lunas')->get();
         return view('users.riwayat_bayar', ['riwayatPembayaran' => $riwayatPembayaran]);
     }
 

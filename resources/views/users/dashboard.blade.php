@@ -38,50 +38,48 @@
         <div class="card-body text-center">
           <p class="card-header" style="margin-bottom: 20px;">Menu Utama</p>
           <div class="row justify-content no-gutters text-center">
-            <div class="col mb-3 text-center" style="margin-right: 10px">
-                <a href="/kehadiran" class="card mb-1 bg-gradient-primary  text-white text-center" >
-                  <span><i class="fas fa-clipboard-check" style="margin: 21px;"></i></span>
+            <div class="col mb-3 text-center" style="margin-right: 5px">
+                <a href="/nilai" class="mb-1   text-white text-center" >
+                  <span><img src="{{ asset('NiceAdmin/') }}/assets/img/exam.png" alt="" width="50"></i></span>
                 </a>
-                <p class="text-secondary"><small>Profil</small></p>
+                <p class="text-secondary"><small>Nilai</small></p>
               </div>
-            <div class="col mb-3" style="margin-right: 10px">
-              <a href="/nilai" class="card mb-1 bg-gradient-primary  text-white text-center">
-                <span><i class="fas fa-book-reader" style="margin: 21px;"></i></span>
-              </a>
-              <p class="text-secondary"><small>Rekap Nilai</small></p>
-            </div>
-            <div class="col mb-3" style="margin-right: 10px">
-              <a href="/tagihan" class="card mb-1 bg-gradient-primary  text-white text-center">
-                <span><i class="fas fa-wallet" style="margin: 21px;"></i></span>
+            <div class="col mb-3" style="margin-right: 5px">
+              <a href="/tagihan" class="mb-1   text-white text-center">
+                <span><img src="{{ asset('NiceAdmin/') }}/assets/img/pembayaran.png" alt="" width="50"></span>
               </a>
               <p class="text-secondary"><small>Pembayaran</small></p>
             </div>
+            <div class="col mb-3" style="margin-right: 5px">
+              <a href="/tagihan" class="mb-1 text-white text-center">
+                <span><img src="{{ asset('NiceAdmin/') }}/assets/img/history.png" alt="" width="50"></span>
+              </a>
+              <p class="text-secondary"><small>History Pembayaran</small></p>
+            </div>
+           
             
           </div>
-
           <div class="row justify-content no-gutters text-center">
-          <a href="/jadwal" class="col mb-3" style="margin-right: 10px">
-            <div class="card mb-1 bg-gradient-primary  text-white text-center">
-              <span><i class="fas fa-calendar-day" style="margin: 21px;"></i></span>
+            <div class="col mb-3" style="margin-right: 5px">
+              <a href="/jadwal" class="mb-1   text-white text-center">
+                <span><span><img src="{{ asset('NiceAdmin/') }}/assets/img/jadwal.png" alt="" width="50"></span>
+              </a>
+              <p class="text-secondary"><small>Jadwal Kegiatan</small></p>
             </div>
-            <p class="text-secondary"><small>Jadwal Kegiatan</small></p>
-          </a>
-          <div class="col mb-3" style="margin-right: 10px">
-            <a href="/hafalan" class="card mb-1 bg-gradient-primary  text-white text-center">
-              <span><i class="fas fa-clipboard-list" style="margin: 21px;"></i></span>
-            </a>
-            <p class="text-secondary"><small>Rekap Hafalan</small></p>
+          <div class="col mb-3" style="margin-right: 5px">
+              <a href="hafalan" class="mb-1   text-white text-center">
+                  <span><img src="{{ asset('NiceAdmin/') }}/assets/img/hafalan.png" alt="" width="50"></span>
+              </a>
+              <p class="text-secondary"><small>Hafalan</small></p>
+            </div>
+            <div class="col mb-3 text-center" style="margin-right: 5px">
+              <a href="#" class="mb-1   text-white text-center">
+                  <span><img src="{{ asset('NiceAdmin/') }}/assets/img/info.png" alt="" width="50"></span>
+              </a>
+              <p class="text-secondary"><small>Pengumuman</small></p>
+            </div>
+
           </div>
-          <div class="col mb-3" style="margin-right: 10px">
-            <a href="/pengumuman" class="col mb-3" style="margin-right: 10px">
-                <div class="card mb-1 bg-gradient-primary  text-white text-center">
-                  <span><i class="fas fa-info-circle" style="margin: 21px;"></i></span>
-                </div>
-                <p class="text-secondary"><small>Pengumuman</small></p>
-            </a>
-          </div>
-          </div>
-      </div>
     </div>
     </div>
     </div>

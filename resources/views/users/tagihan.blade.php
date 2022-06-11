@@ -12,7 +12,7 @@
       <h3 class="page-title">
         <span class="page-title-icon bg-default-light text-white me-2">
             <i class="fas fa-arrow-circle-left"></i>
-        </span> Riwayat Pembayaran
+        </span> Tagihan Pembayaran
       </h3>
     </div>
     <div class="card">

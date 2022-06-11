@@ -21,22 +21,22 @@
             <table class="table table-hover">
               <thead>
                 <th scope="col">NO</th>
-                <th scope="col">NIS</th>
+                <!-- <th scope="col">NIS</th>
                 <th scope="col">NAMA</th>
-                <th scope="col">TGL BAYAR</th>
+                <th scope="col">TGL BAYAR</th> -->
                 <th scope="col">TAGIHAN</th>
-                <th scope="col">NOMINAL</th>
-                <th scope="col">KET</th>
+                <!-- <th scope="col">NOMINAL</th> -->
+                <th scope="col">KETERANGAN</th>
                 <th scope="col" class="text-center">AKSI</th>
               </thead>
               @foreach($riwayatPembayaran as $santri)
               <tbody>
                 <td>{{ $loop->index + 1 }}</td>
-                <td>{{ $santri->nis }}</td>
-                <td>{{ $santri->nama }}</td>
-                <td>{{ $santri->tanggal }}</td>
+                <!-- <td>{{ $santri->nis }}</td>
+                <td>{{ $santri->nama }}</td> -->
+                <!-- <td>{{ $santri->tanggal }}</td> -->
                 <td>{{ $santri->tagihan }}</td>
-                <td>{{ $santri->nominal }}</td>
+                <!-- <td>{{ $santri->nominal }}</td> -->
                 <td>{{ $santri->keterangan }}</td>
                 <td class="text-center">
                   <a href="{{ url('detail-riwayat', [$santri->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> Detail</a>

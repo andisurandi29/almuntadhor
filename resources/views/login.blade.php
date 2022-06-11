@@ -1,66 +1,41 @@
-@extends('layouts.main')
-<!-- container -->
-@section('container')
-<!-- Navbar -->
-@include('umum.navbar')
-<!-- Sidebar -->
-@include('umum.sidebar')
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- content -->
-        <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="page-header">
-              <h3 class="page-title">
-                <span class="page-title-icon bg-default-light text-white me-2">
-                  <i class="fas fa-arrow-circle-left"></i>
-                </span> Login
-              </h3>
-             
-            </div>
-            <div class="card">
-            <div class="card-body">
-          <div class="row">
-            <div class="col-md-6">
-                 <h3>Selamat Datang Di</h3>
-                <p><small>Aplikasi Walisantri Ponpes Al Muntadhor</small></p>
-                  <img src="{!! asset('assets/images/dashboard/img_3.jpg') !!}" alt="" width="90%">
-            </div>
-            <div class="col-md-6">
-                <p class="card-title" style="margin-bottom: 20px;">LOGIN</p>
-                <p><small>Silahkan Login untuk melanjutkan</small></p>
-                @if(session('error'))
-                <div class="alert alert-danger">
-                    <b>Maaf!</b> {{session('error')}}
-                </div>
-                @endif
-                
-                <form action="{{route('postlogin')}}" method="post">
-                  {{ csrf_field() }}
-                <ul>
-                    <li><label for="username">Username</label></li>
-                    <input class="form-control" type="text" name="username" id="username" placeholder="Masukan NIS"  style="margin-top: 10px; margin-bottom: 10px">
-                    <li><label for="password">Password</label></li>
-                    <input class="form-control" type="password" name="password" id="password" placeholder="Masukan Password" style="margin-top: 10px">
-                </ul>
-                <div href="/dashboard" class="text-center">
-                <button type="submit" class="btn btn-primary">Login</button>
-                </div>
-                </form>
-            </div>
-          </div>
-          </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="logo"> <img src="{{asset('NiceAdmin/')}}/assets/img/logo.jpg" alt="">
         </div>
+        <div class="text-center mt-4 "> <b>PERGURUAN ISLAM PESANTREN</b> </div>
+        <div class="text-center "> <b>AL MUNTADHOR</b> </div>
+
+        <form class="p-3 mt-3" method="POST" action="{{route('postlogin')}}">
+        {{ csrf_field() }}
+            <div class="form-field d-flex align-items-center">
+                <span for="username" class="far fa-user"></span>
+                <input class="form-control" type="text" name="username" id="username" placeholder="Username" required autofocus>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span for="password" class="fas fa-key"></span>
+                <input class="form-control" type="password" name="password" id="password" placeholder="Password" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <div class="text-center fs-6"> <a href="{{ route('password.request') }}">Forget password?</a> or <a
+                href="{{ URL::previous() }}">Beranda</a> </div>
     </div>
-          <!-- selesai content -->
-          <!-- Footer -->
-          <footer class="footer">
-            <div class="container-fluid d-flex justify-content-between">
-              <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © bootstrapdash.com 2021</span>
-              <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin template</a> from Bootstrapdash.com</span>
-            </div>
-          </footer>
-  
 
-        </div>
-      </div>
-   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
