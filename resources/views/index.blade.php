@@ -22,35 +22,17 @@
               <div class="card">
                 <div class="card-body">
                   <h3>WELCOME TO SI MAS DHOR</h3>
-                <p><small>Sistem Monitoring Akademik Santri Perguruan Islam Pesantren Al-Muntadhor</small></p>
+                  <p><small>Sistem Monitoring Akademik Santri Perguruan Islam Pesantren Al-Muntadhor</small></p>
                   <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                       @foreach($tampilContent as $gallery)
                       <div class="carousel-item active">
                         <img src="{{ URL::to('/')}}/content/{{ $gallery->gambar }}" class="d-block w-100" alt="...">
-                        <!-- <div class="caption" style="margin-top: 30px">
-                          <h5>{{ $gallery->judul }}</h5>
-                          <p>{{ $gallery->deskripsi }}</p>
-                        </div> -->
                       </div>
                       @endforeach
-                      <!-- <div class="carousel-item">
-                        <img src="{!! asset('assets/images/dashboard/img_2.jpg') !!}" class="d-block w-100" alt="...">
-                        <div class="caption" style="margin-top: 30px">
-                          <h5>Second slide label</h5>
-                          <p>Some representative placeholder content for the second slide.</p>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img src="{!! asset('assets/images/dashboard/img_3.jpg') !!}" class="d-block w-100" alt="...">
-                        <div class="caption" style="margin-top: 30px">
-                          <h5>Third slide label</h5>
-                          <p>Some representative placeholder content for the third slide.</p>
-                        </div>
-                      </div> -->
                     </div>
                   </div>
-              </div>
+                </div>
             </div>
           </div>
           <div class="col-md-6 grid-margin stretch-card">

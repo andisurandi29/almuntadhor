@@ -73,7 +73,7 @@
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h3>Visi Misi</h3>
+              <h3>Visi dan Misi</h3>
               <ul>
                 <li><b>Visi</b></li>
                   <p>Terbentuknya generasi yang berprestasi berlandaskan ilmu, iman dan berakhlak mulia</p>

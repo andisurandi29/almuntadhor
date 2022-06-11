@@ -19,31 +19,15 @@
       <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h3>Selamat Datang di</h3>
-          <p><small>PONDOK PESANTREN AL MUNTADHOR</small></p>
+            <h3>WELCOME TO SI MAS DHOR</h3>
+          <p><small>Sistem Monitoring Akademik Santri Perguruan Islam Pesantren Al-Muntadhor</small></p>
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-inner">
+                @foreach($tampilContent as $gallery)
                 <div class="carousel-item active">
-                  <img src="{!! asset('assets/images/dashboard/img_1.jpg') !!}" class="d-block w-100" alt="...">
-                  <div class="caption" style="margin-top: 30px">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                  </div>
+                  <img src="{{ URL::to('/')}}/content/{{ $gallery->gambar }}" class="d-block w-100" alt="...">
                 </div>
-                <div class="carousel-item">
-                  <img src="{!! asset('assets/images/dashboard/img_2.jpg') !!}" class="d-block w-100" alt="...">
-                  <div class="caption" style="margin-top: 30px">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="{!! asset('assets/images/dashboard/img_3.jpg') !!}" class="d-block w-100" alt="...">
-                  <div class="caption" style="margin-top: 30px">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                  </div>
-                </div>
+                @endforeach
               </div>
             </div>
         </div>

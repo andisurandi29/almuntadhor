@@ -53,9 +53,9 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function() {
 
 
 Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
-    Route::get('/dashboard', function () {
-        return view('users.dashboard');
-    });
+    // Route::get('/dashboard', function () {
+    //     return view('users.dashboard');
+    // });
     Route::get('/kehadiran', function () {
         return view('users.kehadiran');
     });
@@ -95,6 +95,7 @@ Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     Route::get('/riwayat', function () {
         return view('users.riwayat_bayar');
     });
+    Route::get('dashboard', [App\Http\Controllers\ContentController::class, 'homeUser'])->name('homeUser');
     Route::get('hafalan-santri', [App\Http\Controllers\HafalanController::class, 'hafalan'])->name('hafalan-santri.hafalan');
     Route::post('/upload/store', 'PembayaranController@upload')->name('upload.store');
     Route::get('detail-riwayat/{id?}', [App\Http\Controllers\PembayaranController::class, 'detail'])->name('detail-riwayat.riwayat');
