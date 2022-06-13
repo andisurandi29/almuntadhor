@@ -41,6 +41,7 @@ Route::get('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->
 Route::group(['middleware' => ['auth','ceklevel:admin']], function() {
     Route::get('/dashboard-admin', [App\Http\Controllers\AkunController::class, 'countAkun'])->name('dashboard-admin');
     Route::get('profil-admin', [App\Http\Controllers\ProfilController::class, 'tampilAdmin'])->name('profil-admin');
+    Route::put('/update-password/{id?}', 'LoginController@updatePassword')->name('update-password');
     // Route::get('update-admin/{id}', [App\Http\Controllers\ProfilController::class, 'updateAdmin'])->name('update-admin');
     Route::put('/update-admin/{id?}', 'ProfilController@updateAdmin')->name('update-admin');
     Route::get('data-akun', [App\Http\Controllers\AkunController::class, 'index'])->name('data-akun.index');

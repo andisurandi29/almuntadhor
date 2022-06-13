@@ -16,15 +16,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('command:tagihan')->everyMinute();
 
         // Masukkan Kode Anda Disini
-        $schedule->call(function () {
+        // $schedule->call(function () {
             
             //Pengecekan apakah cronjob berhasil atau tidak
             //Mencatat info log 
-                Log::info('Cronjob berhasil dijalankan');
-        })->lastDayOfMonth('15:00');
+        //         Log::info('Cronjob berhasil dijalankan');
+        // })->everyMinute();
     }
 
     /**

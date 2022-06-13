@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ChangePasswordRequest;
+use Hash;
+use App\Models\User;
 use Session;
 
 class LoginController extends Controller
@@ -106,5 +109,25 @@ class LoginController extends Controller
     {
         Auth::logout();
         return redirect('/');
+    }
+
+    public function updatePassword(ChangePasswordRequest $request)
+    {
+        $old_password   = auth()->user()->password;
+        $user_id        = auth()->user()->id;
+
+        if (Hash::check($request->input('old_password'), $old_password)) {
+            $user = User::findOrFail($user_id);
+
+            $user->password = Hash::make($request->input('password'));
+
+            if ($user->save()) {
+                return redirect('profil-admin')->with('success', 'Password berhasil diubah');
+            } else {
+                return redirect('profil-admin')->with('failed', 'Password lama invalid');
+            }
+        } else {
+            return redirect('profil-admin')->with('failed', 'Password lama invalid');
+        }
     }
 }

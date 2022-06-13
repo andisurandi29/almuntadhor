@@ -81,23 +81,47 @@
                     </div>
                     <!-- /Account -->
                   </div>
+
+                  @if(Session::get('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      {{ Session::get('success') }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  @endif
+
+                  @if(Session::get('failed'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      {{ Session::get('failed') }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  @endif
+
                   <div class="card">
                     <h5 class="card-header">Ubah Password</h5>
                     <div class="card-body">
-                      <form action="#" method="post">
+                      <form action="{{ route('update-password', $user->id)}}" method="POST">
+                        @method('PUT')  
                         @csrf
                         <div class="row">
                         <div class="mb-3 col-md-6">
                           <label for="password_lama">Password Lama</label>
-                        <input type="text" name="password_lama" class="form-control" id="password_lama" placeholder="Masukan Password Lama">
+                        <input type="password" name="old_password" class="form-control" id="old_password" placeholder="Masukan Password Lama">
                         </div>
                         <div class="mb-3 col-md-6">
                           <label for="password_baru">Password Baru</label>
-                        <input type="text" name="password_baru" class="form-control" id="password_baru" placeholder="Masukan Password Baru">
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Masukan Password Baru">
+                        @error('password') <div class="invalid-feedback"> {{ $message }} </div> @enderror
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="password_baru">Konfirmasi Password Baru</label>
+                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Masukan Password Baru">
                         </div>
                       </div>
-                      </form>
-                        </div>
+                    </div>
                         <button type="submit" class="btn btn-primary deactivate-account">Ubah Password</button>
                       </form>
                   </div>
