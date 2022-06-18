@@ -97,6 +97,30 @@
             </div>
           </div>
         </div>
+        <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h3>Sejarah</h3>
+              <p>Alm. KH Burhanudin Halim selaku Pendiri Pesantren Al Muntadhor adalah Alumni Pondok Pesantren Babakan. Beliau mondok di Babakan selama 6 tahun lamanya. Setelah mondok di Babakan, beliau memutuskan untuk melanjutkan mondok lagi di Pacitan, lebih tepatnya di Perguruan Islam Pesantren Tremas selama 7 tahun. Di sana beliau banyak mendapatkan ilmu, teman, pengalaman dsb. Kemudian beliau mendapatkan undangan dan rekomendasi dari Kyainya sendiri KH. Dimyati atau dikenal dengan panggilan Mbah Dim untuk melanjutkan ke Perguruan Tinggi Di Timur Tengah, tepatnya di Negara Sudan.</p>
+              <p>Beliau kuliah di sana selama 4 tahun (S1 & S2). Setelah itu, beliau ditugaskan dan diberangkatkan ke Arab Saudi. Setelah 2 tahun lamanya, beliau diizinkan cuti dan beliau pulang ke Indonesia pada tahun 1983. Sesampainya di Indonesia, beliau silaturahim ke Kyai Tremas. Dan sebenarnya beliau punya rencana untuk berangkat ke Timur Tengah lagi. Namun Mbah Habib Dimyati berpesan “sampean kalo mau ke luar negri lagi harus nikah dulu”.</p>
+              <p>Singkat cerita, beliau silaturahim ke Babakan pada Hari Jum’at dan pada Hari itu juga beliau langsung dijodohkan oleh Nyai Hj. Rohmiyah. 3 Hari kemudian, Beliau langsung Ijab Kabul bertepatan pada Hari Senin. Setelah menikah dan akan melanjutkan pergi ke Luar Negeri, KH Burhanudin kebingungan karena keluarganya itu tidak mengizinkannya untuk pergi kesana. Lalu beliau ditugaskan untuk “ngrewangi mulang” yang artinya membantu ngaji.</p>
+              <p>KH. Burhanudin disuruh pindah ke Rumah yang saat ini menjadi Pondok Al Muntadhor. Berawal dari rumah, PIP Al Muntadhor ini didirikan pada tahun 1985 Masehi. Namun untuk tanggal dan Bulan pada saat didirikannya itu masih belum di ketahui, karena Gus Nawawi sendiri belum lahir. Ujarnya pada tanggal 24 Juli 2021.</p>
+              <p>Warga Babakan digiring oleh Alm. KH Burhanudin Halim untuk mengaji karena beliau sendiri tidak punya santri untuk diajari. Beliau mengajari para penduduk selama 2 tahun lamanya. Setelah itu ada beberapa Wali Santri yang menitipkan anaknya untuk mondok di Perguruan Islam Pesantren Al Muntadhor. Pertama itu hanya ada 3 santri dengen rincian 1 Santri Putra dan 2 Santri Putri. Pada masanya, Toko Al Muntadhor itu sendiri dulunya adalah sebuah kamar Santri Putra.</p>
+              <p>Beberapa tahun kemudian Santri yang mondok di Al Muntadhor semakin banyak, dan fakta mengejutkannya pada saat dulu itu hanya Alm. KH Burhanudin Halim saja yang mengajarkan ngaji seperti fasolatan, bahasa arab dan tidak dibantu oleh Ustad-ustad lainnya seperti saat ini.</p>
+              <p>Sedikit informasi, Nama Al Muntadhor diambil dari nama asrama yang berada di Perguruan Islam Pesantren Tremas, dan arti Al Muntadhor sendiri itu berarti yang dinanti-nanti/ditunggu-tunggu.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h3>Dasar Pemikiran</h3>
+              <p>Menjawab kebutuhan masyarakat terhadap pendidikan yang membimbing peserta didik secar autuh dari   keilmuan, ketaqwaan, dan amal soleh, Perguruan Islam Pesantren Al-Muntadhor Babakan Ciwaringin Cirebon, memberikan kesempatan kepada masyarakat untuk mengikuti pendidikan pesantren secara terpadu.</p>
+              <p>Proses pendidikan dilaksanakan  dengan mengedepankan pengasuhan dan keteladanan, menggali semua potensi pelajar santri baik secara intelegensi, emosi dan spiritual. Pembiasaan secara ketat terhadap kehidupan beragama, serta melatih keterampilan berbahsa dan memvisualisasikan ilmu-ilmu diniyyah.</p>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- Footer -->
       @include('umum.footer')

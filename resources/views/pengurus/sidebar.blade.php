@@ -28,7 +28,7 @@
 
   @if (auth()->user()->level == "pendidik")
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#" data-bs-toggle="collapse" href="#">
+    <a class="nav-link collapsed" href="/data-nilai">
       <i class="bi bi-journal-text"></i><span>Nilai Santri</span>
     </a>
   </li><!-- End Forms Nav -->

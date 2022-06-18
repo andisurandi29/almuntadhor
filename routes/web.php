@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\MapelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function() {
     Route::get('/dashboard-admin', [App\Http\Controllers\AkunController::class, 'countAkun'])->name('dashboard-admin');
     Route::get('profil-admin', [App\Http\Controllers\ProfilController::class, 'tampilAdmin'])->name('profil-admin');
     Route::put('/update-password/{id?}', 'LoginController@updatePassword')->name('update-password');
+    Route::put('/update-foto/{id?}', 'ProfilController@updateGambarAdmin')->name('update-foto');
     // Route::get('update-admin/{id}', [App\Http\Controllers\ProfilController::class, 'updateAdmin'])->name('update-admin');
     Route::put('/update-admin/{id?}', 'ProfilController@updateAdmin')->name('update-admin');
     Route::get('data-akun', [App\Http\Controllers\AkunController::class, 'index'])->name('data-akun.index');
@@ -50,6 +53,13 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function() {
     Route::get('/data-akun/edit/{id?}', 'AkunController@edit')->name('data-akun.edit');
     Route::put('/data-akun/update/{id?}', 'AkunController@update')->name('data-akun.update');
     Route::delete('/data-akun/destroy/{id?}', 'AkunController@destroy')->name('data-akun.destroy');
+
+    Route::get('data-mapel', [App\Http\Controllers\MapelController::class, 'index'])->name('data-mapel');
+    Route::post('/data-mapel/create', 'MapelController@create')->name('data-mapel.create');
+    Route::post('/data-mapel/store', 'MapelController@store')->name('data-mapel.store');
+    Route::get('/data-mapel/edit/{id?}', 'MapelController@edit')->name('data-mapel.edit');
+    Route::put('/data-mapel/update/{id?}', 'MapelController@update')->name('data-mapel.update');
+    Route::delete('/data-mapel/destroy/{id?}', 'MapelController@destroy')->name('data-mapel.destroy');
 });
 
 
@@ -60,9 +70,9 @@ Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     Route::get('/kehadiran', function () {
         return view('users.kehadiran');
     });
-    Route::get('/nilai', function () {
-        return view('users.nilai');
-    });
+    // Route::get('/nilai', function () {
+    //     return view('users.nilai');
+    // });
     Route::get('/tagihan', function () {
         return view('users.tagihan');
     });
@@ -102,6 +112,7 @@ Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     Route::get('detail-riwayat/{id?}', [App\Http\Controllers\PembayaranController::class, 'detail'])->name('detail-riwayat.riwayat');
     Route::get('riwayat-pembayaran', [App\Http\Controllers\PembayaranController::class, 'riwayat'])->name('riwayat-pembayaran.riwayat');
     Route::get('upload', [App\Http\Controllers\UploadController::class, 'index'])->name('upload.index');
+    Route::get('nilai', [App\Http\Controllers\NilaiController::class, 'tampilUser'])->name('nilai');
 });
 
 
@@ -143,6 +154,15 @@ Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function()
     Route::get('/data-content/edit/{id?}', 'ContentController@edit')->name('data-content.edit');
     Route::put('/data-content/update/{id?}', 'ContentController@update')->name('data-content.update');
     Route::delete('/data-content/destroy/{id?}', 'ContentController@destroy')->name('data-content.destroy');
+
+    // Data Nilai
+    // Route::get('/santri/mapel', [NilaiController::class, 'mapel'])->name('santri.mapel');
+    Route::get('data-nilai', [App\Http\Controllers\NilaiController::class, 'mapel'])->name('data-nilai');
+    Route::post('/data-nilai/create', 'NilaiController@create')->name('data-nilai.create');
+    Route::post('/data-nilai/store', 'NilaiController@store')->name('data-nilai.store');
+    Route::get('/data-nilai/edit/{id?}', 'NilaiController@edit')->name('data-nilai.edit');
+    Route::put('/data-nilai/update/{id?}', 'NilaiController@update')->name('data-nilai.update');
+    Route::delete('/data-nilai/destroy/{id?}', 'NilaiController@destroy')->name('data-nilai.destroy');
 });
 
 

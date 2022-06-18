@@ -38,7 +38,7 @@
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Level</label>
-              <input required name="level" type="text" class="form-control" placeholder="Masukkan tanggal lahir">
+              <input required name="level" type="text" class="form-control" placeholder="Masukkan Level">
             </div>
             <!-- <div class="mb-3">
               <label for="" class="form-label">Level</label>
@@ -63,6 +63,7 @@
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
         </div>
+        </form>
       </div>
     </div>
   </div>

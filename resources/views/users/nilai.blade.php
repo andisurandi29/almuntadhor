@@ -31,23 +31,24 @@
                     <tr>
                         <th>No</th>
                         <th>Mata Pelajaran</th>
-                        <th>Kelas</th>
-                        <th class="text-center">Semester</th>
+                        <th>Kehadiran</th>
+                        <th class="text-center">Tugas</th>
                         <th class="text-center">UTS</th>
                         <th class="text-center">UAS</th>
                         <th class="text-center">Nilai Akhir</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($tampilUser as $show)
                     <tr>
-                        <td>1</td>
-                        <td>Ilmu Fiqih</td>
-                        <td>2 Madrasah</td>
-                        <td class="text-center">1</td>
-                        <td class="text-center">80</td>
-                        <td class="text-center">80</td>
-                        <td class="text-center">A</td>
+                        <td>{{ $loop->index + 1 }}</td>
+                        <td>{{ $show->mapel->nama_mapel }}</td>
+                        <td>{{ $show->kehadiran }}</td>
+                        <td>{{ $show->tugas }}</td>
+                        <td>{{ $show->uts }}</td>
+                        <td>{{ $show->uas }}</td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
             </div>

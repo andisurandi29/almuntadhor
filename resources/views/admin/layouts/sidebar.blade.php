@@ -28,15 +28,20 @@
         <span class="menu-header-text">Menu Admin</span>
       </li>
         <li class="menu-item">
-            <a href="/data-akun" class="menu-link">
-              <div data-i18n="Account">Data Akun</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="{{route('logout')}}" class="menu-link">
-              <div data-i18n="Account">Logout</div>
-            </a>
-          </li>
+          <a href="/data-akun" class="menu-link">
+            <div data-i18n="Account">Data Akun</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="/data-mapel" class="menu-link">
+            <div data-i18n="Account">Data Pelajaran</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="{{route('logout')}}" class="menu-link">
+            <div data-i18n="Account">Logout</div>
+          </a>
+        </li>
     </ul>
   </aside>
   <!-- / Menu -->

@@ -40,6 +40,30 @@ class ProfilController extends Controller
         return redirect('profil-admin');
     }
 
+    public function updateGambarAdmin(Request $request, $id)
+    {
+        $image_lama = $request->old_image;
+        $image_baru = $request->file('content');
+
+        if($image_baru == '') {
+            $gambar = $image_lama;
+            $deskripsi = "Gambar Lama";
+        } else {
+            $new_image = rand() .'.'. $image_baru->getClientOriginalExtension();
+            $gambar = $new_image;
+            $image_baru->move(public_path('profil'), $new_image); 
+        }
+
+        $profil = User::findOrFail($id);
+        $profil->update(array(
+            'foto' => $gambar,
+        ));
+            
+        return view('admin.account', [
+            'photos' => $profil
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
