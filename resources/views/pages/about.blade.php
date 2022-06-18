@@ -70,25 +70,16 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 grid-margin stretch-card">
+      <div class="col-md-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h3>Visi dan Misi</h3>
-              <ul>
-                <li><b>Visi</b></li>
-                  <p>Terbentuknya generasi yang berprestasi berlandaskan ilmu, iman dan berakhlak mulia</p>
-                <li><b>Misi</b></li>
-                  <p>1. Mendidik santri agar menjadi generasi yang memiliki akidah yang kokoh, berpengetahuan luas serta berakhlak mulia</p>
-                  <p>2. Menjadikan santri berprestasi dalam bidang akademik dan non akademik</p>
-                  <p>3. Melaksanakan bimbingan terpadu antara kegiatan pesantren dan kegiatan sekolah</p>
-                  <p>4. Melaksanakan bimbingan intensif membaca Al-Qur'an dan membaca kitab salafiyah</p>
-                  <p>5. Mengadakan dan mengembangkan sarana dan prasarana pondok yang memadai</p>
-                  <p>6. Mampu berkiprah dalam kegiatan keagamaan dan kemasyarakatan</p>
-                  <p>7. Menyiapkan kader yang istiqomah dalam menjalankan kegiatan-kegiatan islami dan mampu menerapkan kepada masyarakat</p>
-              </ul>
+              <h3>Dasar Pemikiran</h3>
+              <p>Menjawab kebutuhan masyarakat terhadap pendidikan yang membimbing peserta didik secar autuh dari   keilmuan, ketaqwaan, dan amal soleh, Perguruan Islam Pesantren Al-Muntadhor Babakan Ciwaringin Cirebon, memberikan kesempatan kepada masyarakat untuk mengikuti pendidikan pesantren secara terpadu.</p>
+              <p>Proses pendidikan dilaksanakan  dengan mengedepankan pengasuhan dan keteladanan, menggali semua potensi pelajar santri baik secara intelegensi, emosi dan spiritual. Pembiasaan secara ketat terhadap kehidupan beragama, serta melatih keterampilan berbahsa dan memvisualisasikan ilmu-ilmu diniyyah.</p>
             </div>
           </div>
         </div>
+        
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body text-center">
@@ -115,12 +106,23 @@
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h3>Dasar Pemikiran</h3>
-              <p>Menjawab kebutuhan masyarakat terhadap pendidikan yang membimbing peserta didik secar autuh dari   keilmuan, ketaqwaan, dan amal soleh, Perguruan Islam Pesantren Al-Muntadhor Babakan Ciwaringin Cirebon, memberikan kesempatan kepada masyarakat untuk mengikuti pendidikan pesantren secara terpadu.</p>
-              <p>Proses pendidikan dilaksanakan  dengan mengedepankan pengasuhan dan keteladanan, menggali semua potensi pelajar santri baik secara intelegensi, emosi dan spiritual. Pembiasaan secara ketat terhadap kehidupan beragama, serta melatih keterampilan berbahsa dan memvisualisasikan ilmu-ilmu diniyyah.</p>
+              <h3>Visi dan Misi</h3>
+              <ul>
+                <li><b>Visi</b></li>
+                  <p>Terbentuknya generasi yang berprestasi berlandaskan ilmu, iman dan berakhlak mulia</p>
+                <li><b>Misi</b></li>
+                  <p>1. Mendidik santri agar menjadi generasi yang memiliki akidah yang kokoh, berpengetahuan luas serta berakhlak mulia</p>
+                  <p>2. Menjadikan santri berprestasi dalam bidang akademik dan non akademik</p>
+                  <p>3. Melaksanakan bimbingan terpadu antara kegiatan pesantren dan kegiatan sekolah</p>
+                  <p>4. Melaksanakan bimbingan intensif membaca Al-Qur'an dan membaca kitab salafiyah</p>
+                  <p>5. Mengadakan dan mengembangkan sarana dan prasarana pondok yang memadai</p>
+                  <p>6. Mampu berkiprah dalam kegiatan keagamaan dan kemasyarakatan</p>
+                  <p>7. Menyiapkan kader yang istiqomah dalam menjalankan kegiatan-kegiatan islami dan mampu menerapkan kepada masyarakat</p>
+              </ul>
             </div>
           </div>
         </div>
+        
       </div>
       <!-- Footer -->
       @include('umum.footer')
