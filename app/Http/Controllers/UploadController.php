@@ -28,8 +28,7 @@ class UploadController extends Controller
      */
     public function create()
     {
-        // Mengirim data dari modal tambah ke database
-        \App\Models\Upload::create($request->all);
+        //
     }
 
     /**
@@ -40,35 +39,7 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
-        $upload = $request->bukti;
-        $namaFile = time().rand(100,999).".".$upload->getClientOriginalExtension();
-        // $namaFile = time().rand(100,999).".".$upload->getClientOriginalName();
-
-            $dataUpload = new Pembayaran;
-            $dataUpload->nis = $request->nis;
-            $dataUpload->nama = $request->nama;
-            $dataUpload->tanggal = $request->tanggal;
-            $dataUpload->tagihan = $request->tagihan;
-            $dataUpload->nominal = $request->nominal;
-            $dataUpload->bukti = $namaFile;
-            $dataUpload->keterangan = $request->keterangan;
-
-            $upload->move(public_path().'/img', $namaFile);
-            $dataUpload->save();
-
-        // $validatedData = $request->validate([
-        //     'nis' => 'required',
-        //     'nama' => 'required',
-        //     'tanggal' => 'required',
-        //     'nominal' => 'required',
-        //     'bukti' => 'image|file|max:3072',
-        //     'keterangan' => 'required'
-        // ]);
-        
-        // $upload = $request->all();
-
-        // Pembayaran::create($validatedData);
-        return redirect('dashboard')->with('success', 'Upload bukti pembayaran berhasil!');
+        //
     }
 
     /**
@@ -102,7 +73,29 @@ class UploadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $image_lama = $request->old_image;
+        $image_baru = $request->file('img');
+
+        if($image_baru == null) {
+            $gambar = $image_lama;
+            $deskripsi = "Gambar Lama";
+        } else {
+            $new_image = rand() .'.'. $image_baru->getClientOriginalExtension();
+            $gambar = $new_image;
+            $image_baru->move(public_path('img'), $new_image); 
+        }
+
+        $uploadBukti = Pembayaran::findOrFail($id);
+        $uploadBukti->update(array(
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'tagihan' => $request->tagihan,
+            'nominal' => $request->nominal,
+            'bukti' => $gambar,
+            'keterangan' => $request->keterangan,
+        ));
+            
+        return redirect('tagihan');
     }
 
     /**

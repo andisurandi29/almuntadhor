@@ -44,10 +44,6 @@
                 <input required name="nama" type="text" class="form-control" placeholder="Masukkan Nama Lengkap Santri">
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Tanggal Pembayaran</label>
-                <input required name="tanggal" type="date" class="form-control" placeholder="Masukkan tanggal pembayaran">
-              </div>
-              <div class="mb-3">
                   <label for="" class="form-label">Tagihan Pembayaran</label>
                   <select name="tagihan" class="form-select" aria-label="Default select example">
                   <option selected>Pilih tagihan SPP</option>
@@ -76,7 +72,7 @@
               </div>
               <div class="mb-3">
                 <label hidden for="" class="form-label">Bukti Pembayaran</label>
-                <input hiddenrequired name="bukti" id="bukti" type="text" class="form-control" value="Pembayaran Langsung" readonly>
+                <input hidden required name="bukti" id="bukti" type="text" class="form-control" value="Pembayaran Langsung" readonly>
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Keterangan</label>
@@ -112,7 +108,7 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <i class="fas fa-plus"></i> Tambah Data
         </button>
-        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <a href="{{ route('data-pembayaran.cetak-form') }}" class="btn btn-primary">
           <i class="fas fa-print"></i> Cetak Data
          </a>
         </div>
@@ -121,14 +117,17 @@
             <div class="col-auto">
               <label for="cari" class="col-form-label">Cari Data:</label>
             </div>
-            <div class="col-auto">
-              <input type="text" id="cari" class="form-control">
-            </div>
-            <div class="col-auto">
-              <span class="form-text">
-                <button type="submit" class="btn btn-sm btn-primary">Cari</button>
-              </span>
-            </div>
+            <form class="d-flex" method="POST" action="{{route('search')}}">
+              @csrf
+              <div class="col-auto">
+                <input class="form-control" name="keyword" type="search" placeholder="Cari berdasarkan tanggal" aria-label="Search">
+              </div>
+              <div class="col-auto">
+                <span class="form-text">
+                  <button type="submit" class="btn btn-sm btn-primary">Cari</button>
+                </span>
+              </div>
+            </form>
           </div>
       </div>
       <div class="table-responsive">
@@ -137,9 +136,8 @@
             <th>No.</th>
             <th>NIS</th>
             <th>Nama Santri</th>
-            <th>Tanggal Pembayaran</th>
-            <th>Tagihan Pembayaran</th>
-            <th>Nominal Pembayaran</th>
+            <th>Tagihan</th>
+            <th>Nominal</th>
             <th>Bukti Pembayaran</th>
             <th>Keterangan</th>
             <th>Aksi</th>
@@ -150,7 +148,6 @@
             <td>{{ $loop->index + 1 }}</td>
             <td>{{ $college->nis }}</td>
             <td>{{ $college->nama }}</td>
-            <td>{{ $college->tanggal }}</td>
             <td>{{ $college->tagihan }}</td>
             <td>{{ $college->nominal }}</td>
             <td>{{ $college->bukti }}</td>

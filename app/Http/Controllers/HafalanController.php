@@ -17,7 +17,7 @@ class HafalanController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         // Mengirim data dari modal tambah ke database
         \App\Models\Hafalan::create($request->all);
@@ -72,5 +72,27 @@ class HafalanController extends Controller
         $santri = Auth::user()->username;
         $riwayatHafalan = Hafalan::where('nis', $santri)->get();
         return view('users.hafalan', ['riwayatHafalan' => $riwayatHafalan]);
+    }
+
+    public function cari(Request $request)
+    {
+        $keyword = $request->keyword;
+        $this->printData = Hafalan::where('nama', 'like', '%' . $keyword . '%')->orderBy('nama', 'asc')->get();
+        return view('pengurus.v_hafalan')->with([
+            'hafalan' => $this->printData
+        ]);
+    }
+
+    public function cetakForm()
+    {
+        return view('pengurus.cetak_form_hafalan');
+    }
+
+    public function cetakPertanggal($tglawal, $tglakhir)
+    {
+        $cetakPertanggal = Hafalan::orderBy('tanggal', 'asc')->whereBetween('tanggal', [$tglawal, $tglakhir])->get();
+        return view('pengurus.cetak_hafalan', [
+            'hafalan' => $cetakPertanggal
+        ]);
     }
 }

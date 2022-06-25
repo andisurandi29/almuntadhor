@@ -28,6 +28,7 @@
                 <th scope="col">STATUS</th>
                 <th scope="col" class="text-center">AKSI</th>
               </thead>
+
               @foreach($dataTagihan as $tagihan)
               <tr>
                   <td>{{ $loop->index + 1 }}</td>
@@ -37,7 +38,7 @@
                   <td>{{ $tagihan->nominal }}</td>
                   <td>{{ $tagihan->keterangan }}</td>
                   <td>
-                      <a href="{{route('data-tagihan.edit', $college->id)}}" class="btn btn-primary">Bayar Sekarang</a>
+                      <a href="{{route('tagihan.edit', $tagihan->id)}}" class="btn btn-primary">Bayar Sekarang</a>
                   </td>
               </tr>
               @endforeach

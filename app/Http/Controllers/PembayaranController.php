@@ -16,7 +16,7 @@ class PembayaranController extends Controller
 {
     public function index()
     {
-        $data_pembayaran = Pembayaran::orderBy('created_at', 'desc')->get();
+        $data_pembayaran = Pembayaran::orderBy('created_at', 'asc')->get();
         return view('pengurus.v_pembayaran', [
             'colleges' => $data_pembayaran
         ]);
@@ -121,7 +121,7 @@ class PembayaranController extends Controller
 
     public function cetakPertanggal($tglawal, $tglakhir)
     {
-        $cetakPertanggal = Pembayaran::orderBy('tanggal', 'asc')->whereBetween('tanggal', [$tglawal, $tglakhir])->get();
+        $cetakPertanggal = Pembayaran::orderBy('tanggal', 'asc')->whereBetween('created_at', [$tglawal, $tglakhir])->get();
         return view('pengurus.cetak_pertanggal', [
             'colleges' => $cetakPertanggal
         ]);
@@ -133,27 +133,32 @@ class PembayaranController extends Controller
         return view('users.upload_bukti', compact('buktiPembayaran'));
     }
 
-    public function upload(Request $request)
+    public function upload(Request $request, $id)
     {
-        // dd(Carbon::now()->format('Y'));
-        $upload = $request->bukti;
-        $namaFile = time().rand(100,999).".".$upload->getClientOriginalExtension();
-        // $namaFile = time().rand(100,999).".".$upload->getClientOriginalName();
 
-            $dataUpload = new Pembayaran;
-            $dataUpload->user_id = Auth()->user()->id;
-            $dataUpload->nama = $request->nama;
-            $dataUpload->tanggal = Carbon::now();
-            $dataUpload->tagihan = $request->tagihan. ' '. Carbon::now()->format('Y');
-            $dataUpload->nominal = $request->nominal;
-            $dataUpload->bukti = $namaFile;
-            $dataUpload->keterangan = 'Belum diverifikasi';
+        $image_lama = $request->old_image;
+        $image_baru = $request->file('img');
 
-            // dd($dataUpload->tanggal);
-            $upload->move(public_path().'/img', $namaFile);
-            $dataUpload->save();
-        
-        return redirect('dashboard')->with('success', 'Upload bukti pembayaran berhasil!');
+        if($image_baru == '') {
+            $gambar = $image_lama;
+            $deskripsi = "Gambar Lama";
+        } else {
+            $new_image = rand() .'.'. $image_baru->getClientOriginalExtension();
+            $gambar = $new_image;
+            $image_baru->move(public_path('img'), $new_image); 
+        }
+
+        $content = Pembayaran::findOrFail($id);
+        $content->update(array(
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'tagihan' => $request->tagihan,
+            'nominal' => $request->nominal,
+            'bukti' => $gambar,
+            'keterangan' => $request->keterangan,
+        ));
+            
+        return redirect('tagihan');
     }
 
     public function riwayat()
@@ -173,9 +178,24 @@ class PembayaranController extends Controller
     public function tagihan()
     {
         $santri = Auth::user()->username;
-        // $tagihan = Pembayaran::where('user_id', $santri)->get();
         $tagihan = Pembayaran::where('nis', $santri)->where('tagihan', '<', Carbon::now()->year)->paginate(5);
-        // dd($tagihan);
         return view('users.tagihan', ['dataTagihan' => $tagihan]);
+    }
+
+    public function editTagihan($id)
+    {
+        $edit_tagihan = Pembayaran::findOrFail($id);
+        return view('users.upload_bukti')->with([
+            'dataTagihan' => $edit_tagihan
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
+        $this->printData = Pembayaran::where('nama', 'like', '%' . $keyword . '%')->orderBy('nama', 'asc')->get();
+        return view('pengurus.v_pembayaran')->with([
+            'colleges' => $this->printData
+        ]);
     }
 }

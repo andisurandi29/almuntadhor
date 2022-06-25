@@ -18,7 +18,7 @@
                     <input type="date" name="tglakhir" id="tglakhir" class="form-control"/>
                 </div>
                 <div class="input-group mb-3">
-                    <a href="#" onclick="this.href='/data-pembayaran/cetak-pertanggal/'+document.getElementById('tglawal').value + '/' + document.getElementById('tglakhir').value" target="_blank" class="btn btn-primary col-md-12"> Cetak Laporan Keuangan <i class="fas fa-print"></i></a>
+                    <a href="#" onclick="this.href='/data-hafalan/cetak-hafalan/'+document.getElementById('tglawal').value + '/' + document.getElementById('tglakhir').value" target="_blank" class="btn btn-primary col-md-12"> Cetak Laporan Hafalan <i class="fas fa-print"></i></a>
                 </div>
             </div>
         </section>

@@ -18,16 +18,20 @@
                 <div class="card-body">
                     <table class="table table-bordered table-responsive">
                         <thead>
-                            <form onsubmit="return confirm('Apakah Anda yakin untuk melanjutkan?');" action="{{route('upload.store')}}" method="POST" enctype="multipart/form-data">
-                                @method('POST')
+                            <form onsubmit="return confirm('Apakah Anda yakin untuk melanjutkan?');" action="{{route('upload.update', $dataTagihan->id)}}" method="POST" enctype="multipart/form-data">
+                                @method('PUT')
                                 @csrf    
                                 <tr>
                                     <th scope="col">Nomor Induk Santri (NIS)</th>
-                                    <td><input type="text" name="user_id" value="{{ auth()->user()->username }}" class="form-control" readonly></td>
+                                    <td><input type="text" name="nis" value="{{ auth()->user()->username }}" class="form-control" readonly></td>
                                 </tr>
                                 <tr>
                                     <th scope="col">Nama Lengkap Santri</th>
                                     <td><input type="text" name="nama" value="{{ auth()->user()->name}}" class="form-control" readonly></td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Tagihan</th>
+                                    <td><input type="text" name="tagihan" value="{{$dataTagihan->tagihan}}" class="form-control" readonly></td>
                                 </tr>
                                 <tr>
                                     <th scope="col">Nominal Pembayaran</th>
@@ -41,8 +45,12 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th scope="col"><label for="bukti" class="form-label">Upload Bukti</label></th>
-                                    <td><input type="file" name="bukti" class="form-control @error('bukti') is-invalid @enderror" id="bukti" required></td>
+                                    <th scope="col">Keterangan</th>
+                                    <td><input type="text" name="keterangan" value="{{$dataTagihan->keterangan}}" class="form-control" readonly></td>
+                                </tr>
+                                <tr>
+                                    <th scope="col"><label class="form-label">Upload Bukti</label></th>
+                                    <td><input type="file" name="bukti" id="bukti" class="form-control-file @error('bukti') is-invalid @enderror" required></td>
                                     @error('bukti')
                                         <div class="invalid-feedback">
                                             {{ $message }}

@@ -12,7 +12,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Santri</h1>
+            <h1>Data Nilai</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -77,31 +77,13 @@
            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="fas fa-plus"></i> Tambah Data
           </button>
-           <a href="{{route('data-santri.cetak')}}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="fas fa-print"></i> Cetak Data
-           </a>
         </div>
-        <div class="col">
-          <div class="row g-3 align-items-center">
-            <div class="col-auto">
-              <label for="cari" class="col-form-label">Cari Data:</label>
-            </div>
-            <div class="col-auto">
-              <input type="text" id="cari" class="form-control">
-            </div>
-            <div class="col-auto">
-              <span class="form-text">
-                <button type="submit" class="btn btn-sm btn-primary">Cari</button>
-              </span>
-            </div>
-          </div>
-      </div>
       <div class="table-responsive">
         <table class="table table-striped table-hover" style="vertical-align: middle">
           <tr>
             <th>No.</th>
             <th>NIS</th>
-            <th>Nama Santri</th>
+            <th>Mata Pelajaran</th>
             <th>Kehadiran</th>
             <th>Tugas</th>
             <th>UTS</th>

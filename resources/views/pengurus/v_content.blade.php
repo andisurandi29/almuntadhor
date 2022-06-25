@@ -109,15 +109,19 @@
         <div class="row g-3 align-items-center">
           <div class="col-auto">
             <label for="cari" class="col-form-label">Cari Data:</label>
+          <form class="d-flex" method="POST" action="{{route('search')}}">
+              @csrf
+              <div class="col-auto">
+                <input class="form-control" name="keyword" type="search" placeholder="Cari berdasarkan nama" aria-label="Search">
+              </div>
+              <div class="col-auto">
+                <span class="form-text">
+                  <button type="submit" class="btn btn-sm btn-primary">Cari</button>
+                </span>
+              </div>
+          </form>
           </div>
-          <div class="col-auto">
-            <input type="text" id="cari" class="form-control">
-          </div>
-          <div class="col-auto">
-            <span class="form-text">
-              <button type="submit" class="btn btn-sm btn-primary">Cari</button>
-            </span>
-          </div>
+
         </div>
     </div>
     <div class="table-responsive">

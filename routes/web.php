@@ -63,9 +63,9 @@ Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     // Route::get('/nilai', function () {
     //     return view('users.nilai');
     // });
-    Route::get('/tagihan', function () {
-        return view('users.tagihan');
-    });
+    // Route::get('/tagihan', function () {
+    //     return view('users.tagihan');
+    // });
     Route::get('/tutorial', function () {
         return view('users.tutorial');
     });
@@ -96,9 +96,11 @@ Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     Route::get('/riwayat', function () {
         return view('users.riwayat_bayar');
     });
+    Route::get('tagihan', [App\Http\Controllers\PembayaranController::class, 'tagihan'])->name('tagihan');
+    Route::get('/tagihan/edit/{id?}', 'PembayaranController@editTagihan')->name('tagihan.edit');
     Route::get('dashboard', [App\Http\Controllers\ContentController::class, 'homeUser'])->name('homeUser');
     Route::get('hafalan-santri', [App\Http\Controllers\HafalanController::class, 'hafalan'])->name('hafalan-santri.hafalan');
-    Route::post('/upload/store', 'PembayaranController@upload')->name('upload.store');
+    Route::put('/upload/update/{id?}', 'UploadController@update')->name('upload.update');
     Route::get('detail-riwayat/{id?}', [App\Http\Controllers\PembayaranController::class, 'detail'])->name('detail-riwayat.riwayat');
     Route::get('riwayat-pembayaran', [App\Http\Controllers\PembayaranController::class, 'riwayat'])->name('riwayat-pembayaran.riwayat');
     Route::get('upload', [App\Http\Controllers\UploadController::class, 'index'])->name('upload.index');
@@ -120,6 +122,7 @@ Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function()
     Route::delete('/data-pembayaran/destroy/{id?}', 'PembayaranController@destroy')->name('data-pembayaran.destroy');
     Route::get('/data-pembayaran/cetak-form', 'PembayaranController@cetakForm')->name('data-pembayaran.cetak-form');
     Route::get('/data-pembayaran/cetak-pertanggal/{tglawal}/{tglakhir}', 'PembayaranController@cetakPertanggal')->name('data-pembayaran.cetak-pertanggal');
+    Route::post('/data-pembayaran/search', 'PembayaranController@search')->name('search');
 
     // Data Hafalan
     Route::get('data-hafalan', [App\Http\Controllers\HafalanController::class, 'index'])->name('data-hafalan.index');
@@ -128,6 +131,9 @@ Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function()
     Route::get('/data-hafalan/edit/{id?}', 'HafalanController@edit')->name('data-hafalan.edit');
     Route::put('/data-hafalan/update/{id?}', 'HafalanController@update')->name('data-hafalan.update');
     Route::delete('/data-hafalan/destroy/{id?}', 'HafalanController@destroy')->name('data-hafalan.destroy');
+    Route::post('/data-hafalan/cari', 'HafalanController@cari')->name('cari');
+    Route::get('/data-hafalan/cetak-form', 'HafalanController@cetakForm')->name('data-hafalan.cetak-form');
+    Route::get('/data-hafalan/cetak-hafalan/{tglawal}/{tglakhir}', 'HafalanController@cetakPertanggal')->name('data-hafalan.cetak-pertanggal');
 
     // Data Santri
     Route::get('data-santri', [App\Http\Controllers\SantriController::class, 'index'])->name('data-santri.index');
@@ -145,6 +151,7 @@ Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function()
     Route::get('/data-content/edit/{id?}', 'ContentController@edit')->name('data-content.edit');
     Route::put('/data-content/update/{id?}', 'ContentController@update')->name('data-content.update');
     Route::delete('/data-content/destroy/{id?}', 'ContentController@destroy')->name('data-content.destroy');
+    Route::post('/data-content/search', 'ContentController@search')->name('search');
 
     // Data Nilai
     // Route::get('/santri/mapel', [NilaiController::class, 'mapel'])->name('santri.mapel');

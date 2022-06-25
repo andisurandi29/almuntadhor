@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Nilai;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Ui\Presets\React;
 
 class NilaiController extends Controller
 {
@@ -28,7 +29,7 @@ class NilaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         \App\Models\SantriMapel::create($request->all);
     }

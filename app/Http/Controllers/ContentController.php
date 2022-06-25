@@ -29,7 +29,7 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         \App\Models\Content::create($request->all);
     }
@@ -160,5 +160,14 @@ class ContentController extends Controller
     {
         $tampilContent = Content::orderBy('created_at', 'asc')->get()->where('kategori', 'Pengumuman');
         return view('users.pengumuman', ['tampilContent' => $tampilContent]);
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
+        $this->printData = Content::where('judul', 'like', '%' . $keyword . '%')->orderBy('judul', 'asc')->get();
+        return view('pengurus.v_content')->with([
+            'uploads' => $this->printData
+        ]);
     }
 }
