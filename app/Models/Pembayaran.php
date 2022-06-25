@@ -11,4 +11,9 @@ class Pembayaran extends Model
     protected $table= 'data_pembayaran';
     protected $primaryKey = 'id';
     protected $fillable = ['nis', 'nama', 'tanggal', 'tagihan', 'nominal', 'bukti', 'keterangan', 'created_at', 'updated_at'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -42,7 +42,7 @@
                     @foreach($tampilUser as $show)
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $show->mapel->nama_mapel }}</td>
+                        <td>{{ $show->pelajaran }}</td>
                         <td>{{ $show->kehadiran }}</td>
                         <td>{{ $show->tugas }}</td>
                         <td>{{ $show->uts }}</td>

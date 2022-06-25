@@ -44,6 +44,7 @@
                   <option value="Ct-D">Ct-D</option>
                   <option value="Ct-I">Ct-I</option>
                   <option value="Ct-G">Ct-G</option>
+                  <option value="Ct-P">Ct-P</option>
                 </select>
               </div>
               <div class="mb-3">
@@ -59,8 +60,9 @@
                 <select name="kategori" class="form-select" aria-label="Default select example">
                   <option selected>Pilih kategori</option>
                   <option value="Dashboard">Dashboard</option>
-                  <option value="Informasi">Informasi</option>
                   <option value="Gallery">Gallery</option>
+                  <option value="Informasi">Informasi</option>
+                  <option value="Pengumuman">Pengumuman</option>
                 </select>
               </div>
               <div class="mb-3">

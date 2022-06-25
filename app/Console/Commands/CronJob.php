@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Pembayaran;
+use App\Models\User;
+use Carbon\Carbon;
 
 class CronJob extends Command
 {
@@ -40,12 +42,15 @@ class CronJob extends Command
     {
         // return 0;
 
-        $dataTagihan = Pembayaran::get();
+        // $dataTagihan = Pembayaran::where('user_id', );
+        // $tanggal = explode(' ', $dataTagihan[3]->tagihan);
+        dd(Carbon::parse('1 April')->addMonth(1)->format('M'));
+        // dd(Carbon::parse('1 April')->addMonth(1));
 
-        foreach($dataTagihan as $key => $value) {
-            // print_r($value);
-            return view('pengurus.v_pembayaran', $value);
-        }
-        // print_r($dataTagihan);
+        // foreach($dataTagihan as $tagihan)
+        // {
+        //     Pembayaran::get();
+        // }
+        
     }
 }

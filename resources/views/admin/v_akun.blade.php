@@ -83,7 +83,6 @@
                                     <th>Username</th>
                                     <th>Level</th>
                                     <th>Email</th>
-                                    <th>Password</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -95,7 +94,6 @@
             <td>{{ $account->username }}</td>
             <td>{{ $account->level }}</td>
             <td>{{ $account->email }}</td>
-            <td>{{ $account->password }}</td>
             <td>
               <form action="{{route('data-akun.destroy', $account->id)}}" method="POST">
                 <a href="{{route('data-akun.edit', $account->id)}}" 
@@ -113,7 +111,15 @@
                       </div>
                     <!-- </div>
     <div class="row"> -->
-          
+    <div class="page-bottom" style="margin: 20px">
+        <br/>
+        <!-- pagination -->
+          Current Page: {{ $accounts->currentPage() }}<br>
+          Jumlah Data: {{ $accounts->total() }}<br>
+          Data perhalaman: {{ $accounts->perPage() }}<br>
+          <br>
+          {{ $accounts->links() }}
+       </div>
               </div>
             </div>
             <!-- / Content -->

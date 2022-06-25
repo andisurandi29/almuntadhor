@@ -15,13 +15,13 @@ class CreateDataPembayaranTable extends Migration
     {
         Schema::create('data_pembayaran', function (Blueprint $table) {
             $table->increments('id');
-            $table->String('nis');
+            $table->integer('nis');
             $table->String('nama');
-            $table->date('tanggal');
+            $table->date('tanggal')->nullable();
             $table->String('tagihan');
-            $table->String('nominal');
-            $table->String('bukti');
-            $table->String('keterangan');
+            $table->String('nominal')->nullable();
+            $table->String('bukti')->nullable();
+            $table->String('keterangan')->default('Belum diverifikasi');
             $table->timestamps();
         });
     }

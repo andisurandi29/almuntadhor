@@ -10,13 +10,13 @@
     </a>
   </li><!-- End Dashboard Nav -->
 
-  @if (auth()->user()->level == "pengurus")
+  <!-- @if (auth()->user()->level == "pengurus")
   <li class="nav-item">
     <a class="nav-link collapsed" href="/data-santri">
       <i class="bi-solid bi-book"></i><span>Data Santri</span> 
     </a>
   </li>
-  @endif
+  @endif -->
 
   @if (auth()->user()->level == "pengurus")
   <li class="nav-item">
@@ -42,7 +42,7 @@
   </li>
   @endif
 
-  @if (auth()->user()->level == "pengurus")
+  @if (auth()->user()->level == "pendidik")
   <li class="nav-item">
     <a class="nav-link collapsed" href="/data-hafalan">
       <i class="bi bi-menu-button-wide"></i><span>Data Hafalan</span>
@@ -53,18 +53,18 @@
   @if (auth()->user()->level == "pengurus")
   <li class="nav-item">
     <a class="nav-link collapsed" href="/data-content">
-      <i class="bi bi-menu-button-wide"></i><span>Data Content</span>
+      <i class="fas fa-bullhorn"></i><span>Informasi</span>
     </a>
   </li>
   @endif
 
-  @if (auth()->user()->level == "pengurus")
+  <!-- @if (auth()->user()->level == "pengurus")
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
       <i class="fas fa-bullhorn"></i><span>Pengumuman</span> 
     </a>
   </li>
-  @endif
+  @endif -->
 
   <li class="nav-heading">Fitur Lainnya</li>
 

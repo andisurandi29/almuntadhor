@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="row justify-content no-gutters text-center">
-                <a href="/gallery" class="col mb-3" style="margin-right: 20px">
+                <a href="/gallery-content" class="col mb-3" style="margin-right: 20px">
                   <div class="card mb-1 bg-gradient-primary  text-white text-center">
                     <span><i class="fas fa-photo-video" style="margin: 21px;"></i></span>
                   </div>

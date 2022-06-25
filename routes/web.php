@@ -17,19 +17,9 @@ use App\Http\Controllers\MapelController;
 |
 */
 
-// Halaman Umum
-// Route::get('/', function () {
-//     return view('index');
-// });
 Route::get('/about', function () {
     return view('pages.about');
 });
-// Route::get('/info', function () {
-//         return view('pages.info');
-// });
-// Route::get('/gallery', function () {
-//         return view('pages.gallery');  
-// });
 Route::get('gallery-content', [App\Http\Controllers\ContentController::class, 'tampilContent'])->name('gallery-content.tampilContent');
 Route::get('info', [App\Http\Controllers\ContentController::class, 'infoContent'])->name('infoContent');
 Route::get('/', [App\Http\Controllers\ContentController::class, 'homeContent'])->name('homeContent');
@@ -85,9 +75,9 @@ Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     Route::get('/hafalan', function () {
         return view('users.hafalan');
     });
-    Route::get('/pengumuman', function () {
-        return view('users.pengumuman');
-    });
+    // Route::get('/pengumuman', function () {
+    //     return view('users.pengumuman');
+    // });
     Route::get('/privateinfo', function () {
         return view('users.privateinfo');
     });
@@ -113,6 +103,7 @@ Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     Route::get('riwayat-pembayaran', [App\Http\Controllers\PembayaranController::class, 'riwayat'])->name('riwayat-pembayaran.riwayat');
     Route::get('upload', [App\Http\Controllers\UploadController::class, 'index'])->name('upload.index');
     Route::get('nilai', [App\Http\Controllers\NilaiController::class, 'tampilUser'])->name('nilai');
+    Route::get('pengumuman', [App\Http\Controllers\ContentController::class, 'pengumuman'])->name('pengumuman');
 });
 
 
@@ -157,7 +148,7 @@ Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function()
 
     // Data Nilai
     // Route::get('/santri/mapel', [NilaiController::class, 'mapel'])->name('santri.mapel');
-    Route::get('data-nilai', [App\Http\Controllers\NilaiController::class, 'mapel'])->name('data-nilai');
+    Route::get('data-nilai', [App\Http\Controllers\NilaiController::class, 'index'])->name('data-nilai');
     Route::post('/data-nilai/create', 'NilaiController@create')->name('data-nilai.create');
     Route::post('/data-nilai/store', 'NilaiController@store')->name('data-nilai.store');
     Route::get('/data-nilai/edit/{id?}', 'NilaiController@edit')->name('data-nilai.edit');
@@ -167,4 +158,5 @@ Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function()
 
 
 Auth::routes();
+Route::get('/tagihan', 'PembayaranController@tagihan')->name('tagihan');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

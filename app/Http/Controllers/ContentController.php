@@ -155,4 +155,10 @@ class ContentController extends Controller
         $tampilContent = Content::where('kategori', 'Dashboard')->get();
         return view('users.dashboard', ['tampilContent' => $tampilContent]);
     }
+
+    public function pengumuman()
+    {
+        $tampilContent = Content::orderBy('created_at', 'asc')->get()->where('kategori', 'Pengumuman');
+        return view('users.pengumuman', ['tampilContent' => $tampilContent]);
+    }
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SantriMapel;
-use App\Models\Santri;
+use App\Models\Nilai;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class NilaiController extends Controller
@@ -16,7 +16,11 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        //
+        $guru = Auth::user()->kelas;
+        $nilai = Nilai::where('pelajaran', $guru)->paginate(5);
+        return view('guru.data_nilai', [
+            'nilai' => $nilai
+        ]);
     }
 
     /**
@@ -37,16 +41,17 @@ class NilaiController extends Controller
      */
     public function store(Request $request)
     {
-        $dataNilai = $request->validate([
-            'santri_id'     => 'required',
-            'mapel_id'     => 'required',
-            'kehadiran'     => 'required',
-            'tugas'     => 'required',
-            'uts'     => 'required',
-            'uas'     => 'required',
-        ]);
-
-        SantriMapel::create($dataNilai);
+        $dataNilai = $request->all();
+        //  Array 1 dimensi
+        $id = DB::select("SHOW TABLE STATUS LIKE 'data_nilai'");
+        $next_id = $id[0]->Auto_increment;
+        if ($next_id >= 10) {
+            $dataNilai['id'] = '0' . $next_id;
+            Nilai::create($dataNilai);
+        } else {
+            $dataNilai['id'] = '00' . $next_id;
+            Nilai::create($dataNilai);
+        }
 
         return redirect()->route('data-nilai');
     }
@@ -70,9 +75,9 @@ class NilaiController extends Controller
      */
     public function edit($id)
     {
-        $edit_nilai = SantriMapel::findOrFail($id);
+        $edit_nilai = Nilai::findOrFail($id);
         return view('guru.edit_nilai')->with([
-            'santriMapel' => $edit_nilai
+            'nilai' => $edit_nilai
         ]);
     }
 
@@ -86,7 +91,7 @@ class NilaiController extends Controller
     public function update(Request $request, $id)
     {
         $update_nilai = $request->all();
-        $nilai_santri = SantriMapel::findOrFail($id);
+        $nilai_santri = Nilai::findOrFail($id);
         $nilai_santri->update($update_nilai);
         return redirect('data-nilai');
     }
@@ -99,25 +104,17 @@ class NilaiController extends Controller
      */
     public function destroy($id)
     {
-        $hapus_nilai = SantriMapel::findOrFail($id);
+        $hapus_nilai = Nilai::findOrFail($id);
         $hapus_nilai->delete();
         return redirect()->route('data-nilai');
     }
 
-    public function mapel()
+    public function tampilUser()
     {
-        $santriMapel = SantriMapel::all();
-        return view('guru.data_nilai', [
-            'santriMapel' => $santriMapel
+        $nilai = Nilai::get();
+        return view('users.nilai', [
+            'tampilUser' => $nilai
         ]);
     }
 
-    public function tampilUser()
-    {
-        $santri = Auth::user()->username;
-        $tampilUser = SantriMapel::where('santri_id', $santri)->get();
-        return view('users.nilai', [
-            'tampilUser' => $tampilUser
-        ]);
-    }
 }

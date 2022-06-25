@@ -29,7 +29,7 @@
       </li>
         <li class="menu-item">
           <a href="/data-akun" class="menu-link">
-            <div data-i18n="Account">Data Akun</div>
+            <div data-i18n="Account">Data Users</div>
           </a>
         </li>
         <li class="menu-item">

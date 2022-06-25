@@ -16,7 +16,7 @@ class CreateSantriMapelTable extends Migration
         Schema::create('santri_mapel', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('santri_id');
-            $table->foreignId('mapel_id');
+            $table->String('mapel_id');
             $table->String('kehadiran');
             $table->String('tugas');
             $table->String('uts');

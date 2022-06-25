@@ -30,16 +30,8 @@
                                 <input name="username" value="{{$accounts->username}}" type="text" class="form-control" placeholder="Masukkan nama lengkap santri">
                               </div>
                               <div class="mb-3">
-                                <label for="" class="form-label">Level</label>
-                                <input name="level" value="{{$accounts->level}}" type="text" class="form-control" placeholder="Masukkan tanggal lahir">
-                              </div>
-                              <div class="mb-3">
                                 <label for="" class="form-label">Email</label>
                                 <input name="email" value="{{$accounts->email}}" type="email" class="form-control" placeholder="Masukkan angkatan">
-                              </div>
-                              <div class="mb-3">
-                                <label for="" class="form-label">Password</label>
-                                <input name="password" value="{{$accounts->password}}" type="password" class="form-control" placeholder="Masukkan alamat lengkap" readonly>
                               </div>
                               <button type="submit" class="btn btn-primary">Update</button>
                         </form>

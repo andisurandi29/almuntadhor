@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataAkun;
+use App\Models\Pembayaran;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AkunController extends Controller
 {
@@ -32,7 +34,7 @@ class AkunController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         // Mengirim data dari modal tambah ke database
         \App\Models\DataAkun::create($request->all);
@@ -46,7 +48,9 @@ class AkunController extends Controller
      */
     public function store(Request $request)
     {
+        $tahun = Carbon::now()->year;
         $input_akun = $request->all();
+        // return $input_akun;
         $input_akun['password'] = bcrypt($request->password);
 
 
@@ -56,6 +60,15 @@ class AkunController extends Controller
         // jika id terbaru lebih dari sama dengan 10 maka keluaranya 00 + id terbaru
         if ($next_id >= 10) {
             $input_akun['id'] = '0' . $next_id;
+            for($i = 1; $i<72; $i++) {
+                Pembayaran::create([
+                    'nis' => $request->username,
+                    'nama' => $request->name,
+                    'tagihan' => Carbon::parse('1 April')->addMonth($i)->format('M-Y'),
+                    'nominal' => $request->nominal,
+                    'keterangan' => 'Belum diverifikasi',
+                ]);
+            }
             DataAkun::create($input_akun);
         } else {
             // selain itu maka 0 + id terbaru
@@ -88,7 +101,7 @@ class AkunController extends Controller
     {
         $edit_akun = DataAkun::findOrFail($id);
         return view('admin.edit_akun')->with([
-            'accounts' => $edit_akun
+            'accounts' => $edit_akun, "title" => "Edit Akun"
         ]);
     }
 

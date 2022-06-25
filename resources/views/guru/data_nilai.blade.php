@@ -1,32 +1,3 @@
-<!-- <div class="table-responsive">
-        <table class="table table-striped table-hover" style="vertical-align: middle">
-          <tr>
-            <th>No.</th>
-            <th>id_santri</th>
-            <th>id_mapel</th>
-            <th>id_mapel</th>
-            <th>Kehadiran</th>
-            <th>Tugas</th>
-            <th>UTS</th>
-            <th>UAS</th>
-           
-          </tr>
-
-          @foreach($santriMapel as $nilai)
-          <tr>
-            <td>{{ $loop->index + 1 }}</td>
-            <td>{{ $nilai->santri_id }}</td>
-            <td>{{ $nilai->mapel->nama_mapel }}</td>
-            <td>{{ $nilai->kehadiran }}</td>
-            <td>{{ $nilai->tugas }}</td>
-            <td>{{ $nilai->uts }}</td>
-            <td>{{ $nilai->uas }}</td>
-            
-          </tr>
-          @endforeach
-        </table>
-</div> -->
-
 @extends('pengurus.main')
   <!-- container -->
   @section('pengurus')
@@ -41,13 +12,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Nilai</h1>
+            <h1>Data Santri</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
-   
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -58,19 +27,18 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            
-          {{-- Form tambah nilai  --}}
-            <form action="{{route('data-nilai.store')}}" method="POST" enctype="multipart/form-data">
+            {{-- Form tambah hafalan  --}}
+            <form action="{{route('data-nilai.store')}}" method="POST">
               {{-- CSRF merupakan keamanan yang disediakan laravel  --}}
               @method('POST')
               @csrf
               <div class="mb-3">
-                <label for="" class="form-label">Nama Santri</label>
-                <input required name="santri_id" type="text" class="form-control" placeholder="Masukkan Nama Santri">
+                <label for="" class="form-label">NIS Santri</label>
+                <input required name="nis" type="text" class="form-control" placeholder="Masukkan NIS santri">
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Mata Pelajaran</label>
-                <input required name="mapel_id" type="text" class="form-control" placeholder="Masukkan Mata Pelajaran">
+                <label hidden for="" class="form-label">Mata Pelajaran</label>
+                <input hidden name="pelajaran" value="{{auth()->user()->kelas}}" type="text" class="form-control">
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Kehadiran</label>
@@ -97,30 +65,21 @@
         </div>
       </div>
     </div>
-
+    
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      @if(session('success'))
-        <div class="alert alert-success">
-              <b>Berhasil!</b> {{session('success')}}
-        </div> 
-      @elseif(session('error'))
-        <div class="alert alert-danger">
-            <b>Maaf!</b> {{session('error')}}
-        </div>
-      @endif
       <div class="card">
         <div class="card-body">
       <div class="row" style="margin-left: 10px; margin-top:20px">
         <div class="col mb-3">
            <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          <i class="fas fa-plus"></i> Tambah Data
-        </button>
-        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          <i class="fas fa-print"></i> Cetak Data
-         </a>
+           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fas fa-plus"></i> Tambah Data
+          </button>
+           <a href="{{route('data-santri.cetak')}}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fas fa-print"></i> Cetak Data
+           </a>
         </div>
         <div class="col">
           <div class="row g-3 align-items-center">
@@ -141,54 +100,52 @@
         <table class="table table-striped table-hover" style="vertical-align: middle">
           <tr>
             <th>No.</th>
+            <th>NIS</th>
             <th>Nama Santri</th>
-            <th>Mata Pelajaran</th>
             <th>Kehadiran</th>
             <th>Tugas</th>
             <th>UTS</th>
             <th>UAS</th>
             <th>Aksi</th>
           </tr>
-  
-          @foreach($santriMapel as $nilai)
+
+          @foreach($nilai as $data)
           <tr>
             <td>{{ $loop->index + 1 }}</td>
-            <td>{{ $nilai->santri_id }}</td>
-            <td>{{ $nilai->mapel->nama_mapel }}</td>
-            <td>{{ $nilai->kehadiran }}</td>
-            <td>{{ $nilai->tugas }}</td>
-            <td>{{ $nilai->uts }}</td>
-            <td>{{ $nilai->uas }}</td>
+            <td>{{ $data->nis }}</td>
+            <td>{{ $data->pelajaran }}</td>
+            <td>{{ $data->kehadiran }}</td>
+            <td>{{ $data->tugas }}</td>
+            <td>{{ $data->uts }}</td>
+            <td>{{ $data->uas }}</td>
             <td>
-              <form action="{{route('data-nilai.destroy', $nilai->id)}}" method="POST">
-                  <a href="{{ asset('/img/'. $nilai->bukti) }}" 
-                      class="btn btn-warning fas fa-eye"></a>
-                  <a href="{{route('data-nilai.edit', $nilai->id)}}" 
-                      class="btn btn-primary fas fa-edit"></a>
-                  @csrf    
-                  @method('delete')
-                  <button type="submit" class="btn btn-danger fas fa-trash-alt"></button>
-                </form>
+              <form action="{{route('data-nilai.destroy', $data->id)}}" method="POST">
+                <a href="{{route('data-nilai.edit', $data->id)}}" 
+                    class="btn btn-primary fas fa-edit"></a>
+                @csrf    
+                @method('delete')
+                <button type="submit" class="btn btn-danger fas fa-trash-alt"></button>
               </form>
             </td>
           </tr>
           @endforeach
         </table>
+
+       <div class="page-bottom" style="margin: 20px">
+        <br/>
+        <!-- pagination -->
+          Current Page: {{ $nilai->currentPage() }}<br>
+          Jumlah Data: {{ $nilai->total() }}<br>
+          Data perhalaman: {{ $nilai->perPage() }}<br>
+          <br>
+          {{ $nilai->links() }}
+       </div>
       </div>
       </div>
-      
+  
     </section>
     <!-- /.content -->
   </main>
   <!-- /.content-wrapper -->
   @include('pengurus.footer')
-    <script>
-        //message with toastr
-        @if(session()->has('success'))
-            toastr.success('{{ session('success') }}', 'BERHASIL!'); 
-        @elseif(session()->has('error'))
-            toastr.error('{{ session('error') }}', 'GAGAL!'); 
-        @endif
-    </script>
-  <!-- /.content-wrapper -->
-  @endsection
+  

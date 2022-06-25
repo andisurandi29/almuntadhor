@@ -75,8 +75,8 @@
                 <!-- <input required name="nominal" type="text" value="Rp. 350.000-," class="form-control" readonly> -->
               </div>
               <div class="mb-3">
-                <label for="" class="form-label">Bukti Pembayaran</label>
-                <input required name="bukti" id="bukti" type="text" class="form-control" value="Pembayaran Langsung" readonly>
+                <label hidden for="" class="form-label">Bukti Pembayaran</label>
+                <input hiddenrequired name="bukti" id="bukti" type="text" class="form-control" value="Pembayaran Langsung" readonly>
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Keterangan</label>
@@ -181,13 +181,13 @@
   </main>
   <!-- /.content-wrapper -->
   @include('pengurus.footer')
-    <script>
+    <!-- <script>
         //message with toastr
         @if(session()->has('success'))
             toastr.success('{{ session('success') }}', 'BERHASIL!'); 
         @elseif(session()->has('error'))
             toastr.error('{{ session('error') }}', 'GAGAL!'); 
         @endif
-    </script>
+    </script> -->
   <!-- /.content-wrapper -->
   @endsection

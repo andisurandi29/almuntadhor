@@ -23,21 +23,46 @@
                 <th scope="col">NO</th>
                 <th scope="col">NIS</th>
                 <th scope="col">NAMA</th>
-                <th scope="col">TGL BAYAR</th>
                 <th scope="col">TAGIHAN</th>
                 <th scope="col">NOMINAL</th>
-                <th scope="col">KET</th>
+                <th scope="col">STATUS</th>
                 <th scope="col" class="text-center">AKSI</th>
               </thead>
+              @foreach($dataTagihan as $tagihan)
+              <tr>
+                  <td>{{ $loop->index + 1 }}</td>
+                  <td>{{ $tagihan->nis }}</td>
+                  <td>{{ $tagihan->nama }}</td>
+                  <td>{{ $tagihan->tagihan }}</td>
+                  <td>{{ $tagihan->nominal }}</td>
+                  <td>{{ $tagihan->keterangan }}</td>
+                  <td>
+                      <a href="{{route('data-tagihan.edit', $college->id)}}" class="btn btn-primary">Bayar Sekarang</a>
+                  </td>
+              </tr>
+              @endforeach
               
             </table>
           </div>
     </div>
         </div>
+        <div class="page-bottom" style="margin: 20px">
+        <br/>
+        <!-- pagination -->
+          Current Page: {{ $dataTagihan->currentPage() }}<br>
+          Jumlah Data: {{ $dataTagihan->total() }}<br>
+          Data perhalaman: {{ $dataTagihan->perPage() }}<br>
+          <br>
+          {{ $dataTagihan->links() }}
+       </div>
   </div>
+  
   </div>
+  
   </div>
+  
   </div>
+  
           <!-- selesai content -->
           <!-- Footer -->
           @include('partials.footer')
