@@ -106,6 +106,8 @@ Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     Route::get('upload', [App\Http\Controllers\UploadController::class, 'index'])->name('upload.index');
     Route::get('nilai', [App\Http\Controllers\NilaiController::class, 'tampilUser'])->name('nilai');
     Route::get('pengumuman', [App\Http\Controllers\ContentController::class, 'pengumuman'])->name('pengumuman');
+    Route::get('profil-user', [App\Http\Controllers\ProfilController::class, 'tampilUser'])->name('profil-user');
+    Route::put('/profil-user/update/{id?}', 'ProfilController@updateUser')->name('profil-user.update');
 });
 
 
@@ -161,6 +163,7 @@ Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function()
     Route::get('/data-nilai/edit/{id?}', 'NilaiController@edit')->name('data-nilai.edit');
     Route::put('/data-nilai/update/{id?}', 'NilaiController@update')->name('data-nilai.update');
     Route::delete('/data-nilai/destroy/{id?}', 'NilaiController@destroy')->name('data-nilai.destroy');
+    // Route::post('/hitung', 'NilaiController@hitung');
 });
 
 

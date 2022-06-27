@@ -136,29 +136,29 @@ class PembayaranController extends Controller
     public function upload(Request $request, $id)
     {
 
-        $image_lama = $request->old_image;
-        $image_baru = $request->file('img');
+        // $image_lama = $request->old_image;
+        // $image_baru = $request->file('bukti');
 
-        if($image_baru == '') {
-            $gambar = $image_lama;
-            $deskripsi = "Gambar Lama";
-        } else {
-            $new_image = rand() .'.'. $image_baru->getClientOriginalExtension();
-            $gambar = $new_image;
-            $image_baru->move(public_path('img'), $new_image); 
-        }
+        // if($image_baru == '') {
+        //     $gambar = $image_lama;
+        //     $deskripsi = "Gambar Lama";
+        // } else {
+        //     $new_image = rand() .'.'. $image_baru->getClientOriginalExtension();
+        //     $gambar = $new_image;
+        //     $image_baru->move(public_path('img'), $new_image); 
+        // }
 
-        $content = Pembayaran::findOrFail($id);
-        $content->update(array(
-            'nis' => $request->nis,
-            'nama' => $request->nama,
-            'tagihan' => $request->tagihan,
-            'nominal' => $request->nominal,
-            'bukti' => $gambar,
-            'keterangan' => $request->keterangan,
-        ));
+        // $content = Pembayaran::findOrFail($id);
+        // $content->update(array(
+        //     'nis' => $request->nis,
+        //     'nama' => $request->nama,
+        //     'tagihan' => $request->tagihan,
+        //     'nominal' => $request->nominal,
+        //     'bukti' => $gambar,
+        //     'keterangan' => $request->keterangan,
+        // ));
             
-        return redirect('tagihan');
+        // return redirect('tagihan');
     }
 
     public function riwayat()
@@ -178,7 +178,7 @@ class PembayaranController extends Controller
     public function tagihan()
     {
         $santri = Auth::user()->username;
-        $tagihan = Pembayaran::where('nis', $santri)->where('tagihan', '<', Carbon::now()->year)->paginate(5);
+        $tagihan = Pembayaran::where('nis', $santri)->where('tagihan', '<', Carbon::now()->year)->where('keterangan', 'Belum diverifikasi')->paginate(5);
         return view('users.tagihan', ['dataTagihan' => $tagihan]);
     }
 

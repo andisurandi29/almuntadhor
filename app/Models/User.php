@@ -24,8 +24,14 @@ class User extends Authenticatable
         'level',
         'email',
         'password',
+        'kelas',
+        'tgl_lahir',
+        'angkatan',
+        'alamat',
+        'nama_ayah',
+        'nama_ibu',
+        'no_hp',
     ];
-
 
     /**
      * The attributes that should be hidden for serialization.

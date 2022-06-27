@@ -74,7 +74,7 @@ class UploadController extends Controller
     public function update(Request $request, $id)
     {
         $image_lama = $request->old_image;
-        $image_baru = $request->file('img');
+        $image_baru = $request->file('bukti');
 
         if($image_baru == null) {
             $gambar = $image_lama;

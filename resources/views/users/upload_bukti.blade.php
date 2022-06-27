@@ -50,7 +50,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="col"><label class="form-label">Upload Bukti</label></th>
-                                    <td><input type="file" name="bukti" id="bukti" class="form-control-file @error('bukti') is-invalid @enderror" required></td>
+                                    <td><input type="file" name="bukti" id="bukti" class="form-control @error('bukti') is-invalid @enderror" required></td>
                                     @error('bukti')
                                         <div class="invalid-feedback">
                                             {{ $message }}

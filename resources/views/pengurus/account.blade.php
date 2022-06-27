@@ -56,7 +56,9 @@
                   <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
     
                     <!-- Profile Edit Form -->
-                    <form>
+                    <form method="POST" action="{{route('profil-pengurus.update', $content->id)}}" enctype="multipart/form-data">
+                      @method('PUT')
+                      @csrf
                       <div class="row mb-3">
                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Photo Profil</label>
                         <div class="col-md-8 col-lg-9">

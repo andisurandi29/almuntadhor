@@ -118,4 +118,17 @@ class NilaiController extends Controller
         ]);
     }
 
+    public function hitung(Request $request)
+    {
+        $kehadiran      = $request->input('kehadiran');
+        $tugas          = $request->input('tugas');
+        $uts            = $request->input('uts');
+        $uas            = $request->input('uas');
+
+        $nilai_akhir    = ($kehadiran + $tugas + $uts + $uas) / 4;
+
+        return redirect('data-nilai', $nilai_akhir);
+
+    }
+
 }

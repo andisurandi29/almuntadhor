@@ -49,9 +49,14 @@
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item"><b>Nomor Induk Santri</b><br/>{{auth()->user()->username}}</li>
                     <li class="list-group-item"><b>Nama Lengkap</b><br/>{{auth()->user()->name}}</li>
-                    <li class="list-group-item"><b>Tempat, Tanggal Lahir</b><br/> - </li>
-                    <li class="list-group-item"><b>Alamat</b><br/> - </li>
-                    <li class="list-group-item"><b>Angkatan</b><br/> - </li>
+                    <li class="list-group-item"><b>Email</b><br/> {{auth()->user()->email}} </li>
+                    <li class="list-group-item"><b>Kelas</b><br/> {{auth()->user()->kelas}} </li>
+                    <li class="list-group-item"><b>Tanggal Lahir</b><br/> {{auth()->user()->tgl_lahir}} </li>
+                    <li class="list-group-item"><b>Angkatan</b><br/> {{auth()->user()->angkatan}} </li>
+                    <li class="list-group-item"><b>Alamat</b><br/> {{auth()->user()->alamat}} </li>
+                    <li class="list-group-item"><b>Nama Ayah</b><br/> {{auth()->user()->nama_ayah}} </li>
+                    <li class="list-group-item"><b>Nama Ibu</b><br/> {{auth()->user()->nama_ibu}} </li>
+                    <li class="list-group-item"><b>Telepon</b><br/> {{auth()->user()->no_hp}} </li>
                     
                   </ul>
   
@@ -60,7 +65,9 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
   
                   <!-- Profile Edit Form -->
-                  <form>
+                  <form id="formAccountSettings" action="{{ route('profil-user.update', $accounts->id) }}" method="POST">
+                    @method('PUT')
+                    @csrf
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Photo Profil</label>
                       <div class="col-md-8 col-lg-9">
@@ -74,34 +81,69 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">NIS</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="{{ auth()->user()->username }}" readonly>
+                        <input name="username" type="text" class="form-control" id="username" value="{{ auth()->user()->username }}" readonly>
                       </div>
                     </div>
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="{{ auth()->user()->name }}">
+                        <input name="name" type="text" class="form-control" id="name" value="{{ auth()->user()->name }}">
                       </div>
                     </div>
   
                     <div class="row mb-3">
-                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Tanggal Lahir</label>
+                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company" value="">
+                        <input name="email" type="email" class="form-control" id="email" value="{{ auth()->user()->email }}">
                       </div>
                     </div>
-  
+
+                    <div class="row mb-3">
+                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Kelas</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="kelas" type="text" id="kelas" class="form-control" value="{{ auth()->user()->kelas }}"></input>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Tanggal Lahir</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="tgl_lahir" type="date" id="tgl_lahir" class="form-control" value="{{ auth()->user()->tgl_lahir }}"></input>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Angkatan</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="angkatan" type="text" id="angkatan" class="form-control" value="{{ auth()->user()->angkatan }}"></input>
+                      </div>
+                    </div>
+
                     <div class="row mb-3">
                       <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
                       <div class="col-md-8 col-lg-9">
-                        <textarea name="alamat" id="alamat" class="form-control"></textarea>
+                        <input name="alamat" type="text" id="alamat" class="form-control" value="{{ auth()->user()->alamat }}"></input>
                       </div>
                     </div>
-  
+
                     <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Nama Ayah</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="{{ auth()->user()->email}}">
+                        <input name="nama_ayah" type="text" id="nama_ayah" class="form-control" value="{{ auth()->user()->nama_ayah }}"></input>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Nama Ibu</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="nama_ibu" type="text" id="nama_ibu" class="form-control" value="{{ auth()->user()->nama_ibu }}"></input>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Telepon</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="no_hp" type="number" id="no_hp" class="form-control" value="{{ auth()->user()->no_hp }}"></input>
                       </div>
                     </div>
   

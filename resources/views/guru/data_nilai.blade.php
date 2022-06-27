@@ -42,19 +42,19 @@
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Kehadiran</label>
-                <input required name="kehadiran" type="text" class="form-control" placeholder="Masukkan nilai kehadiran">
+                <input required name="kehadiran" type="number" class="form-control" placeholder="Masukkan nilai kehadiran">
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">Tugas</label>
-                <input required name="tugas" type="text" class="form-control" placeholder="Masukkan nilai tugas">
+                <input required name="tugas" type="number" class="form-control" placeholder="Masukkan nilai tugas">
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">UTS</label>
-                <input required name="uts" type="text" class="form-control" placeholder="Masukkan nilai UTS">
+                <input required name="uts" type="number" class="form-control" placeholder="Masukkan nilai UTS">
               </div>
               <div class="mb-3">
                 <label for="" class="form-label">UAS</label>
-                <input required name="uas" type="text" class="form-control" placeholder="Masukkan nilai UAS">
+                <input required name="uas" type="number" class="form-control" placeholder="Masukkan nilai UAS">
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

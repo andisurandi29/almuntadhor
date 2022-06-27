@@ -40,10 +40,19 @@ class ProfilController extends Controller
         return redirect('profil-admin');
     }
 
-    public function updateGambarAdmin(Request $request, $id)
+    public function tampilUser()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+        
+        return view('users.account', [
+            'accounts' => $user
+        ]);
+    }
+
+    public function updateUser(Request $request, $id) 
     {
         $image_lama = $request->old_image;
-        $image_baru = $request->file('content');
+        $image_baru = $request->file('profil');
 
         if($image_baru == '') {
             $gambar = $image_lama;
@@ -54,14 +63,27 @@ class ProfilController extends Controller
             $image_baru->move(public_path('profil'), $new_image); 
         }
 
-        $profil = User::findOrFail($id);
-        $profil->update(array(
+        $content = User::findOrFail($id);
+        $content->update(array(
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'kelas' => $request->kelas,
             'foto' => $gambar,
+            'tgl_lahir' => $request->tgl_lahir,
+            'angkatan' => $request->angkatan,
+            'alamat' => $request->alamat,
+            'nama_ayah' => $request->nama_ayah,
+            'nama_ibu' => $request->nama_ibu,
+            'no_hp' => $request->no_hp,
         ));
             
-        return view('admin.account', [
-            'photos' => $profil
-        ]);
+        return redirect('profil-user');
+    }
+
+    public function passwordPengurus() 
+    {
+        //
     }
 
     /**

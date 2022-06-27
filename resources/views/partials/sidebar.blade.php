@@ -57,7 +57,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/account">
+            <a class="nav-link" href="/profil-user">
               <span class="menu-title">Pengaturan</span>
               <i class="fas fa-cogs menu-icon"></i>
             </a>

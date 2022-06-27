@@ -79,7 +79,7 @@ class ContentController extends Controller
     {
         $content = Content::findOrFail($id);
         return view('pengurus.edit_content')->with([
-            'content' => $content
+            'uploads' => $content
         ]);
     }
 
@@ -93,7 +93,7 @@ class ContentController extends Controller
     public function update(Request $request, $id)
     {
         $image_lama = $request->old_image;
-        $image_baru = $request->file('content');
+        $image_baru = $request->file('gambar');
 
         if($image_baru == '') {
             $gambar = $image_lama;
