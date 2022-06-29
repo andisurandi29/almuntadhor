@@ -42,6 +42,45 @@ class ProfilController extends Controller
         return redirect('profil-admin');
     }
 
+    public function tampilPengurus()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+        
+        return view('pengurus.account', [
+            'akun' => $user
+        ]);
+    }
+
+    public function updatePengurus(Request $request, $id)
+    {
+        $image_lama = $request->old_image;
+        $image_baru = $request->file('foto');
+
+        if($image_baru == '') {
+            $gambar = $image_lama;
+        } else {
+            $new_image = rand() .'.'. $image_baru->getClientOriginalExtension();
+            $gambar = $new_image;
+            $image_baru->move(public_path('profil'), $new_image); 
+        }
+
+        $updateProfil = User::findOrFail($id);
+        $updateProfil->update(array(
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'level' => $request->level,
+            'kelas' => $request->kelas,
+            'foto' => $gambar,
+            'tgl_lahir' => $request->tgl_lahir,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+        ));
+
+            
+        return redirect('akun-saya');
+    }
+
     public function tampilUser()
     {
         $user = User::where('id', Auth::user()->id)->first();
@@ -107,30 +146,25 @@ class ProfilController extends Controller
         return redirect('profil-user');
     }
 
-    public function passwordUser(ChangePasswordRequest $request)
-    {
-        $old_password   = auth()->user()->password;
-        $user_id        = auth()->user()->id;
+    // public function passwordUser(ChangePasswordRequest $request)
+    // {
+    //     $old_password   = auth()->user()->password;
+    //     $user_id        = auth()->user()->id;
 
-        if (Hash::check($request->input('old_password'), $old_password)) {
-            $user = User::findOrFail($user_id);
+    //     if (Hash::check($request->input('old_password'), $old_password)) {
+    //         $user = User::findOrFail($user_id);
 
-            $user->password = Hash::make($request->input('password'));
+    //         $user->password = Hash::make($request->input('password'));
 
-            if ($user->save()) {
-                return redirect('profil-user')->with('success', 'Password berhasil diubah');
-            } else {
-                return redirect('profil-user')->with('failed', 'Password lama invalid');
-            }
-        } else {
-            return redirect('profil-user')->with('failed', 'Password lama invalid');
-        }
-    }
-
-    public function passwordPengurus() 
-    {
-        //
-    }
+    //         if ($user->save()) {
+    //             return redirect('profil-user')->with('success', 'Password berhasil diubah');
+    //         } else {
+    //             return redirect('profil-user')->with('failed', 'Password lama invalid');
+    //         }
+    //     } else {
+    //         return redirect('profil-user')->with('failed', 'Password lama invalid');
+    //     }
+    // }
 
     /**
      * Store a newly created resource in storage.

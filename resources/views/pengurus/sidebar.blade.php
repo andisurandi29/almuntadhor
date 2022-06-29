@@ -69,7 +69,7 @@
   <li class="nav-heading">Fitur Lainnya</li>
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="profil-pengurus">
+    <a class="nav-link collapsed" href="akun-saya">
       <i class="bi bi-person"></i>
       <span>Profil</span>
     </a>

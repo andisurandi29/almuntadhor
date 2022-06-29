@@ -17,14 +17,6 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <div class="cari text-left">
-                <label for="">Bersadarkan :  </label>
-               <span><select name="semester" id="semester" style="padding: 10px; margin-bottom:30px">
-                    <option value="1">Semester 1</option>
-                    <option value="2">Semester 2</option>
-                </select></span> 
-                <span><button class="btn btn-primary" type="submit" name="submit">Pilih</button></span>
-            </div>
             <div class="table table-responsive">
                 <table class="table table-bordered table-striped">
                 <thead>

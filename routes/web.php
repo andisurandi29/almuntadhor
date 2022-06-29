@@ -117,6 +117,11 @@ Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function()
     Route::get('/dashboard-pengurus', function () {
         return view('pengurus.v_dashboard');
     });
+
+    Route::get('akun-saya', [App\Http\Controllers\ProfilController::class, 'tampilPengurus'])->name('akun-saya');
+    Route::put('/akun-saya/update/{id?}', 'ProfilController@updatePengurus')->name('akun-saya.update');
+    Route::put('/password-pengurus/{id?}', 'LoginController@passwordPengurus')->name('password-pengurus');
+
     // Data Pembayaran
     Route::get('data-pembayaran', [App\Http\Controllers\PembayaranController::class, 'index'])->name('data-pembayaran.index');
     Route::post('/data-pembayaran/create', 'PembayaranController@create')->name('data-pembayaran.create');
