@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ChangePasswordRequest;
 
 class ProfilController extends Controller
 {
@@ -51,23 +53,46 @@ class ProfilController extends Controller
 
     public function updateUser(Request $request, $id) 
     {
+        // $image_baru = $request->file('foto');
+        // $new_image = rand() .'.'. $image_baru->getClientOriginalExtension();
+        
+
+        // $content = array(
+        //     'name' => $request->name,
+        //     'username' => $request->username,
+        //     'email' => $request->email,
+        //     'level' => $request->level,
+        //     'kelas' => $request->kelas,
+        //     'foto' => $new_image,
+        //     'tgl_lahir' => $request->tgl_lahir,
+        //     'angkatan' => $request->angkatan,
+        //     'alamat' => $request->alamat,
+        //     'nama_ayah' => $request->nama_ayah,
+        //     'nama_ibu' => $request->nama_ibu,
+        //     'no_hp' => $request->no_hp,
+        // );
+
+        // $image_baru->move(public_path('profil'), $new_image); 
+
+        // User::create($content);
+
         $image_lama = $request->old_image;
-        $image_baru = $request->file('profil');
+        $image_baru = $request->file('foto');
 
         if($image_baru == '') {
             $gambar = $image_lama;
-            $deskripsi = "Gambar Lama";
         } else {
             $new_image = rand() .'.'. $image_baru->getClientOriginalExtension();
             $gambar = $new_image;
             $image_baru->move(public_path('profil'), $new_image); 
         }
 
-        $content = User::findOrFail($id);
-        $content->update(array(
+        $updateProfil = User::findOrFail($id);
+        $updateProfil->update(array(
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
+            'level' => $request->level,
             'kelas' => $request->kelas,
             'foto' => $gambar,
             'tgl_lahir' => $request->tgl_lahir,
@@ -77,8 +102,29 @@ class ProfilController extends Controller
             'nama_ibu' => $request->nama_ibu,
             'no_hp' => $request->no_hp,
         ));
+
             
         return redirect('profil-user');
+    }
+
+    public function passwordUser(ChangePasswordRequest $request)
+    {
+        $old_password   = auth()->user()->password;
+        $user_id        = auth()->user()->id;
+
+        if (Hash::check($request->input('old_password'), $old_password)) {
+            $user = User::findOrFail($user_id);
+
+            $user->password = Hash::make($request->input('password'));
+
+            if ($user->save()) {
+                return redirect('profil-user')->with('success', 'Password berhasil diubah');
+            } else {
+                return redirect('profil-user')->with('failed', 'Password lama invalid');
+            }
+        } else {
+            return redirect('profil-user')->with('failed', 'Password lama invalid');
+        }
     }
 
     public function passwordPengurus() 

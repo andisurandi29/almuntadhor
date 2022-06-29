@@ -15,181 +15,152 @@
         </span> Akun Saya
       </h3>
     </div>
-    <section class="section profile">
-          <div class="card">
-            <div class="card-body">
-              <div class="card">
-                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-      
-                  <img src="{{ asset('NiceAdmin/') }}/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                  <h5>{{ auth()->user()->name }}</h5>
-                  <h5>{{ auth()->user()->username }}</h5>
-                </div>
-              </div>
-              <!-- Bordered Tabs -->
-              <ul class="nav nav-tabs nav-tabs-bordered">
-  
-                <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Detail</button>
-                </li>
-  
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
-                </li>
-  
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
-                </li>
-  
-              </ul>
-              <div class="tab-content pt-2">
-  
-                <div class="tab-pane fade show active profile-overview" id="profile-overview">
-  
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><b>Nomor Induk Santri</b><br/>{{auth()->user()->username}}</li>
-                    <li class="list-group-item"><b>Nama Lengkap</b><br/>{{auth()->user()->name}}</li>
-                    <li class="list-group-item"><b>Email</b><br/> {{auth()->user()->email}} </li>
-                    <li class="list-group-item"><b>Kelas</b><br/> {{auth()->user()->kelas}} </li>
-                    <li class="list-group-item"><b>Tanggal Lahir</b><br/> {{auth()->user()->tgl_lahir}} </li>
-                    <li class="list-group-item"><b>Angkatan</b><br/> {{auth()->user()->angkatan}} </li>
-                    <li class="list-group-item"><b>Alamat</b><br/> {{auth()->user()->alamat}} </li>
-                    <li class="list-group-item"><b>Nama Ayah</b><br/> {{auth()->user()->nama_ayah}} </li>
-                    <li class="list-group-item"><b>Nama Ibu</b><br/> {{auth()->user()->nama_ibu}} </li>
-                    <li class="list-group-item"><b>Telepon</b><br/> {{auth()->user()->no_hp}} </li>
-                    
-                  </ul>
-  
-                </div>
-  
-                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-  
-                  <!-- Profile Edit Form -->
-                  <form id="formAccountSettings" action="{{ route('profil-user.update', $accounts->id) }}" method="POST">
-                    @method('PUT')
-                    @csrf
-                    <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Photo Profil</label>
-                      <div class="col-md-8 col-lg-9">
-                        <img src="{{ asset('NiceAdmin/') }}/assets/img/profile-img.jpg" alt="Profile">
-                        <div class="pt-2">
-                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="fas fa-upload"></i> Upload</a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="fas fa-trash"></i> Reset</a>
+    <div class="content-wrapper">
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> Account</h4>
+
+                  <div class="card mb-4">
+                    <h5 class="card-header">Profile Details</h5>
+                    <!-- Account -->
+                    <!-- <div class="card-body">
+                      <form action="#" method="POST" enctype="multipart/form-data">
+                        <div class="d-flex align-items-start align-items-sm-center gap-4">
+                          <div class="button-wrapper">
+                            <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                              <span class="d-none d-sm-block">Upload Foto Baru</span>
+                              <i class="bx bx-upload d-block d-sm-none"></i>
+                              <input
+                                type="file"
+                                name="foto"
+                                id="foto"
+                                class="account-file-input"
+                                hidden
+                                accept="image/png, image/jpeg"
+                              />
+                            </label>
+                            <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                              <i class="bx bx-reset d-block d-sm-none"></i>
+                              <span class="d-none d-sm-block">Reset</span>
+                            </button>
+                            <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                          </div>
+                        </div>
+                      </form>
+                    </div> -->
+                    <hr class="my-0" />
+                    <div class="card-body">
+                      <form action="{{ route('profil-user.update', $accounts->id) }}" method="POST" enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+                        <div class="row">
+                        <input type="hidden" name="old_image" value="{{$accounts->foto}}">
+                        <div class="mb-3">
+                          <label for="foto" class="form-label">Gambar</label>
+                          <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" required>
+                          <img src="{{ URL::to('/')}}/profil/{{ $accounts->foto }}" class="img-thumbnail" height="10%" width="50%"></img>
+                          <input type="hidden" class="form-control-file mt-3" name="old_image" value="{{auth()->user()->foto}}">
+                        </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="name" class="form-label">Nama Lengkap</label>
+                            <input class="form-control" type="text" id="name" name="name" value="{{auth()->user()->name}}" autofocus
+                            />
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="username" class="form-label">NIS</label>
+                            <input class="form-control" type="text" name="username" id="username" value="{{auth()->user()->username}}" />
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="level" class="form-label">Level</label>
+                            <input class="form-control" name="level" type="text" id="level" value="{{auth()->user()->level}}" readonly/>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input class="form-control" type="text" id="email" name="email" value="{{auth()->user()->email}}"/>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Kelas</label>
+                            <input class="form-control" name="kelas" type="text" id="kelas" value="{{auth()->user()->kelas}}" readonly/>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Tanggal Lahir</label>
+                            <input class="form-control" name="tgl_lahir" type="date" id="tgl_lahir" value="{{auth()->user()->tgl_lahir}}"/>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Angkatan</label>
+                            <input class="form-control" name="angkatan" type="text" id="angkatan" value="{{auth()->user()->angkatan}}" readonly/>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Alamat</label>
+                            <input class="form-control" name="alamat" type="text" id="alamat" value="{{auth()->user()->alamat}}"/>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Nama Ayah</label>
+                            <input class="form-control" name="nama_ayah" type="text" id="nama_ayah" value="{{auth()->user()->nama_ayah}}"/>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Nama Ibu</label>
+                            <input class="form-control" name="nama_ibu" type="text" id="nama_ibu" value="{{auth()->user()->nama_ibu}}"/>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Telepon</label>
+                            <input class="form-control" name="no_hp" type="text" id="no_hp" value="{{auth()->user()->no_hp}}"/>
+                          </div>
+                        </div>
+                        <div class="mt-2">
+                          <button type="submit" class="btn btn-primary me-2">Update</button>
+                          <button type="reset" class="btn btn-outline-secondary">Batal</button>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- /Account -->
+                  </div>
+
+                  @if(Session::get('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      {{ Session::get('success') }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  @endif
+
+                  @if(Session::get('failed'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      {{ Session::get('failed') }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  @endif
+
+                  <div class="card">
+                    <h5 class="card-header">Ubah Password</h5>
+                    <div class="card-body">
+                      <form action="{{ route('password-user', $accounts->id)}}" method="POST">
+                        @method('PUT')  
+                        @csrf
+                        <div class="row">
+                        <div class="mb-3 col-md-6">
+                          <label for="password_lama">Password Lama</label>
+                        <input type="password" name="old_password" class="form-control" id="old_password" placeholder="Masukan Password Lama">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="password_baru">Password Baru</label>
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Masukan Password Baru">
+                        @error('password') <div class="invalid-feedback"> {{ $message }} </div> @enderror
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="password_baru">Konfirmasi Password Baru</label>
+                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Masukan Password Baru">
                         </div>
                       </div>
                     </div>
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">NIS</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="username" type="text" class="form-control" id="username" value="{{ auth()->user()->username }}" readonly>
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="name" type="text" class="form-control" id="name" value="{{ auth()->user()->name }}">
-                      </div>
-                    </div>
-  
-                    <div class="row mb-3">
-                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="email" value="{{ auth()->user()->email }}">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Kelas</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="kelas" type="text" id="kelas" class="form-control" value="{{ auth()->user()->kelas }}"></input>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Tanggal Lahir</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="tgl_lahir" type="date" id="tgl_lahir" class="form-control" value="{{ auth()->user()->tgl_lahir }}"></input>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Angkatan</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="angkatan" type="text" id="angkatan" class="form-control" value="{{ auth()->user()->angkatan }}"></input>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="alamat" type="text" id="alamat" class="form-control" value="{{ auth()->user()->alamat }}"></input>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Nama Ayah</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="nama_ayah" type="text" id="nama_ayah" class="form-control" value="{{ auth()->user()->nama_ayah }}"></input>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Nama Ibu</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="nama_ibu" type="text" id="nama_ibu" class="form-control" value="{{ auth()->user()->nama_ibu }}"></input>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Telepon</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="no_hp" type="number" id="no_hp" class="form-control" value="{{ auth()->user()->no_hp }}"></input>
-                      </div>
-                    </div>
-  
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                    </div>
-                  </form><!-- End Profile Edit Form -->
-  
-                </div>
-  
-  
-                <div class="tab-pane fade pt-3" id="profile-change-password">
-                  <!-- Change Password Form -->
-                  <form>
-  
-                    <div class="row mb-3">
-                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Password Lama</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="currentPassword">
-                      </div>
-                    </div>
-  
-                    <div class="row mb-3">
-                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Password Baru</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control" id="newPassword">
-                      </div>
-                    </div>
-  
-                    <div class="row mb-3">
-                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Masukan Lagi Password Baru</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
-                      </div>
-                    </div>
-  
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Ubah Password</button>
-                    </div>
-                  </form><!-- End Change Password Form -->
-  
-              </div>
+                        <button type="submit" class="btn btn-primary deactivate-account">Ubah Password</button>
+                      </form>
+                  </div>
             </div>
-          </div>
-      </div>
-    </section>
+        </div>
   </div>
   @include('partials.footer')
 </div>

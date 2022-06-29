@@ -108,6 +108,8 @@ Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     Route::get('pengumuman', [App\Http\Controllers\ContentController::class, 'pengumuman'])->name('pengumuman');
     Route::get('profil-user', [App\Http\Controllers\ProfilController::class, 'tampilUser'])->name('profil-user');
     Route::put('/profil-user/update/{id?}', 'ProfilController@updateUser')->name('profil-user.update');
+    Route::put('/password-user/{id?}', 'LoginController@passwordUser')->name('password-user');
+    // Route::put('/update-password/{id?}', 'ProfilController@passwordUser')->name('update-password');
 });
 
 
