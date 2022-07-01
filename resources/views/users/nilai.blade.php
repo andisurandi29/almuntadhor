@@ -21,9 +21,9 @@
                 <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Mata Pelajaran</th>
-                        <th>Kehadiran</th>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Mata Pelajaran</th>
+                        <th class="text-center">Kehadiran</th>
                         <th class="text-center">Tugas</th>
                         <th class="text-center">UTS</th>
                         <th class="text-center">UAS</th>
@@ -33,12 +33,19 @@
                 <tbody>
                     @foreach($tampilUser as $show)
                     <tr>
-                        <td>{{ $loop->index + 1 }}</td>
+                        <td class="text-center">{{ $loop->index + 1 }}</td>
                         <td>{{ $show->pelajaran }}</td>
-                        <td>{{ $show->kehadiran }}</td>
-                        <td>{{ $show->tugas }}</td>
-                        <td>{{ $show->uts }}</td>
-                        <td>{{ $show->uas }}</td>
+                        <td class="text-center">{{ $show->kehadiran }}</td>
+                        <td class="text-center">{{ $show->tugas }}</td>
+                        <td class="text-center">{{ $show->uts }}</td>
+                        <td class="text-center">{{ $show->uas }}</td>
+                        <td class="text-center">
+                          @php
+                            $nilai_akhir = ($show->kehadiran + $show->tugas + $show->uts + $show->uas) / 4
+                          @endphp
+
+                          {{ $nilai_akhir}}
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
