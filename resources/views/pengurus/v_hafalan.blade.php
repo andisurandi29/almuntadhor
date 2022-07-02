@@ -81,8 +81,8 @@
             <i class="fas fa-print"></i> Cetak Data
            </a>
         </div>
-        <div class="col">
-          <div class="row g-3 align-items-center">
+      </div>
+          <div class="row align-items-center mb-3">
             <div class="col-auto">
               <label for="cari" class="col-form-label">Cari Data:</label>
             </div>
@@ -98,7 +98,6 @@
               </div>
           </form>
           </div>
-      </div>
       <div class="table-responsive">
         <table class="table table-striped table-hover" style="vertical-align: middle">
           <tr>

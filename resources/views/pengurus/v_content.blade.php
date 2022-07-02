@@ -105,25 +105,22 @@
           Tambah Data
         </button>
       </div>
-      <div class="col">
-        <div class="row g-3 align-items-center">
-          <div class="col-auto">
-            <label for="cari" class="col-form-label">Cari Data:</label>
-          <form class="d-flex" method="POST" action="{{route('search')}}">
-              @csrf
-              <div class="col-auto">
-                <input class="form-control" name="keyword" type="search" placeholder="Cari berdasarkan nama" aria-label="Search">
-              </div>
-              <div class="col-auto">
-                <span class="form-text">
-                  <button type="submit" class="btn btn-sm btn-primary">Cari</button>
-                </span>
-              </div>
-          </form>
-          </div>
-
-        </div>
     </div>
+    <div class="row mb-3">
+        <label for="cari" class="col-form-label">Cari Data:</label>
+        <form class="d-flex" method="POST" action="{{route('search')}}">
+            @csrf
+            <div class="col-sm-5">
+              <input class="form-control" name="keyword" type="search" placeholder="Cari berdasarkan nama" aria-label="Search">
+            </div>
+            <div class="col">
+              <span class="form-text">
+                <button type="submit" class="btn btn-sm btn-primary">Cari</button>
+              </span>
+            </div>
+        </form>
+      </div>
+   
     <div class="table-responsive">
       <table class="table table-striped table-hover" style="vertical-align: middle">
         <tr>

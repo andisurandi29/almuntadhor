@@ -41,10 +41,9 @@
                         <td class="text-center">{{ $show->uas }}</td>
                         <td class="text-center">
                           @php
-                            $nilai_akhir = ($show->kehadiran + $show->tugas + $show->uts + $show->uas) / 4
+                              $nilai_akhir = ($show->kehadiran +  $show->tugas +  $show->uts +  $show->uas) / 4
                           @endphp
-
-                          {{ $nilai_akhir}}
+                          {{$nilai_akhir}}
                         </td>
                     </tr>
                     @endforeach

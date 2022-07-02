@@ -30,17 +30,21 @@
             @csrf
             <div class="mb-3">
               <label for="" class="form-label">Nama Lengkap</label>
-              <input required name="name" type="text" class="form-control" placeholder="Masukkan NIS santri">
+              <input required name="name" type="text" class="form-control" placeholder="Masukkan nama lengkap santri">
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Username</label>
-              <input required name="username" type="text" class="form-control" placeholder="Masukkan nama lengkap santri">
+              <input required name="username" type="text" class="form-control" placeholder="Masukkan NIS santri">
             </div>
             <div class="mb-3">
-              <label for="" class="form-label">Level</label>
-              <input required name="level" type="text" class="form-control" placeholder="Masukkan Level">
+              <label for="" class="form-label">Kelas</label>
+              <input required name="kelas" type="text" class="form-control" placeholder="Masukkan Kelas">
             </div>
-            <!-- <div class="mb-3">
+            <div class="mb-3">
+              <label for="" class="form-label">Angkatan</label>
+              <input required name="angkatan" type="text" class="form-control" placeholder="Masukkan Angkatan">
+            </div>
+            <div class="mb-3">
               <label for="" class="form-label">Level</label>
               <select name="level" class="form-select" aria-label="Default select example">
                 <option selected>Pilih level users</option>
@@ -49,7 +53,7 @@
                 <option value="pendidik">Pendidik</option>
                 <option value="santri">Santri</option>
               </select>
-            </div> -->
+            </div>
             <div class="mb-3">
               <label for="" class="form-label">Email</label>
               <input required name="email" type="email" class="form-control" placeholder="Masukkan angkatan santri">
@@ -78,23 +82,23 @@
                         <table class="table table-stiped table-hover">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
-                                    <th>Nama Lengkap</th>
-                                    <th>Username</th>
-                                    <th>Level</th>
-                                    <th>Email</th>
-                                    <th>Aksi</th>
+                                    <th class="text-center">No.</th>
+                                    <th class="text-center">Nama Lengkap</th>
+                                    <th class="text-center">Username</th>
+                                    <th class="text-center">Level</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($accounts as $account)
           <tr>
-            <td>{{ $loop->index + 1 }}</td>
+            <td class="text-center">{{ $loop->index + 1 }}</td>
             <td>{{ $account->name }}</td>
             <td>{{ $account->username }}</td>
             <td>{{ $account->level }}</td>
             <td>{{ $account->email }}</td>
-            <td>
+            <td class="text-center">
               <form action="{{route('data-akun.destroy', $account->id)}}" method="POST">
                 <a href="{{route('data-akun.edit', $account->id)}}" 
                     class="btn btn-primary fas fa-edit"></a>
