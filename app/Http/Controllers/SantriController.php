@@ -5,14 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DataSantri;
 use Illuminate\Support\Facades\DB;
-
 class SantriController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $data_santri = DataSantri::orderBy('angkatan', 'ASC')->paginate(5);
@@ -21,23 +15,12 @@ class SantriController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Request $request)
     {
         // Mengirim data dari modal tambah ke database
         \App\Models\DataSantri::create($request->all);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $input_santri = $request->all();
@@ -59,23 +42,11 @@ class SantriController extends Controller
         return redirect()->route('data-santri.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $edit_santri = DataSantri::findOrFail($id);
@@ -84,13 +55,6 @@ class SantriController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $update_santri = $request->all();
@@ -99,12 +63,6 @@ class SantriController extends Controller
         return redirect('data-santri');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $update_data = DataSantri::findOrFail($id);
@@ -119,5 +77,4 @@ class SantriController extends Controller
             'datas' => $data_santri
         ]);
     }
-
 }

@@ -52,8 +52,8 @@
 
   @if (auth()->user()->level == "pengurus")
   <li class="nav-item">
-    <a class="nav-link collapsed" href="/data-content">
-      <i class="fas fa-bullhorn"></i><span>Informasi</span>
+    <a class="nav-link collapsed" href="/data-informasi">
+      <i class="fas fa-bullhorn"></i><span>Informasi Pribadi</span>
     </a>
   </li>
   @endif

@@ -21,12 +21,13 @@
             <div class="card">
               <div class="card-body">
                 <p class="card-title text-center" style="margin-bottom: 20px;">Informasi Umum</p>
-                @foreach($tampilContent as $gallery)
+                @foreach($informations as $information)
                 <div class="card-body bg-gradient-light" style="margin-bottom: 20px">
-                  <h5>{{ $gallery->judul }}</h5>
-                  <span ><small >Terbit : {{ $gallery->created_at }}</small></span>
-                  <img src="{{ URL::to('/')}}/content/{{ $gallery->gambar }}" alt="" width="100%" style="margin-bottom: 10px; margin-top:10px">
-                  <p>{{ $gallery->deskripsi }}</p>
+                  <h5>{{ $information->judul }}</h5>
+                  <span ><small >Terbit : {{ $information->created_at }}</small></span>
+                  <a href="{{ asset('/informasi/'. $information->gambar) }}" 
+                    class="btn btn-warning">Unduh Informasi</a>
+                  <p>{{ $information->deskripsi }}</p>
                   <div class="text-center">
                     <button href="#" class="btn btn-light">Selengkapnya...</button>
                   </div>
@@ -40,8 +41,8 @@
               <div class="card-body">
                 <h3>Arsip Informasi</h3>
                 <div class="list-group" style="margin-bottom: 50px">
-                  @foreach($tampilContent as $gallery)
-                  <a href="#" class="list-group-item list-group-item-action"> {{ $gallery->judul }}</a>
+                  @foreach($informations as $information)
+                  <a href="#" class="list-group-item list-group-item-action"> {{ $information->judul }}</a>
                   @endforeach
                 </div>
             </div>

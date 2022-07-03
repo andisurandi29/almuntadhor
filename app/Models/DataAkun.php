@@ -9,5 +9,5 @@ class DataAkun extends Model
 {
     use HasFactory;
     protected $table= 'users';
-    protected $fillable = ['name', 'username', 'level', 'email', 'password', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'username', 'level', 'email', 'password', 'kelas', 'angkatan', 'created_at', 'updated_at'];
 }

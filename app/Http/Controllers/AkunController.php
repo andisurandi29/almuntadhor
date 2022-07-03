@@ -10,12 +10,6 @@ use Carbon\Carbon;
 
 class AkunController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public $akunAdmin;
     public $akunSantri;
     public $akunPengurus;
@@ -29,23 +23,12 @@ class AkunController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
         // Mengirim data dari modal tambah ke database
         \App\Models\DataAkun::create($request->all);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $tahun = Carbon::now()->year;
@@ -80,38 +63,19 @@ class AkunController extends Controller
         return redirect()->route('data-akun.index')->with('success', 'Akun Berhasil Dibuat!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $edit_akun = DataAkun::findOrFail($id);
         return view('admin.edit_akun')->with([
-            'accounts' => $edit_akun, "title" => "Edit Akun"
+            'accounts' => $edit_akun, "title" => "Ubah Akun"
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $update_akun = $request->all();
@@ -122,12 +86,6 @@ class AkunController extends Controller
         return redirect('data-akun');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $update_data = DataAkun::findOrFail($id);

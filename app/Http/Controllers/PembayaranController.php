@@ -6,12 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Pembayaran;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use Session;
 use Carbon\Carbon;
-use COM;
-
 class PembayaranController extends Controller
 {
     public function index()
@@ -20,7 +16,6 @@ class PembayaranController extends Controller
         return view('pengurus.v_pembayaran', [
             'colleges' => $data_pembayaran
         ]);
-
     }
 
     public function create(Request $request)
@@ -31,7 +26,6 @@ class PembayaranController extends Controller
 
     public function store(Request $request)
     {
-
         // $this->validate($request, [
         //     'nis'           => 'required',
         //     'nama'          => 'required',
@@ -131,34 +125,6 @@ class PembayaranController extends Controller
     {
         $buktiPembayaran = Pembayaran::latest()->get();
         return view('users.upload_bukti', compact('buktiPembayaran'));
-    }
-
-    public function upload(Request $request, $id)
-    {
-
-        // $image_lama = $request->old_image;
-        // $image_baru = $request->file('bukti');
-
-        // if($image_baru == '') {
-        //     $gambar = $image_lama;
-        //     $deskripsi = "Gambar Lama";
-        // } else {
-        //     $new_image = rand() .'.'. $image_baru->getClientOriginalExtension();
-        //     $gambar = $new_image;
-        //     $image_baru->move(public_path('img'), $new_image); 
-        // }
-
-        // $content = Pembayaran::findOrFail($id);
-        // $content->update(array(
-        //     'nis' => $request->nis,
-        //     'nama' => $request->nama,
-        //     'tagihan' => $request->tagihan,
-        //     'nominal' => $request->nominal,
-        //     'bukti' => $gambar,
-        //     'keterangan' => $request->keterangan,
-        // ));
-            
-        // return redirect('tagihan');
     }
 
     public function riwayat()
