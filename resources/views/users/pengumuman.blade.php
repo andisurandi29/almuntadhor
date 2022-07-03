@@ -25,12 +25,13 @@
                 <div class="card-body bg-gradient-light" style="margin-bottom: 20px">
                   <h5>{{ $information->judul }}</h5>
                   <span ><small >Terbit : {{ $information->created_at }}</small></span>
-                  <a href="{{ asset('/informasi/'. $information->gambar) }}" 
-                    class="btn btn-warning">Unduh Informasi</a>
                   <p>{{ $information->deskripsi }}</p>
-                  <div class="text-center">
+                  <!-- <img src="{{ URL::to('/')}}/informasi/{{ $information->gambar }}" alt="" width="100%" style="margin-bottom: 10px; margin-top:10px"> -->
+                  <a href="{{ asset('/informasi/'. $information->gambar) }}" class="btn btn-light">Lihat Selengkapnya</a>
+                  <!-- <p>{{ $information->deskripsi }}</p> -->
+                  <!-- <div class="text-center">
                     <button href="#" class="btn btn-light">Selengkapnya...</button>
-                  </div>
+                  </div> -->
                 </div>
                 @endforeach
             </div>

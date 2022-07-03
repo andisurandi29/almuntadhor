@@ -26,8 +26,9 @@
                 <div class="card-body bg-gradient-light" style="margin-bottom: 20px">
                   <h5>{{ $gallery->judul }}</h5>
                   <span ><small >Terbit : {{ $gallery->created_at }}</small></span>
-                  <img src="{{ URL::to('/')}}/content/{{ $gallery->gambar }}" alt="" width="100%" style="margin-bottom: 10px; margin-top:10px">
                   <p>{{ $gallery->deskripsi }}</p>
+                  <!-- <img src="{{ URL::to('/')}}/content/{{ $gallery->gambar }}" alt="" width="100%" style="margin-bottom: 10px; margin-top:10px"> -->
+                  <a href="{{ asset('/content/'. $gallery->gambar) }}" class="btn btn-light">Lihat Selengkapnya</a>
                   <div class="text-center">
                     <button href="#" class="btn btn-light">Selengkapnya...</button>
                   </div>
