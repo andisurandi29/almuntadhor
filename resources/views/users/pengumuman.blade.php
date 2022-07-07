@@ -29,6 +29,7 @@
                       <h5 class="mt-0 mb-1">{{ $information->judul }}</h5>
                       <small>{{ $information->created_at }}</small>
                       <p>{{ $information->deskripsi }}</p>
+                      <a href="#" class="btn btn-gradient-success">Selengkapnya..</a>
                     </div>
                   </li>
                   @endforeach
@@ -41,7 +42,7 @@
           <div class="col-md-5 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h3>Arsip Informasi</h3>
+                <h5>Arsip Informasi</h5>
                 <div class="list-group" style="margin-bottom: 50px">
                   @foreach($informations as $information)
                   <a href="#" class="list-group-item list-group-item-action"> {{ $information->judul }}</a>
