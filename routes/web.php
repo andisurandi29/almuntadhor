@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\TagihanController;
+use App\Http\Controllers\PembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,7 +81,11 @@ Route::group(['middleware' => ['auth','ceklevel:santri']], function() {
     Route::get('/riwayat', function () {
         return view('users.riwayat_bayar');
     });
-    Route::get('tagihan', [App\Http\Controllers\PembayaranController::class, 'tagihan'])->name('tagihan');
+    Route::get('/tagihan', [TagihanController::class, 'tagihan'])->name('tagihan');
+    Route::post('/tagihan', [TagihanController::class, 'detail'])->name('detail');
+    Route::get('/waiting-payment/{id}', [TagihanController::class, 'waiting'])->name('waiting');
+    Route::post('/payment', [TagihanController::class, 'payment'])->name('payment');
+    Route::get('/cetak-kwitansi/{id}', [PembayaranController::class, 'cetak'])->name('cetak');
     Route::get('/tagihan/edit/{id?}', 'PembayaranController@editTagihan')->name('tagihan.edit');
     Route::get('dashboard', [App\Http\Controllers\ContentController::class, 'homeUser'])->name('homeUser');
     Route::get('hafalan-santri', [App\Http\Controllers\HafalanController::class, 'hafalan'])->name('hafalan-santri.hafalan');
@@ -163,5 +170,4 @@ Route::group(['middleware' => ['auth','ceklevel:pengurus,pendidik']], function()
 
 
 Auth::routes();
-Route::get('/tagihan', 'PembayaranController@tagihan')->name('tagihan');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
