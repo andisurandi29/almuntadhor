@@ -16,12 +16,16 @@ class TagihanController extends Controller
         $username = Auth::user()->username;
         $pembayaran = Pembayaran::where('nis', $username)->get();
         $waktu = Carbon::now();
+        $tahun =  Carbon::now()->year;
         $tagihan = Tagihan::where('status', 'aktif')->where('nis', $username)->where('tahun', Carbon::now()->year)->where('bulan', $waktu->isoFormat('MMMM'))->paginate(5);
+        $tagihan2 = Tagihan::where('status', 'aktif')->where('nis', $username)->paginate(5);
       
     return view('users.tagihan', 
     [
         'dataTagihan' => $tagihan, 
+        'dataTagihan2' => $tagihan2, 
         'waktu'=>$waktu, 
+        'tahun'=>$tahun,
         'data_bayar' => $pembayaran,
     ]);
     }
