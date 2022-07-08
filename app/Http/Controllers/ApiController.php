@@ -20,12 +20,16 @@ class ApiController extends Controller
         //Jika Berhasil
         $data_bayar = Pembayaran::where('order_id', $json->order_id);
         if ($json->transaction_status == 'settlement' || $json->transaction_status == 'capture') {
-            DB::table('tagihans')->where('order_id',$json->order_id)->delete();
+            DB::table('tagihans')->where('order_id',$json->order_id)->update([
+                'keterangan'=>$json->transaction_status,
+            ]);
+            $data_bayar->update(['status' => $json->transaction_status]);
         } else {
             DB::table('tagihans')->where('order_id',$json->order_id)->update([
                 'keterangan' => 'Belum Lunas',
             ]);
+            $data_bayar->delete();
         }
-        return $data_bayar->update(['status' => $json->transaction_status]);
+        return 1;
     }
 }

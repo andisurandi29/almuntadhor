@@ -19,7 +19,7 @@
     <div class="card">
         <div class="card-body">
           <div class="card-header mb-3">Tagihan Bulan Ini</div>
-          <div class="list-group">
+          <div class="list-group mb-4">
           @foreach($dataTagihan as $tagihan)
                 @if ($tagihan->keterangan == 'pending')
                 <div class="list-group-item">
@@ -60,6 +60,7 @@
                 @endif
                 
             @endforeach
+          </div>
             <div class="accordion" id="accordionPanelsStayOpenExample">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">

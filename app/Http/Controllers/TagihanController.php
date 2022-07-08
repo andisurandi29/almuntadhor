@@ -17,7 +17,7 @@ class TagihanController extends Controller
         $pembayaran = Pembayaran::where('nis', $username)->get();
         $waktu = Carbon::now();
         $tahun =  Carbon::now()->year;
-        $tagihan = Tagihan::where('status', 'aktif')->where('nis', $username)->where('tahun', Carbon::now()->year)->where('bulan', $waktu->isoFormat('MMMM'))->paginate(5);
+        $tagihan = Tagihan::where('status', 'aktif')->where('nis', $username)->where('tahun', Carbon::now()->year)->where('bulan', $waktu->isoFormat('MMMM'))->get();
         $tagihan2 = Tagihan::where('status', 'aktif')->where('nis', $username)->paginate(5);
       
     return view('users.tagihan', 
@@ -46,7 +46,7 @@ class TagihanController extends Controller
         $name = Auth::user()->name;
         $no_hp = Auth::user()->no_hp;
         $waktu = Carbon::now();
-        $tagihan = Tagihan::where('status', 'aktif')->where('tagihan', $request->tagihan)->get();
+        $tagihan = Tagihan::where('status', 'aktif')->where('nis', $username)->where('tagihan', $request->tagihan)->get();
           // Set your Merchant Server Key
        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).

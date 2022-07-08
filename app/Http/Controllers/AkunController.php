@@ -17,7 +17,8 @@ class AkunController extends Controller
     public $akunPendidik;
 
     public function index()
-    {
+    {   
+        
         $data_akun = DataAkun::orderBy('level', 'ASC')->paginate(5);
         return view('admin.v_akun', [
             'accounts' => $data_akun, "title" => "Data Akun"

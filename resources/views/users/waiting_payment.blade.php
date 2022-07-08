@@ -17,83 +17,67 @@
       </div>
       <div class="card">
         <div class="card-body">
-            <table class="table">
-                @foreach ($data_bayar as $bayar)
-                    @if ($bayar->payment_type == 'cstore')
-                   <div class="text-center mb-3">
-                    <h4>Kode Bayar</h4>
-                    <h4><b>{{$bayar->payment_code}}</b></h4>
-                   </div>
-                    <tr>
-                        <th>Tagihan</th>
-                        <td>: {{$bayar->tagihan}}</td>
-                    </tr> 
-                    <tr>
-                        <th>Nominal</th>
-                        <td>: {{number_format($bayar->gross_amount)}}</td>
-                    </tr> 
-                    <tr>
-                        <th>Methode</th>
-                        <td>: Indomaret/Alfamart</td>
-                    </tr> 
-                    <tr>
-    
-                      <td colspan="2" class="text-center bg-warning">Mohon Dibayarkan sebelum :  <b>{{$bayar->created_at->isoFormat('DD')+1}}-{{$bayar->created_at->format('m-Y')}} Pukul : {{$bayar->created_at->format('H:i:s')}}</b> </td>
-                    </tr>
-                    @endif
-                    @if ($bayar->payment_type == 'bank_transfer')
-                    <div class="text-center mb-3">
-                        <h4>Nomor Rekening / Virtual Account</h4>
-                        <h4><b>{{$bayar->va_number}}</b></h4>
-                       </div>
-                    <tr>
-                        <th>Tagihan</th>
-                        <td>: {{$bayar->tagihan}}</td>
-                    </tr> 
-                    <tr>
-                        <th>Nominal</th>
-                        <td>: {{number_format($bayar->gross_amount)}}</td>
-                    </tr> 
-                    <tr>
-                        <th>Methode</th>
-                        <td>: {{$bayar->bank}}</td>
-                    </tr> 
-                    <tr>
-                      <td colspan="2" class="text-center  bg-warning">Mohon Dibayarkan sebelum :  <b>{{$bayar->created_at->isoFormat('DD')+1}}-{{$bayar->created_at->format('m-Y')}} Pukul : {{$bayar->created_at->format('H:i:s')}}</b> </td>
-                    </tr>
-                    @endif
-                    @if ($bayar->payment_type == 'echannel')
-                    <div class="text-center mb-3">
-                        <div class="row">
-                            <div class="col">
-                                <h4>Kode Perusahaan</h4>
-                                 <h4><b>{{$bayar->kode_bank}}</b></h4>
-                            </div>
-                            <div class="col">
-                                <h4>Kode Pembayaran</h4>
-                                <h4><b>{{$bayar->bill_key}}</b></h4>
-                            </div>
-                        </div>
-                        
-                      
-                       </div>
-                       <tr>
-                        <th>Tagihan</th>
-                        <td>: {{$bayar->tagihan}}</td>
-                    </tr> 
-                    <tr>
-                        <th>Nominal</th>
-                        <td>: {{number_format($bayar->gross_amount)}}</td>
-                    </tr> 
-                    <tr>
-                        <th>Methode</th>
-                        <td>: Bank Mandiri</td>
-                    </tr>
-                    <td colspan="2" class="text-center  bg-warning">Mohon Dibayarkan sebelum :  <b>{{$bayar->created_at->isoFormat('DD')+1}}-{{$bayar->created_at->format('m-Y')}} Pukul : {{$bayar->created_at->format('H:i:s')}}</b> </td>
-                    @endif
-                
-                @endforeach
-            </table>
+          <ul class="list-group list-group-flush">
+            @foreach ($data_bayar as $bayar)
+                @if ($bayar->payment_type == 'cstore')
+                <div class="text-center mb-3">
+                  <h4>Kode Bayar</h4>
+                  <h4><b>{{$bayar->payment_code}}</b></h4>
+                </div>
+                <li class="list-group-item">Tagihan
+                  <p><b>{{$bayar->tagihan}}</b></p>
+                </li>
+                <li class="list-group-item">Nominal
+                  <p><b>{{$bayar->tagihan}}</b></p>
+                </li>
+                <li class="list-group-item">Metode
+                  <p><b>Indomaret/Alfamart</b></p>
+                </li>
+                <li class="text-center bg-warning">Mohon Dibayarkan sebelum :  <b>{{$bayar->created_at->isoFormat('DD')+1}}-{{$bayar->created_at->format('m-Y')}} Pukul : {{$bayar->created_at->format('H:i:s')}}</b></li>
+                @endif
+                @if ($bayar->payment_type == 'bank_transfer')
+                <div class="text-center mb-3">
+                  <h4>Nomor Rekening / Virtual Account</h4>
+                  <h4><b>{{$bayar->va_number}}</b></h4>
+                 </div>
+                <li class="list-group-item">Tagihan
+                  <p><b>{{$bayar->tagihan}}</b></p>
+                </li>
+                <li class="list-group-item">Nominal
+                  <p><b>{{$bayar->tagihan}}</b></p>
+                </li>
+                <li class="list-group-item">Methode
+                  <p><b>{{$bayar->bank}}</b></p>
+                </li>
+                <li class="text-center bg-warning">Mohon Dibayarkan sebelum :  <b>{{$bayar->created_at->isoFormat('DD')+1}}-{{$bayar->created_at->format('m-Y')}} Pukul : {{$bayar->created_at->format('H:i:s')}}</b></li>
+                @endif
+                @if ($bayar->payment_type == 'echannel')
+                <div class="text-center mb-3">
+                  <div class="row">
+                      <div class="col">
+                          <h4>Kode Perusahaan</h4>
+                           <h4><b>{{$bayar->kode_bank}}</b></h4>
+                      </div>
+                      <div class="col">
+                          <h4>Kode Pembayaran</h4>
+                          <h4><b>{{$bayar->bill_key}}</b></h4>
+                      </div>
+                  </div>
+                 </div>
+                <li class="list-group-item">Tagihan
+                  <p><b>{{$bayar->tagihan}}</b></p>
+                </li>
+                <li class="list-group-item">Nominal
+                  <p><b>{{$bayar->tagihan}}</b></p>
+                </li>
+                <li class="list-group-item">Methode
+                  <p><b>Bank Mandiri</b></p>
+                </li>
+                <li class="text-center bg-warning">Mohon Dibayarkan sebelum :  <b>{{$bayar->created_at->isoFormat('DD')+1}}-{{$bayar->created_at->format('m-Y')}} Pukul : {{$bayar->created_at->format('H:i:s')}}</b></li>
+                @endif
+            @endforeach
+          </ul>
+            
             <div class="accordion mt-4" id="accordionPanelsStayOpenExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
