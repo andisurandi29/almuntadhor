@@ -36,10 +36,14 @@
                         <th>Methode</th>
                         <td>: Indomaret/Alfamart</td>
                     </tr> 
+                    <tr>
+    
+                      <td colspan="2" class="text-center bg-warning">Mohon Dibayarkan sebelum :  <b>{{$bayar->created_at->isoFormat('DD')+1}}-{{$bayar->created_at->format('m-Y')}} Pukul : {{$bayar->created_at->format('H:i:s')}}</b> </td>
+                    </tr>
                     @endif
                     @if ($bayar->payment_type == 'bank_transfer')
                     <div class="text-center mb-3">
-                        <h4>Nomor Virtual Account</h4>
+                        <h4>Nomor Rekening / Virtual Account</h4>
                         <h4><b>{{$bayar->va_number}}</b></h4>
                        </div>
                     <tr>
@@ -54,12 +58,15 @@
                         <th>Methode</th>
                         <td>: {{$bayar->bank}}</td>
                     </tr> 
+                    <tr>
+                      <td colspan="2" class="text-center  bg-warning">Mohon Dibayarkan sebelum :  <b>{{$bayar->created_at->isoFormat('DD')+1}}-{{$bayar->created_at->format('m-Y')}} Pukul : {{$bayar->created_at->format('H:i:s')}}</b> </td>
+                    </tr>
                     @endif
                     @if ($bayar->payment_type == 'echannel')
                     <div class="text-center mb-3">
                         <div class="row">
                             <div class="col">
-                                <h4>Kode Bank</h4>
+                                <h4>Kode Perusahaan</h4>
                                  <h4><b>{{$bayar->kode_bank}}</b></h4>
                             </div>
                             <div class="col">
@@ -82,6 +89,7 @@
                         <th>Methode</th>
                         <td>: Bank Mandiri</td>
                     </tr>
+                    <td colspan="2" class="text-center  bg-warning">Mohon Dibayarkan sebelum :  <b>{{$bayar->created_at->isoFormat('DD')+1}}-{{$bayar->created_at->format('m-Y')}} Pukul : {{$bayar->created_at->format('H:i:s')}}</b> </td>
                     @endif
                 
                 @endforeach
@@ -142,7 +150,7 @@
                               <li>Pilih transaksi lainnya pada menu utama.</li>
                               <li>Pilih transfer.</li>
                               <li>Pilih ke rekening BCA Virtual Account.</li>
-                              <li>Masukkan nomor BCA virtual account.</li>
+                              <li>Masukkan nomor BCA virtual account <b>{{$bayar->va_number}}</b>.</li>
                               <li> Masukkan jumlah yang akan dibayar, lalu konfirmasi.</li>
                               <li> Pembayaran selesai.</li>
                             </ul>
@@ -150,8 +158,8 @@
                             <ul>
                               <li>Pilih Transfer Dana. </li>
                                 <li>Pilih Transfer ke BCA Virtual Account.</li>
-                                <li> Masukkan nomor BCA Virtual Account.</li>
-                                <li>Masukkan jumlah yang akan dibayar.</li>
+                                <li> Masukkan nomor BCA Virtual Account <b>{{$bayar->va_number}}</b>.</li>
+                                <li>Masukkan jumlah yang akan dibayar <b>{{$bayar->gross_amount}}</b>.</li>
                                 <li>Konfirmasi pembayaran.</li>
                                 <li>Pembayaran selesai.</li>
                             </ul>
@@ -159,8 +167,8 @@
                             <ul>
                               <li>Pilih m-Transfer.</li>
                               <li>Pilih BCA Virtual Account.</li>
-                              <li>Masukkan nomor BCA Virtual Account.</li>
-                              <li>Masukkan jumlah yang akan dibayar.</li>
+                              <li>Masukkan nomor BCA Virtual Account <b>{{$bayar->va_number}}</b>.</li>
+                              <li>Masukkan jumlah yang akan dibayar <b>{{$bayar->gross_amount}}</b>.</li>
                               <li>Konfirmasi pembayaran.</li>
                               <li>Pembayaran selesai.</li>
                             </ul>
@@ -175,7 +183,7 @@
                               <li>Pilih lainnya.</li>
                               <li>Pilih multi payment.</li>
                               <li>Masukkan kode perusahaan Midtrans <b>70012</b>.</li>
-                              <li>Masukkan kode pembayaran, lalu konfirmasi.</li>
+                              <li>Masukkan kode pembayaran <b>{{$bayar->bill_key}}</b>, lalu konfirmasi.</li>
                               <li>Pembayaran selesai.</li>
                           </ul>
                           <li>Internet Banking</li>
@@ -184,7 +192,7 @@
                               <li>Pilih multi payment.</li>
                               <li>Pilih dari rekening.</li>
                               <li>Pilih Midtrans di bagian penyedia jasa.</li>
-                              <li>Masukkan kode pembayaran, lalu konfirmasi.</li>
+                              <li>Masukkan kode pembayaran <b>{{$bayar->bill_key}}</b>, lalu konfirmasi.</li>
                               <li>Pembayaran selesai.</li>
                           </ul>
                         </ul>

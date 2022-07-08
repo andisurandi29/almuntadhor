@@ -71,7 +71,7 @@ class TagihanController extends Controller
                 [
                 
                 'id' =>'2',
-                'price' =>  '4000',
+                'price' =>  '5500',
                 'quantity' => '1',
                 'name' => 'Biaya Admin',
 
